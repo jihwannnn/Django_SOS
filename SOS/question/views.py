@@ -22,5 +22,24 @@ def logout_view(request):
     logout(request)
     return redirect('question:login')
 
+def signup(request):
+    if request.method == 'POST':
+        username = request.POST['username']
+        password = request.POST['password']
+        password_confirm = request.POST['password_confirm']
+
+        if password != password_confirm:
+            return render(request, 'myapp/signup.html', {'error': 'Passwords do not match'})
+
+        try:
+            user = User.objects.create_user(username=username, password=password)
+            user.save()
+            login(request, user)
+            return redirect('question:index')
+        except Exception as e:
+            return render(request, 'question/signup.html', {'error': str(e)})
+    else:
+        return render(request, 'question/signup.html')
+
     
 # Create your views here.
