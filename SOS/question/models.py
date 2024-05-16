@@ -14,7 +14,7 @@ class Questions(models.Model):
 class ExamLog(models.Model):
     username = models.ForeignKey (User,
                                   on_delete=models.CASCADE,
-                                  related_name='username')
+                                  related_name='userWhoSolved')
     chapter = models.IntegerField()
     examDateTime = models.DateTimeField()
     examResult = models.JSONField()
@@ -22,9 +22,9 @@ class ExamLog(models.Model):
 class SolvedQuestions(models.Model):
     username = models.ForeignKey (User,
                                   on_delete=models.CASCADE,
-                                  related_name='username')
+                                  related_name='userWhoHadSolved')
     solvedQuestions = models.ForeignKey(Questions,
                                        on_delete=models.CASCADE,
-                                       related_name='solved questions')
+                                       related_name='solvedQuestions')
     wasRight = models.BooleanField()
-    submitted_answer = models.CharField()
+    submitted_answer = models.CharField(max_length=255)

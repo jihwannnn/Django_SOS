@@ -25,7 +25,7 @@ def main(request):
 
 def logout_view(request):
     logout(request)
-    return redirect('question:login')
+    return redirect('question:index')
 
 def signup(request):
     if request.method == 'POST':
