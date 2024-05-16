@@ -1,13 +1,37 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login</title>
+    <link rel="stylesheet" href="styles/mainstyle.css">
+    <title>main</title>
 </head>
+
 <body>
-    <h1>Login!</h1>
-    <button>Login</button>
-    <button>Sign in</button>
+
+    <div class="button-container">
+        <button class="gradient-button" id="questionBtn">Question</button>
+        <div id="dropdownMenu" class="dropdown-content" style="display:none;">
+            <a href="#">Chapter 8</a>
+            <a href="#">Chapter 9</a>
+            <a href="#">Chapter 10</a>
+        </div>
+        <button class="gradient-button">Study</button>
+        <div id="dropdownMenu" class="dropdown-content" style="display:none;">
+            <a href="#">Chapter 8</a>
+            <a href="#">Chapter 9</a>
+            <a href="#">Chapter 10</a>
+        </div>
+        <button class="gradient-button">Incorrect Answer Note</button>
+        <div id="dropdownMenu" class="dropdown-content" style="display:none;">
+            <a href="#">Chapter 8</a>
+            <a href="#">Chapter 9</a>
+            <a href="#">Chapter 10</a>
+        </div>
+    </div>
+    <script src="script/dropdown.js"></script>
+
 </body>
+
 </html>
