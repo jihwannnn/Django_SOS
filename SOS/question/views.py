@@ -1,6 +1,8 @@
 from django.shortcuts import render, redirect
 from django.conf import settings
 from django.http import HttpResponse
+from django.contrib.auth import authenticate, login, logout
+
 
 def index(request):
     if request.method == 'POST':
