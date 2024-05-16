@@ -1,4 +1,7 @@
-from django.shortcuts import render
+import os
+import random
+from django.shortcuts import render, redirect
+from django.conf import settings
 from django.http import HttpResponse
 
 def index(request):
@@ -40,6 +43,6 @@ def signup(request):
             return render(request, 'question/signup.html', {'error': str(e)})
     else:
         return render(request, 'question/signup.html')
-
+    
     
 # Create your views here.
