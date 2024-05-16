@@ -1,0 +1,11 @@
+body {
+    /* 그라데이션 배경 적용 */
+    background: linear-gradient(to bottom, #007bff, #6c757d);
+    /* 텍스트 색상을 밝은 색으로 설정하여 배경과 대비 */
+    color: white;
+    /* 높이를 100%로 설정하여 전체 화면을 채움 */
+    height: 100vh;
+    /* 마진과 패딩을 0으로 설정하여 기본 여백 제거 */
+    margin: 0;
+    padding: 0;
+}
