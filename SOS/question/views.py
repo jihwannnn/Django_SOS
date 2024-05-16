@@ -1,5 +1,3 @@
-import os
-import random
 from django.shortcuts import render, redirect
 from django.conf import settings
 from django.http import HttpResponse
@@ -11,7 +9,7 @@ def index(request):
         user = authenticate(request, username=username, password=password)
         if user is not None:
             login(request, user)
-            return redirect('question:index')
+            return redirect('question:main')
         else:
             return render(request, 'question/index.html', {'error': 'Invalid credentials'})
     else:
