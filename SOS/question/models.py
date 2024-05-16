@@ -7,7 +7,7 @@ User = get_user_model
 
 class Questions(models.Model):
     chapter = models.IntegerField()
-    image = models.ImageField(upload_to="quiz_images/")
+    image = models.ImageField()
     answer = models.CharField(max_length=255)
 
     def __str__(self):
