@@ -2,7 +2,10 @@ from django.shortcuts import render
 from django.http import HttpResponse
 
 def index(request):
-    return render(request, 'question/index.html') 
+    return render(request, 'question/index.html')
+
+def main(request):
+    return render(request, 'question/main.html')
 
     
 # Create your views here.
