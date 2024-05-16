@@ -44,5 +44,14 @@ def signup(request):
     else:
         return render(request, 'question/signup.html')
     
+def quiz(request):
+    return render(request, 'question/quiz.html')
+
+def retest(request):
+    return render(request, 'question/retest.html')
+
+def study(request):
+    return render(request, 'question/study.html')
+    
     
 # Create your views here.
