@@ -1,7 +1,5 @@
-from django.contrib.auth import get_user_model
+from django.contrib.auth.models import User
 from django.db import models
-
-User = get_user_model
 
 # Create your models here.
 
@@ -13,7 +11,7 @@ class Questions(models.Model):
     def __str__(self):
         return self.answer
 
-class examLog(models.Model):
+class ExamLog(models.Model):
     username = models.ForeignKey (User,
                                   on_delete=models.CASCADE,
                                   related_name='username')
