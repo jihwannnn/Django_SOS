@@ -5,7 +5,7 @@ from django.db import models
 
 class Questions(models.Model):
     chapter = models.IntegerField()
-    image = models.ImageField()
+    image = models.ImageField(upload_to="quiz_images")
     answer = models.CharField(max_length=255)
 
     def __str__(self):
