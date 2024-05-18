@@ -5,8 +5,6 @@ from django.contrib.auth import authenticate, login, logout
 from django.core.exceptions import ValidationError
 from .models import Questions, SolvedQuestions, ExamLog
 
-
-
 def index(request):
     if request.method == 'POST':
         username = request.POST['username']
