@@ -1,4 +1,3 @@
-import re
 from django.shortcuts import render, redirect
 from django.contrib.auth.models import User
 from django.http import HttpResponse
@@ -57,8 +56,9 @@ def signup(request):
         return render(request, 'question/signup.html')
     
 def quiz(request, chapter_num):
+    questions = Questions.objects.filter(chapter = chapter_num)
     context = {'chapter_num': chapter_num}
-    return render(request, 'question/quiz.html', context)
+    return render(request, 'question/quiz.html')
 
 def retest(request):
     return render(request, 'question/retest.html')
