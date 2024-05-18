@@ -29,7 +29,6 @@ jobs:
 
     - name: Change directory
       run: |
-        cd ..
         cd SOS
 
     - name: Run migrations
