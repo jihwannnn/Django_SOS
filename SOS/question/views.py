@@ -54,16 +54,22 @@ def signup(request):
         return render(request, 'question/signup.html')
     
 def quiz(request, chapter_num):
-    questions = Question.objects.filter(chapter = chapter_num)
-    context = {'chapter_num': chapter_num}
-    return render(request, 'question/quiz.html')
+    questions = Question.objects.filter(chapter=chapter_num)
+    context = {
+        'chapter_num': chapter_num,
+        'questions': questions
+    }
+    return render(request, 'question/quiz.html', context)
 
 def retest(request):
     return render(request, 'question/retest.html')
 
 def study(request, chapter_num):
-    questions = Question.objects.filter(chapter = chapter_num)
-    context = {'chapter_num': chapter_num, 'questions': questions}
+    questions = Question.objects.filter(chapter=chapter_num)
+    context = {
+        'chapter_num': chapter_num,
+        'questions': questions
+    }
     return render(request, 'question/study.html', context)
     
 def test(request):
