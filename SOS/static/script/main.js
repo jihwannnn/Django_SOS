@@ -58,11 +58,11 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     studyChapter9Btn.onclick = function() {
-        window.location.href = "/question/quiz/9/";
+        window.location.href = "/question/study/9/";
     }
 
     studyChapter10Btn.onclick = function() {
-        window.location.href = "/question/quiz/10/";
+        window.location.href = "/question/study/10/";
     }
 
     // 이미지 컨테이너 마우스 움직임에 따른 효과
