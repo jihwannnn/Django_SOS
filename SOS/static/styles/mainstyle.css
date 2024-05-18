@@ -48,7 +48,6 @@ body {
 .card {
     width: 380px; 
     height: 480px;
-    background-image: url('{% static "images/OSD.jpg" %}');
     background-size: cover;
 }
 
@@ -130,6 +129,10 @@ body {
     text-align: center;
     border-radius: 10px;
     font-family: 'Lato', sans-serif; /* 모달에도 Lato 글꼴 적용 */
+}
+
+.modal-content h2 {
+    color: #333; /* 글자 색상을 다크 그레이로 변경 */
 }
 
 .close-button {
