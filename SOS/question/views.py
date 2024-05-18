@@ -54,8 +54,9 @@ def signup(request):
     else:
         return render(request, 'question/signup.html')
     
-def quiz(request):
-    return render(request, 'question/quiz.html')
+def quiz(request, chapter_num):
+    context = {'chapter_num': chapter_num}
+    return render(request, 'question/quiz.html', context)
 
 def retest(request):
     return render(request, 'question/retest.html')
