@@ -9,15 +9,25 @@
 </head>
 <body>
     <div class="container">
-        <h1>Chapter {{ chapter_num }}</h1>
+        <header>
+            <h1 id="chapter-title" class="chapter-title">Chapter {{ chapter_num }} Quiz</h1>
+        </header>
         <div class="question-container">
-            <img src="" alt="Question Image" class="question-image">
+            <img src="{{question.image.url}}" alt="Question Image" class="question-image">
             <form method="post" class="answer-form">
-                <label for="answer">Your Answer:</label>
-                <input type="text" id="answer" name="answer" required>
-                <button type="submit">Submit</button>
+                {% csrf_token %}
+                <label for="answer" class="form-label">Your Answer:</label>
+                <input type="text" id="answer" name="answer" class="form-input" required>
+                <button type="submit" class="form-button">Submit</button>
             </form>
         </div>
+        <footer>
+            <button id="prev" class="arrow-button">&larr;</button>
+            <button id="home" class="home-button" onclick="window.location.href='{% url 'question:main' %}'">
+                <img src="{% static 'images/home-icon.png' %}" alt="Home" class="icon">
+            </button>
+            <button id="next" class="arrow-button">&rarr;</button>
+        </footer>
     </div>
     <script src="{% static 'script/quiz.js' %}"></script>
 </body>

@@ -21,7 +21,7 @@ from django.conf.urls.static import static
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('question/', include('question.urls'))
+    path('question/', include('question.urls')),
 ] 
 
 # images url

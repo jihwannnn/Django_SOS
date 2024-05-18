@@ -4,14 +4,14 @@ document.addEventListener('DOMContentLoaded', function () {
     console.log('DOMContentLoaded event fired'); // 디버깅용 로그
 
     // URL 파라미터에서 챕터 정보 가져오기
-    const urlParams = new URLSearchParams(window.location.search);
-    const chapter = urlParams.get('chapter_num') || '8'; // 기본값: 8
-
+    const urlSegments = window.location.pathname.split('/');
+    const chapter = urlSegments[urlSegments.length - 2];
+    
     console.log('Chapter:', chapter); // 디버깅용 로그
 
     // 챕터 타이틀 설정
     const chapterTitle = document.getElementById('chapter-title');
-    chapterTitle.textContent = `Chapter ${chapter}`;
+    chapterTitle.textContent = `Chapter ${chapter} Quiz`;
 
     console.log('Chapter Title Text:', chapterTitle.textContent); // 디버깅용 로그
 
