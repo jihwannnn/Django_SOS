@@ -1,7 +1,5 @@
-from django.contrib.auth import get_user_model
+from django.contrib.auth.models import User
 from django.db import models
-
-User = get_user_model
 
 # Create your models here.
 
@@ -13,10 +11,10 @@ class Questions(models.Model):
     def __str__(self):
         return self.answer
 
-class examLog(models.Model):
+class ExamLog(models.Model):
     username = models.ForeignKey (User,
                                   on_delete=models.CASCADE,
-                                  related_name='username')
+                                  related_name='userWhoSolved')
     chapter = models.IntegerField()
     examDateTime = models.DateTimeField()
     examResult = models.JSONField()
@@ -24,9 +22,9 @@ class examLog(models.Model):
 class SolvedQuestions(models.Model):
     username = models.ForeignKey (User,
                                   on_delete=models.CASCADE,
-                                  related_name='username')
+                                  related_name='userWhoHadSolved')
     solvedQuestions = models.ForeignKey(Questions,
                                        on_delete=models.CASCADE,
-                                       related_name='solved questions')
+                                       related_name='solvedQuestions')
     wasRight = models.BooleanField()
-    submitted_answer = models.CharField()
+    submitted_answer = models.CharField(max_length=255)

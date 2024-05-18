@@ -3,14 +3,22 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'styles/studystyle.css' %}">
+    <title>Chapter Study</title>
 </head>
 <body>
-    # 챕터에 해당하는 빈칸없는 문제 DB 받아오기 Questions
-    # 챕터 표시하는 h1
-    # 이미지
-    # 앞으로 버튼
-    # 뒤로 버튼
-    # 메인으로 나가기 버튼
+    <div class="container">
+        <h1>Chapter {{ chapter_number }}</h1>
+        <div class="question-container">
+            <img src="{{ question.image.url }}" alt="Question Image" class="question-image">
+            <div class="navigation-buttons">
+                <button id="prevBtn">Previous</button>
+                <button id="nextBtn">Next</button>
+            </div>
+        </div>
+        <button onclick="window.location.href='{% url 'main' %}'" class="main-button">Back to Main</button>
+    </div>
+    <script src="{% static 'script/studyscript.js' %}"></script>
 </body>
 </html>
