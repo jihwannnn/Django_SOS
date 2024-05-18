@@ -2,7 +2,8 @@
 
 ### ***Front***
 - 프론트에서 수시로 추가해주세여
-
+static 관련해서 setting.py도 건들고
+모든 스타일과 js, html 건듬
 
 
 
