@@ -10,8 +10,8 @@ class Command(BaseCommand):
     def handle(self, *args, **kwargs):
         # this json is for loading questions
         questions = [
-            {"chapter": 1,
-             "image": os.path.join(settings.BASE_DIR, "question", "media", "quiz_images", "itm_logo.png"),
+            {"chapter": 8,
+             "image": os.path.join(settings.MEDIA_ROOT, "quiz_images", "itm_logo.png"),
              "answer":"wow"}
             # 추가 문제 데이터
         ]
