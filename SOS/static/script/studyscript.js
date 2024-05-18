@@ -2,9 +2,9 @@ document.addEventListener('DOMContentLoaded', function() {
     var currentQuestionIndex = 0;
     var questions = [
         // 여기에 각 챕터의 이미지 URL 목록을 추가하세요.
-        {% for question in questions %}
-            "{{ question.image.url }}",
-        {% endfor %}
+        //{% for question in questions %}
+            //"{{ question.image.url }}",
+        //{% endfor %}
     ];
 
     var questionImage = document.querySelector('.question-image');
