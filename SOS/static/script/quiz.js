@@ -11,7 +11,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // 챕터 타이틀 설정
     const chapterTitle = document.getElementById('chapter-title');
-    chapterTitle.textContent = `Chapter ${chapter}`;
+    chapterTitle.textContent = `Chapter ${chapter} Quiz`;
 
     console.log('Chapter Title Text:', chapterTitle.textContent); // 디버깅용 로그
 
