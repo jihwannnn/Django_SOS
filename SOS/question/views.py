@@ -1,4 +1,5 @@
-import re
+
+from urllib import request
 from django.shortcuts import render, redirect
 from django.contrib.auth.models import User
 from django.http import HttpResponse
@@ -57,14 +58,9 @@ def signup(request):
         return render(request, 'question/signup.html')
     
 def quiz(request, chapter_num):
-<<<<<<< HEAD
     questions = Questions.objects.filter(chapter = chapter_num)
     
     return render(request, 'question/quiz.html')
-=======
-    context = {'chapter_num': chapter_num}
-    return render(request, 'question/quiz.html', context)
->>>>>>> frontk
 
 def retest(request):
     return render(request, 'question/retest.html')
