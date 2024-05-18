@@ -30,6 +30,7 @@ jobs:
     - name: Change directory
       run: |
         source venv/bin/activate
+        python -m pip install Pillow
         cd SOS
         python manage.py makemigrations question
         python manage.py migrate
