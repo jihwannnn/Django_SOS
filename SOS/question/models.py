@@ -11,14 +11,6 @@ class Questions(models.Model):
     def __str__(self):
         return self.answer
 
-class ExamLog(models.Model):
-    username = models.ForeignKey (User,
-                                  on_delete=models.CASCADE,
-                                  related_name='userWhoSolved')
-    chapter = models.IntegerField()
-    examDateTime = models.DateTimeField()
-    examResult = models.JSONField()
-
 class SolvedQuestions(models.Model):
     username = models.ForeignKey (User,
                                   on_delete=models.CASCADE,
@@ -28,3 +20,13 @@ class SolvedQuestions(models.Model):
                                        related_name='solvedQuestions')
     wasRight = models.BooleanField()
     submitted_answer = models.CharField(max_length=255)
+    class Meta:
+        unique_together = ('username', 'solvedQuestions')
+
+class ExamLog(models.Model):
+    username = models.ForeignKey (User,
+                                  on_delete=models.CASCADE,
+                                  related_name='userWhoSolved')
+    chapter = models.IntegerField()
+    examDateTime = models.DateTimeField()
+    examResult = models.JSONField()
