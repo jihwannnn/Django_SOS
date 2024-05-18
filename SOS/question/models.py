@@ -3,7 +3,7 @@ from django.db import models
 
 # Create your models here.
 
-class Questions(models.Model):
+class Question(models.Model):
     chapter = models.IntegerField()
     image = models.ImageField(upload_to="quiz_images/")
     answer = models.CharField(max_length=255)
@@ -11,20 +11,23 @@ class Questions(models.Model):
     def __str__(self):
         return self.answer
 
-class ExamLog(models.Model):
-    username = models.ForeignKey (User,
-                                  on_delete=models.CASCADE,
-                                  related_name='userWhoSolved')
-    chapter = models.IntegerField()
-    examDateTime = models.DateTimeField()
-    examResult = models.JSONField()
-
-class SolvedQuestions(models.Model):
-    username = models.ForeignKey (User,
-                                  on_delete=models.CASCADE,
-                                  related_name='userWhoHadSolved')
-    solvedQuestions = models.ForeignKey(Questions,
+class SolvedQuestion(models.Model):
+    user = models.ForeignKey (User,
+                              on_delete=models.CASCADE,
+                              related_name='user_who_solved')
+    solved_questions = models.ForeignKey(Question,
                                        on_delete=models.CASCADE,
-                                       related_name='solvedQuestions')
-    wasRight = models.BooleanField()
+                                       related_name='solved_by_users')
+    was_right = models.BooleanField()
     submitted_answer = models.CharField(max_length=255)
+
+    class Meta:
+        unique_together = ('user', 'solved_questions')
+
+class ExamLog(models.Model):
+    user = models.ForeignKey (User,
+                              on_delete=models.CASCADE,
+                              related_name='user_who_had_solved')
+    chapter = models.IntegerField()
+    exam_dateTime = models.DateTimeField()
+    exam_result = models.JSONField()

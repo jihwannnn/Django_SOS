@@ -4,6 +4,12 @@ document.addEventListener('DOMContentLoaded', function() {
     var questionBtn = document.getElementById("questionBtn");
     var studyBtn = document.getElementById("studyBtn");
     var closeButtons = document.getElementsByClassName("close-button");
+    var quizChapter8Btn = document.getElementById("quizChapter8Btn");
+    var quizChapter9Btn = document.getElementById("quizChapter9Btn");
+    var quizChapter10Btn = document.getElementById("quizChapter10Btn");
+    var studyChapter8Btn = document.getElementById("studyChapter8Btn");
+    var studyChapter9Btn = document.getElementById("studyChapter9Btn");
+    var studyChapter10Btn = document.getElementById("studyChapter10Btn");
 
     // "Quiz" 버튼을 클릭하면 퀴즈 모달 창이 열립니다.
     questionBtn.onclick = function() {
@@ -33,6 +39,32 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
 
+    // Chapter 버튼 클릭 시 퀴즈 페이지로 이동
+    quizChapter8Btn.onclick = function() {
+        window.location.href = "/question/quiz/8/";
+    }
+
+    quizChapter9Btn.onclick = function() {
+        window.location.href = "/question/quiz/9/";
+    }
+
+    quizChapter10Btn.onclick = function() {
+        window.location.href = "/question/quiz/10/";
+    }
+
+    // Study 버튼 클릭 시 학습 페이지로 이동
+    studyChapter8Btn.onclick = function() {
+        window.location.href = "/question/study/8/";
+    }
+
+    studyChapter9Btn.onclick = function() {
+        window.location.href = "/question/study/9/";
+    }
+
+    studyChapter10Btn.onclick = function() {
+        window.location.href = "/question/study/10/";
+    }
+
     // 이미지 컨테이너 마우스 움직임에 따른 효과
     var container = document.querySelector('.image-container');
     var overlay = document.querySelector('.overlay');
@@ -53,4 +85,5 @@ document.addEventListener('DOMContentLoaded', function() {
         overlay.style.filter = 'opacity(0)';
         container.style.transform = 'perspective(350px) rotateY(0deg) rotateX(0deg)';
     });
+
 });

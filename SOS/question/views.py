@@ -3,8 +3,7 @@ from django.contrib.auth.models import User
 from django.http import HttpResponse
 from django.contrib.auth import authenticate, login, logout
 from django.core.exceptions import ValidationError
-
-
+from .models import Question, SolvedQuestion, ExamLog
 
 def index(request):
     if request.method == 'POST':
@@ -38,7 +37,7 @@ def signup(request):
             return render(request, 'question/signup.html', {'error': 'All fields are required'})
 
         if password != password_confirm:
-            return render(request, 'myapp/signup.html', {'error': 'Passwords do not match'})
+            return render(request, 'question/signup.html', {'error': 'Passwords do not match'})
 
         # 사용자 생성 시 예외 처리
         try:
@@ -54,14 +53,29 @@ def signup(request):
     else:
         return render(request, 'question/signup.html')
     
-def quiz(request):
-    return render(request, 'question/quiz.html')
+def quiz(request, chapter_num):
+    questions = Question.objects.filter(chapter=chapter_num)
+    context = {
+        'chapter_num': chapter_num,
+        'questions': questions
+    }
+    return render(request, 'question/quiz.html', context)
 
 def retest(request):
     return render(request, 'question/retest.html')
 
-def study(request):
-    return render(request, 'question/study.html')
+def study(request, chapter_num):
+    questions = Question.objects.filter(chapter=chapter_num)
+    context = {
+        'chapter_num': chapter_num,
+        'questions': questions
+    }
+    return render(request, 'question/study.html', context)
     
-    
+def test(request):
+    question = Question.objects.get(chapter = 8)
+    return render(request, 'question/test.html', {
+        'question' : question
+    })
+
 # Create your views here.

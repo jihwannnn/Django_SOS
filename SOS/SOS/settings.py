@@ -142,3 +142,5 @@ STATICFILES_DIRS = [
 
 # 정적 파일이 수집되는 디렉토리
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+
+DEBUG = True
