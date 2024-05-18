@@ -58,7 +58,7 @@ def signup(request):
     
 def quiz(request, chapter_num):
     questions = Questions.objects.filter(chapter = chapter_num)
-
+    
     return render(request, 'question/quiz.html')
 
 def retest(request):
