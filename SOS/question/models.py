@@ -9,7 +9,7 @@ class Questions(models.Model):
     answer = models.CharField(max_length=255)
 
     def __str__(self):
-        return self.answer
+        return self.id
 
 class SolvedQuestions(models.Model):
     username = models.ForeignKey (User,
