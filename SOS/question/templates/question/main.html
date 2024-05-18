@@ -1,32 +1,30 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../styles/mainstyle.css">
-    <title>main</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'styles/mainstyle.css' %}">
+    <title>Main</title>
 </head>
-
 <body>
-
     <div class="button-container">
         <button class="gradient-button" id="questionBtn">Question</button>
-        <div id="dropdownMenu" class="dropdown-content" style="display:none;">
-            <a href="#">Chapter 8</a>
-            <a href="#">Chapter 9</a>
-            <a href="#">Chapter 10</a>
-        </div>
-        <button class="gradient-button">Study</button>
-        <div id="dropdownMenu" class="dropdown-content" style="display:none;">
-            <a href="#">Chapter 8</a>
-            <a href="#">Chapter 9</a>
-            <a href="#">Chapter 10</a>
-        </div>
+        <button class="gradient-button" id="studyBtn">Study</button>
         <button class="gradient-button">Incorrect Answer Note</button>
     </div>
-    <script src="../script/dropdown.js"></script>
-
+    
+    <!-- Pop-up modal -->
+    <div id="popupModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Select a Chapter</h2>
+            <a href="#">Chapter 8</a>
+            <a href="#">Chapter 9</a>
+            <a href="#">Chapter 10</a>
+        </div>
+    </div>
+    
+    <script src="{% static 'script/dropdown.js' %}"></script>
 </body>
-
 </html>

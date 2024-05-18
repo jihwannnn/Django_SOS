@@ -3,12 +3,27 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'styles/incorrect_answers.css' %}">
+    <title>Incorrect Answers</title>
 </head>
 <body>
-    # 사용자가 틀린 문제 가져오기 solvedquestion
-    # 이미지
-    # 텍스트 입력하는 인풋
-    # 정답 제출 버튼
+    <div class="container">
+        <h1>Incorrect Answers</h1>
+        <div class="chapter-list">
+            {% for chapter in chapters %}
+            <div class="chapter-item">
+                <div class="chapter-info">
+                    <h2>Chapter {{ chapter.number }}</h2>
+                    <p>{{ chapter.correct }} / {{ chapter.total }} Correct</p>
+                </div>
+                <button class="retry-button" onclick="retryChapter({{ chapter.number }})">Retry</button>
+            </div>
+            {% endfor %}
+        </div>
+        <button onclick="window.location.href='{% url 'main' %}'" class="main-button">Back to Main</button>
+    </div>
+    <script src="{% static 'script/incorrect_answers.js' %}"></script>
 </body>
 </html>
+

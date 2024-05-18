@@ -3,14 +3,23 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'styles/chapterstyle.css' %}">
+    <title>Chapter Questions</title>
 </head>
 <body>
-    # 챕터에 해당하는 빈칸 있는 문제 DB 받아오기 Questions
-    # 챕터 표시하는 h1
-    # img 받아오기
-    # 텍스트 입력하는 input
-    # 제출하는 버튼
-    # 메인으로 나가기 버튼
+    <div class="container">
+        <h1>Chapter {{ chapter_number }}</h1>
+        <div class="question-container">
+            <img src="{{ question.image.url }}" alt="Question Image" class="question-image">
+            <form method="post" class="answer-form">
+                {% csrf_token %}
+                <label for="answer">Your Answer:</label>
+                <input type="text" id="answer" name="answer" required>
+                <button type="submit">Submit</button>
+            </form>
+        </div>
+        <button onclick="window.location.href='{% url 'main' %}'" class="main-button">Back to Main</button>
+    </div>
 </body>
 </html>
