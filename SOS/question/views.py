@@ -25,7 +25,7 @@ def main(request):
 
 def logout_view(request):
     logout(request)
-    return redirect('question:login')
+    return redirect('question:index')
 
 def signup(request):
     if request.method == 'POST':
@@ -35,10 +35,10 @@ def signup(request):
 
         # 입력 검증
         if not username or not password or not password_confirm:
-            return render(request, 'myapp/signup.html', {'error': 'All fields are required'})
+            return render(request, 'question/signup.html', {'error': 'All fields are required'})
 
         if password != password_confirm:
-            return render(request, 'myapp/signup.html', {'error': 'Passwords do not match'})
+            return render(request, 'question/signup.html', {'error': 'Passwords do not match'})
 
         # 사용자 생성 시 예외 처리
         try:
@@ -48,11 +48,11 @@ def signup(request):
             login(request, user)
             return redirect('question:index')
         except ValidationError as e:
-            return render(request, 'myapp/signup.html', {'error': e.messages})
+            return render(request, 'question/signup.html', {'error': e.messages})
         except Exception as e:
-            return render(request, 'myapp/signup.html', {'error': 'An unexpected error occurred'})
+            return render(request, 'question/signup.html', {'error': 'An unexpected error occurred'})
     else:
-        return render(request, 'myapp/signup.html')
+        return render(request, 'question/signup.html')
     
 def quiz(request):
     return render(request, 'question/quiz.html')
