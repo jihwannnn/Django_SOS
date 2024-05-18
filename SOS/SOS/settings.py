@@ -129,3 +129,18 @@ LOGOUT_REDIRECT_URL = '/login/'
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+# settings.py
+
+# 정적 파일을 서빙하기 위한 URL 경로
+STATIC_URL = '/static/'
+
+# 정적 파일 디렉토리 설정
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, 'static'),
+]
+
+# 정적 파일이 수집되는 디렉토리
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+
+DEBUG = True

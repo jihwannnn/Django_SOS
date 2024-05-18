@@ -3,14 +3,32 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'styles/quiz.css' %}">
+    <title>Chapter Questions</title>
 </head>
 <body>
-    # 챕터에 해당하는 빈칸 있는 문제 DB 받아오기 Questions
-    # 챕터 표시하는 h1
-    # img 받아오기
-    # 텍스트 입력하는 input
-    # 제출하는 버튼
-    # 메인으로 나가기 버튼
+    <div class="container">
+        <header>
+            <h1 id="chapter-title" class="chapter-title">Chapter {{ chapter_num }} Quiz</h1>
+        </header>
+        <div class="question-container">
+            <img src="{{question.image.url}}" alt="Question Image" class="question-image">
+            <form method="post" class="answer-form">
+                {% csrf_token %}
+                <label for="answer" class="form-label">Your Answer:</label>
+                <input type="text" id="answer" name="answer" class="form-input" required>
+                <button type="submit" class="form-button">Submit</button>
+            </form>
+        </div>
+        <footer>
+            <button id="prev" class="arrow-button">&larr;</button>
+            <button id="home" class="home-button" onclick="window.location.href='{% url 'question:main' %}'">
+                <img src="{% static 'images/home-icon.png' %}" alt="Home" class="icon">
+            </button>
+            <button id="next" class="arrow-button">&rarr;</button>
+        </footer>
+    </div>
+    <script src="{% static 'script/quiz.js' %}"></script>
 </body>
 </html>

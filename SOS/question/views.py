@@ -1,8 +1,9 @@
 from django.shortcuts import render, redirect
-from django.conf import settings
+from django.contrib.auth.models import User
 from django.http import HttpResponse
 from django.contrib.auth import authenticate, login, logout
-
+from django.core.exceptions import ValidationError
+from .models import Question, SolvedQuestion, ExamLog
 
 def index(request):
     if request.method == 'POST':
@@ -23,7 +24,7 @@ def main(request):
 
 def logout_view(request):
     logout(request)
-    return redirect('question:login')
+    return redirect('question:index')
 
 def signup(request):
     if request.method == 'POST':
@@ -31,27 +32,50 @@ def signup(request):
         password = request.POST['password']
         password_confirm = request.POST['password_confirm']
 
-        if password != password_confirm:
-            return render(request, 'myapp/signup.html', {'error': 'Passwords do not match'})
+        # 입력 검증
+        if not username or not password or not password_confirm:
+            return render(request, 'question/signup.html', {'error': 'All fields are required'})
 
+        if password != password_confirm:
+            return render(request, 'question/signup.html', {'error': 'Passwords do not match'})
+
+        # 사용자 생성 시 예외 처리
         try:
             user = User.objects.create_user(username=username, password=password)
+            user.full_clean()  # 추가적인 검증
             user.save()
             login(request, user)
             return redirect('question:index')
+        except ValidationError as e:
+            return render(request, 'question/signup.html', {'error': e.messages})
         except Exception as e:
-            return render(request, 'question/signup.html', {'error': str(e)})
+            return render(request, 'question/signup.html', {'error': 'An unexpected error occurred'})
     else:
         return render(request, 'question/signup.html')
     
-def quiz(request):
-    return render(request, 'question/quiz.html')
+def quiz(request, chapter_num):
+    questions = Question.objects.filter(chapter=chapter_num)
+    context = {
+        'chapter_num': chapter_num,
+        'questions': questions
+    }
+    return render(request, 'question/quiz.html', context)
 
 def retest(request):
     return render(request, 'question/retest.html')
 
-def study(request):
-    return render(request, 'question/study.html')
+def study(request, chapter_num):
+    questions = Question.objects.filter(chapter=chapter_num)
+    context = {
+        'chapter_num': chapter_num,
+        'questions': questions
+    }
+    return render(request, 'question/study.html', context)
     
-    
+def test(request):
+    question = Question.objects.get(chapter = 8)
+    return render(request, 'question/test.html', {
+        'question' : question
+    })
+
 # Create your views here.
