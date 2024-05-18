@@ -27,6 +27,11 @@ jobs:
         source venv/bin/activate
         pip install django
 
+    - name: Change directory
+      run: |
+        cd ..
+        cd SOS
+
     - name: Run migrations
       run: |
         python manage.py migrate
