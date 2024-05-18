@@ -12,7 +12,6 @@
         <header>
             <h1 id="chapter-title" class="chapter-title">Chapter {{ chapter_num }} Quiz</h1>
         </header>
-        {% for question in questons %}
         <div class="question-container">
             <img src="{{question.image.url}}" alt="Question Image" class="question-image">
             <form method="post" class="answer-form">
@@ -22,7 +21,6 @@
                 <button type="submit" class="form-button">Submit</button>
             </form>
         </div>
-        {% endfor %}
         <footer>
             <button id="prev" class="arrow-button">&larr;</button>
             <button id="home" class="home-button" onclick="window.location.href='{% url 'question:main' %}'">
