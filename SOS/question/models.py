@@ -8,25 +8,26 @@ class Question(models.Model):
     image = models.ImageField(upload_to="quiz_images/")
     answer = models.CharField(max_length=255)
 
-    def __int__(self):
-        return self.id
+    def __str__(self):
+        return self.answer
 
 class SolvedQuestion(models.Model):
-    username = models.ForeignKey (User,
-                                  on_delete=models.CASCADE,
-                                  related_name='userWhoHadSolved')
-    solvedQuestion = models.ForeignKey(Question,
+    user = models.ForeignKey (User,
+                              on_delete=models.CASCADE,
+                              related_name='user_who_solved')
+    solved_questions = models.ForeignKey(Question,
                                        on_delete=models.CASCADE,
-                                       related_name='solvedQuestion')
-    wasRight = models.BooleanField()
+                                       related_name='solved_by_users')
+    was_right = models.BooleanField()
     submitted_answer = models.CharField(max_length=255)
+
     class Meta:
-        unique_together = ('username', 'solvedQuestion')
+        unique_together = ('user', 'solved_questions')
 
 class ExamLog(models.Model):
-    username = models.ForeignKey (User,
-                                  on_delete=models.CASCADE,
-                                  related_name='userWhoSolved')
+    user = models.ForeignKey (User,
+                              on_delete=models.CASCADE,
+                              related_name='user_who_had_solved')
     chapter = models.IntegerField()
-    examDateTime = models.DateTimeField()
-    examResult = models.JSONField()
+    exam_dateTime = models.DateTimeField()
+    exam_result = models.JSONField()

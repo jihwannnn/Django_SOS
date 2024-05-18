@@ -54,14 +54,36 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Study 버튼 클릭 시 학습 페이지로 이동
     studyChapter8Btn.onclick = function() {
-        window.location.href = "study.html?chapter_num=8";
+        window.location.href = "/question/study/8/";
     }
 
     studyChapter9Btn.onclick = function() {
-        window.location.href = "study.html?chapter_num=9";
+        window.location.href = "/question/quiz/9/";
     }
 
     studyChapter10Btn.onclick = function() {
-        window.location.href = "study.html?chapter_num=10";
+        window.location.href = "/question/quiz/10/";
     }
+
+    // 이미지 컨테이너 마우스 움직임에 따른 효과
+    var container = document.querySelector('.image-container');
+    var overlay = document.querySelector('.overlay');
+
+    container.addEventListener('mousemove', function(e) {
+        var x = e.offsetX;
+        var y = e.offsetY;
+        var rotateY = -1 / 5 * x + 20;
+        var rotateX = 4 / 30 * y - 20;
+
+        overlay.style.backgroundPosition = `${x / 5 + y / 5}%`;
+        overlay.style.filter = `opacity(${x / 200}) brightness(1.2)`;
+
+        container.style.transform = `perspective(350px) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+    });
+
+    container.addEventListener('mouseout', function() {
+        overlay.style.filter = 'opacity(0)';
+        container.style.transform = 'perspective(350px) rotateY(0deg) rotateX(0deg)';
+    });
+
 });

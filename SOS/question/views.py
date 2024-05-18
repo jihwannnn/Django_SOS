@@ -5,8 +5,6 @@ from django.contrib.auth import authenticate, login, logout
 from django.core.exceptions import ValidationError
 from .models import Question, SolvedQuestion, ExamLog
 
-
-
 def index(request):
     if request.method == 'POST':
         username = request.POST['username']
@@ -57,13 +55,16 @@ def signup(request):
     
 def quiz(request, chapter_num):
     questions = Question.objects.filter(chapter = chapter_num)
+    context = {'chapter_num': chapter_num}
     return render(request, 'question/quiz.html')
 
 def retest(request):
     return render(request, 'question/retest.html')
 
-def study(request):
-    return render(request, 'question/study.html')
+def study(request, chapter_num):
+    questions = Question.objects.filter(chapter = chapter_num)
+    context = {'chapter_num': chapter_num, 'questions': questions}
+    return render(request, 'question/study.html', context)
     
 def test(request):
     question = Question.objects.get(chapter = 8)
