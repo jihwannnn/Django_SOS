@@ -20,6 +20,13 @@
                 <button type="submit">Submit</button>
             </form>
         </div>
+        <footer>
+            <button id="prev" class="arrow-button">&larr;</button>
+            <button id="home" class="home-button" onclick="window.location.href='{% url 'question:main' %}'">
+                <img src="{% static 'images/home-icon.png' %}" alt="Home" class="icon">
+            </button>
+            <button id="next" class="arrow-button">&rarr;</button>
+        </footer>
     </div>
     <script src="{% static 'script/quiz.js' %}"></script>
 </body>
