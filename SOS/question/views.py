@@ -57,9 +57,14 @@ def signup(request):
         return render(request, 'question/signup.html')
     
 def quiz(request, chapter_num):
+<<<<<<< HEAD
     questions = Questions.objects.filter(chapter = chapter_num)
     
     return render(request, 'question/quiz.html')
+=======
+    context = {'chapter_num': chapter_num}
+    return render(request, 'question/quiz.html', context)
+>>>>>>> frontk
 
 def retest(request):
     return render(request, 'question/retest.html')

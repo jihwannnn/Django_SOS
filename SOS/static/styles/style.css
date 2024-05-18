@@ -1,6 +1,7 @@
 body {
-    font-family: Arial, sans-serif;
-    background-color: #f4f4f9;
+    font-family: 'Lato', sans-serif;
+    background: linear-gradient(to bottom, #007bff, #6c757d);
+    color: white;
     margin: 0;
     padding: 0;
     display: flex;
@@ -10,17 +11,19 @@ body {
 }
 
 .container {
-    background-color: #fff;
-    padding: 20px;
+    background-color:  #34495E;
+    padding: 40px;
+    border-radius: 10px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    border-radius: 8px;
     text-align: center;
-    width: 300px;
-    max-width: 90%;
+    width: 100%;
+    max-width: 400px;
 }
 
 h1 {
-    color: #333;
+    margin-bottom: 20px;
+    font-size: 24px;
+    color: white;
 }
 
 form {
@@ -30,9 +33,11 @@ form {
 }
 
 label {
-    margin: 10px 0 5px;
-    width: 100%;
-    text-align: left;
+    display: flex;
+    align-items: center;
+    background: #2C3E50;
+    padding: 10px 15px;
+    border-radius: 5px;
 }
 
 input {
@@ -45,23 +50,22 @@ input {
 }
 
 button {
-    padding: 10px 20px;
+    background: #1ABC9C;
     border: none;
-    background-color: #007bff;
     color: white;
-    border-radius: 4px;
+    padding: 10px;
+    border-radius: 5px;
+    font-size: 16px;
     cursor: pointer;
-    margin-top: 10px;
-    width: 100%;
-    box-sizing: border-box;
+    transition: background 0.3s;
 }
 
 button:hover {
-    background-color: #0056b3;
+    background: #16A085;
 }
 
 a {
-    color: #007bff;
+    color: #1ABC9C;
     text-decoration: none;
     margin-top: 10px;
 }

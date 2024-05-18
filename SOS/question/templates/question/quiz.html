@@ -4,22 +4,21 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     {% load static %}
-    <link rel="stylesheet" href="{% static 'styles/chapterstyle.css' %}">
+    <link rel="stylesheet" href="{% static 'styles/quiz.css' %}">
     <title>Chapter Questions</title>
 </head>
 <body>
     <div class="container">
-        <h1>Chapter {{ chapter_number }}</h1>
+        <h1>Chapter {{ chapter_num }}</h1>
         <div class="question-container">
-            <img src="{{ question.image.url }}" alt="Question Image" class="question-image">
+            <img src="" alt="Question Image" class="question-image">
             <form method="post" class="answer-form">
-                {% csrf_token %}
                 <label for="answer">Your Answer:</label>
                 <input type="text" id="answer" name="answer" required>
                 <button type="submit">Submit</button>
             </form>
         </div>
-        <button onclick="window.location.href='{% url 'main' %}'" class="main-button">Back to Main</button>
     </div>
+    <script src="{% static 'script/quiz.js' %}"></script>
 </body>
 </html>
