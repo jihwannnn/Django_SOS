@@ -54,15 +54,15 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Study 버튼 클릭 시 학습 페이지로 이동
     studyChapter8Btn.onclick = function() {
-        window.location.href = "study.html?chapter_num=8";
+        window.location.href = "/question/study/8/";
     }
 
     studyChapter9Btn.onclick = function() {
-        window.location.href = "study.html?chapter_num=9";
+        window.location.href = "/question/quiz/9/";
     }
 
     studyChapter10Btn.onclick = function() {
-        window.location.href = "study.html?chapter_num=10";
+        window.location.href = "/question/quiz/10/";
     }
 
     // 이미지 컨테이너 마우스 움직임에 따른 효과
@@ -85,5 +85,5 @@ document.addEventListener('DOMContentLoaded', function() {
         overlay.style.filter = 'opacity(0)';
         container.style.transform = 'perspective(350px) rotateY(0deg) rotateX(0deg)';
     });
-    
+
 });
