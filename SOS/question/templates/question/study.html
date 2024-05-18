@@ -9,9 +9,12 @@
 <body>
     <div class="container">
         <h1>Chapter {{ chapter_num }}</h1>
+        {% for question in questons %}
         <div class="question-container">
-            <img src="" alt="Question Image" class="question-image">
+            <img src="{{question.image.url}}" alt="Question Image" class="question-image">
+            <p>{{questions.answer}}</p>
         </div>
+        {% endfor %}
     </div>
     <script src="{% static 'script/study.js' %}"></script>
 </body>
