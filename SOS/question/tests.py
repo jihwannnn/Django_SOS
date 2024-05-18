@@ -52,7 +52,7 @@ class AuthTests(TestCase):
         signup_data = {
             'username': 'newuser',
             'password': 'newpassword123',
-            'password_comfirm': 'newpassword123',
+            'password_confirm': 'newpassword123',
         }
         response = self.client.post(reverse('question:signup'), data=signup_data)
         self.assertEqual(response.status_code, 302)  # Redirects to 'question:index'
