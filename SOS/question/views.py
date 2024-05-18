@@ -57,6 +57,7 @@ def signup(request):
         return render(request, 'question/signup.html')
     
 def quiz(request, chapter_num):
+    questions = Questions.objects.filter(chapter = chapter_num)
 
     return render(request, 'question/quiz.html')
 
@@ -71,4 +72,5 @@ def test(request):
     return render(request, 'question/test.html', {
         'question' : question
     })
+
 # Create your views here.
