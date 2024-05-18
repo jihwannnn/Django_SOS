@@ -10,6 +10,7 @@ urlpatterns = [
     path('signup/', views.signup, name='signup'),
     path('quiz/', views.quiz, name='quiz'),
     path('retest/', views.retest, name='retest'),
-    path('study/', views.study, name='study'),
-    path('quiz/<int:chapter_num>/', views.quiz, name='quiz_chapter')
+    path('study/<int:chapter_num>/', views.study, name='study'),
+    path('quiz/<int:chapter_num>/', views.quiz, name='quiz_chapter'),
+    path('test/', views.test, name='test'),
 ]

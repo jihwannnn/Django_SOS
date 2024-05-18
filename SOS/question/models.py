@@ -8,7 +8,7 @@ class Questions(models.Model):
     image = models.ImageField(upload_to="quiz_images/")
     answer = models.CharField(max_length=255)
 
-    def __str__(self):
+    def __int__(self):
         return self.id
 
 class SolvedQuestions(models.Model):

@@ -61,7 +61,9 @@ def quiz(request, chapter_num):
 def retest(request):
     return render(request, 'question/retest.html')
 
-def study(request):
+def study(request, chapter_num):
+    questions = Questions.objects.filter(chapter = chapter_num)
+    context = {'chapter_num': chapter_num}
     return render(request, 'question/study.html')
     
 def test(request):
