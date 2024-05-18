@@ -8,23 +8,26 @@ class Command(BaseCommand):
     help = 'Load questions into the database'
 
     def handle(self, *args, **kwargs):
-        # this json is for loading questions
         questions = [
-            {"chapter": 1,
-             "image": os.path.join(settings.BASE_DIR, "question", "media", "quiz_images", "itm_logo.png"),
-             "answer":"wow"}
+            {"chapter": 8,
+             "image": os.path.join(settings.BASE_DIR, "media", "quiz_images", "itm_logo.png"),
+             "answer": "wow"}
             # 추가 문제 데이터
         ]
         for q in questions:
-            # check if the question is already loaded in DB
             if not Questions.objects.filter(chapter=q["chapter"], answer=q["answer"]).exists():
-                with open(q["image"], 'rb') as img_file:
+                image_path = q["image"]
+                if os.path.exists(image_path):
                     question = Questions(
-                        chapter = q["chapter"],
-                        answer = q["answer"]
+                        chapter=q["chapter"],
+                        answer=q["answer"]
                     )
-                    question.image.save(os.path.basename(q["image"]), File(img_file), save=True)
-                self.stdout.write(self.style.SUCCESS(f'Successfully loaded question: {q["answer"]}'))
+                    # 기존 파일을 참조
+                    question.image.name = os.path.relpath(image_path, settings.MEDIA_ROOT)
+                    question.save()
+                    self.stdout.write(self.style.SUCCESS(f'Successfully loaded question: {q["answer"]}'))
+                else:
+                    self.stdout.write(self.style.ERROR(f'Image file not found: {image_path}'))
             else:
                 self.stdout.write(self.style.WARNING(f'Skipping duplicated question: {q["answer"]}'))
         self.stdout.write(self.style.SUCCESS('Finished loading questions'))
