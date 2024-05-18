@@ -1,10 +1,8 @@
-import re
 from django.shortcuts import render, redirect
 from django.contrib.auth.models import User
 from django.http import HttpResponse
 from django.contrib.auth import authenticate, login, logout
 from django.core.exceptions import ValidationError
-from .models import Questions, SolvedQuestions, ExamLog
 
 
 
@@ -57,14 +55,11 @@ def signup(request):
         return render(request, 'question/signup.html')
     
 def quiz(request, chapter_num):
-<<<<<<< HEAD
     questions = Questions.objects.filter(chapter = chapter_num)
-
-    return render(request, 'question/quiz.html')
-=======
     context = {'chapter_num': chapter_num}
-    return render(request, 'question/quiz.html', context)
->>>>>>> frontk
+    return render(request, 'question/quiz.html')
+    
+
 
 def retest(request):
     return render(request, 'question/retest.html')
