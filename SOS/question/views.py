@@ -1,11 +1,9 @@
-
-from urllib import request
 from django.shortcuts import render, redirect
 from django.contrib.auth.models import User
 from django.http import HttpResponse
 from django.contrib.auth import authenticate, login, logout
 from django.core.exceptions import ValidationError
-from .models import Questions, SolvedQuestions, ExamLog
+from .models import Question, SolvedQuestion, ExamLog
 
 
 
@@ -58,8 +56,7 @@ def signup(request):
         return render(request, 'question/signup.html')
     
 def quiz(request, chapter_num):
-    questions = Questions.objects.filter(chapter = chapter_num)
-    
+    questions = Question.objects.filter(chapter = chapter_num)
     return render(request, 'question/quiz.html')
 
 def retest(request):
@@ -69,7 +66,7 @@ def study(request):
     return render(request, 'question/study.html')
     
 def test(request):
-    question = Questions.objects.get(chapter = 8)
+    question = Question.objects.get(chapter = 8)
     return render(request, 'question/test.html', {
         'question' : question
     })

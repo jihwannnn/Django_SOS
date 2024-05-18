@@ -3,25 +3,25 @@ from django.db import models
 
 # Create your models here.
 
-class Questions(models.Model):
+class Question(models.Model):
     chapter = models.IntegerField()
     image = models.ImageField(upload_to="quiz_images/")
     answer = models.CharField(max_length=255)
 
-    def __str__(self):
+    def __int__(self):
         return self.id
 
-class SolvedQuestions(models.Model):
+class SolvedQuestion(models.Model):
     username = models.ForeignKey (User,
                                   on_delete=models.CASCADE,
                                   related_name='userWhoHadSolved')
-    solvedQuestions = models.ForeignKey(Questions,
+    solvedQuestion = models.ForeignKey(Question,
                                        on_delete=models.CASCADE,
-                                       related_name='solvedQuestions')
+                                       related_name='solvedQuestion')
     wasRight = models.BooleanField()
     submitted_answer = models.CharField(max_length=255)
     class Meta:
-        unique_together = ('username', 'solvedQuestions')
+        unique_together = ('username', 'solvedQuestion')
 
 class ExamLog(models.Model):
     username = models.ForeignKey (User,

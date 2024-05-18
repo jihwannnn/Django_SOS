@@ -1,7 +1,7 @@
 import os
 from django.core.management.base import BaseCommand
 from django.core.files import File
-from question.models import Questions
+from question.models import Question
 from django.conf import settings
 
 class Command(BaseCommand):
@@ -15,10 +15,10 @@ class Command(BaseCommand):
             # 추가 문제 데이터
         ]
         for q in questions:
-            if not Questions.objects.filter(chapter=q["chapter"], answer=q["answer"]).exists():
+            if not Question.objects.filter(chapter=q["chapter"], answer=q["answer"]).exists():
                 image_path = q["image"]
                 if os.path.exists(image_path):
-                    question = Questions(
+                    question = Question(
                         chapter=q["chapter"],
                         answer=q["answer"]
                     )
