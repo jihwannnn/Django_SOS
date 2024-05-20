@@ -1,6 +1,4 @@
 __pycache__/
 *.py[cod]
 db.sqlite3
-question/migrations/
-
-
+question/migrations
