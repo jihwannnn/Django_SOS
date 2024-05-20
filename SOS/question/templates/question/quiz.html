@@ -29,6 +29,19 @@
             <button id="next" class="arrow-button">&rarr;</button>
         </footer>
     </div>
+
+    <!-- Solved Modal -->
+    <div id="solvedModal" class="modal">
+        <div class="modal-content">
+            <span id="closeModalBtn" class="close-button">&times;</span>
+            <h2>You solved all the problems!</h2>
+            <div class="modal-buttons">
+                <button id="mainPageBtn" class="modal-button">Back to Main</button>
+                <button id="incorrectAnsBtn" class="modal-button">Review Incorrect Answers</button>
+            </div>
+        </div>
+    </div>
+    
     <script src="{% static 'script/quiz.js' %}"></script>
 </body>
 </html>
