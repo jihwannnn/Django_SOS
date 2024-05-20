@@ -37,4 +37,46 @@ document.addEventListener('DOMContentLoaded', function () {
         // 다음 문제로 이동하는 로직 추가
         alert('Next Question');
     });
+
+    // 추가된 부분: submit 버튼 클릭 이벤트 설정
+    var submitBtn = document.getElementById('submitBtn');
+    var solvedProblemsCount = 0;
+    var solvedProblemsLimit = 2; // 문제를 다 푼 것으로 간주하는 제출 횟수
+    var solvedModal = document.getElementById('solvedModal');
+    var closeModalBtn = document.getElementById('closeModalBtn');
+    var mainPageBtn = document.getElementById('mainPageBtn');
+    var incorrectAnsBtn = document.getElementById('incorrectAnsBtn');
+
+    submitBtn.addEventListener('click', function() {
+        solvedProblemsCount++;
+        if (solvedProblemsCount >= solvedProblemsLimit) {
+            // 문제를 다 푼 것으로 간주하고 모달 창을 띄움
+            solvedModal.style.display = 'flex';
+            // 화면이 어두워지도록 배경 스타일 적용
+            document.body.style.backgroundColor = 'rgba(0, 0, 0, 0.5)';
+        }
+    });
+
+    closeModalBtn.addEventListener('click', function() {
+        solvedModal.style.display = 'none';
+        document.body.style.backgroundColor = ''; // 배경색 초기화
+    });
+
+    // 모달 외부를 클릭하면 모달 창이 닫힘
+    window.onclick = function(event) {
+        if (event.target == solvedModal) {
+            solvedModal.style.display = 'none';
+            document.body.style.backgroundColor = ''; // 배경색 초기화
+        }
+    }
+
+    // 모달 창의 버튼 클릭 이벤트 설정
+    mainPageBtn.addEventListener('click', function() {
+        window.location.href = "{% url 'question:main' %}";
+    });
+
+    incorrectAnsBtn.addEventListener('click', function() {
+        window.location.href = "{% url 'question:incorrect_answers' %}";
+    });
+    
 });
