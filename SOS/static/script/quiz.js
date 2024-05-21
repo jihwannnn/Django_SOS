@@ -21,12 +21,6 @@ document.addEventListener('DOMContentLoaded', function () {
         console.log('Animation Class Added'); // 디버깅용 로그
     }, 100); // 페이지 로드 후 100ms 대기 후 애니메이션 시작
 
-    // 문제 내용 설정 (데이터베이스에서 가져오는 로직 추가)
-    const quizContent = document.getElementById('quiz-content');
-    quizContent.textContent = `Quiz content for Chapter ${chapter}`; // 예시 텍스트
-
-    console.log('Quiz Content:', quizContent.textContent); // 디버깅용 로그
-
     // 이전, 다음 버튼 클릭 이벤트 설정
     document.getElementById('prev').addEventListener('click', function() {
         // 이전 문제로 이동하는 로직 추가
@@ -38,45 +32,51 @@ document.addEventListener('DOMContentLoaded', function () {
         alert('Next Question');
     });
 
-    // 추가된 부분: submit 버튼 클릭 이벤트 설정
-    var submitBtn = document.getElementById('submitBtn');
-    var solvedProblemsCount = 0;
-    var solvedProblemsLimit = 2; // 문제를 다 푼 것으로 간주하는 제출 횟수
-    var solvedModal = document.getElementById('solvedModal');
-    var closeModalBtn = document.getElementById('closeModalBtn');
-    var mainPageBtn = document.getElementById('mainPageBtn');
-    var incorrectAnsBtn = document.getElementById('incorrectAnsBtn');
+    // submit 버튼 클릭 이벤트 설정
+    var forms = document.querySelectorAll('.answer-form');
+    var resultModal = document.getElementById("resultModal");
+    var closeModalBtn = document.getElementById("closeModalBtn");
+    var resultMessage = document.getElementById("resultMessage");
+    var correctImg = resultModal.getAttribute('data-correct-img');
+    var wrongImg = resultModal.getAttribute('data-wrong-img');
 
-    submitBtn.addEventListener('click', function() {
-        solvedProblemsCount++;
-        if (solvedProblemsCount >= solvedProblemsLimit) {
-            // 문제를 다 푼 것으로 간주하고 모달 창을 띄움
-            solvedModal.style.display = 'flex';
-            // 화면이 어두워지도록 배경 스타일 적용
+    forms.forEach(function(form) {
+        form.addEventListener('submit', function(event) {
+            event.preventDefault(); // 폼 제출 기본 동작을 막음
+            var messages = ['You are correct!', 'You are wrong!'];
+            var randomMessage = messages[Math.floor(Math.random() * messages.length)];
+            resultMessage.textContent = randomMessage;
+
+            console.log('Random Message:', randomMessage); // 디버깅용 로그
+            console.log('Setting color for resultMessage'); // 디버깅용 로그
+
+            // 메시지에 따라 글자 색상 및 이미지 변경
+            if (randomMessage === 'You are correct!') {
+                resultMessage.classList.add('correct');
+                resultMessage.classList.remove('wrong');
+                resultImage.src = correctImg;
+            } else {
+                resultMessage.classList.add('wrong');
+                resultMessage.classList.remove('correct');
+                resultImage.src = wrongImg;
+            }
+
+            resultModal.style.display = 'flex';
             document.body.style.backgroundColor = 'rgba(0, 0, 0, 0.5)';
-        }
+        });
     });
 
     closeModalBtn.addEventListener('click', function() {
-        solvedModal.style.display = 'none';
+        resultModal.style.display = 'none';
         document.body.style.backgroundColor = ''; // 배경색 초기화
     });
 
     // 모달 외부를 클릭하면 모달 창이 닫힘
     window.onclick = function(event) {
-        if (event.target == solvedModal) {
-            solvedModal.style.display = 'none';
+        if (event.target == resultModal) {
+            resultModal.style.display = 'none';
             document.body.style.backgroundColor = ''; // 배경색 초기화
         }
     }
-
-    // 모달 창의 버튼 클릭 이벤트 설정
-    mainPageBtn.addEventListener('click', function() {
-        window.location.href = "{% url 'question:main' %}";
-    });
-
-    incorrectAnsBtn.addEventListener('click', function() {
-        window.location.href = "{% url 'question:incorrect_answers' %}";
-    });
     
 });

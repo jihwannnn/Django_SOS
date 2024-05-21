@@ -18,7 +18,7 @@
                 {% csrf_token %}
                 <label for="answer" class="form-label">Your Answer:</label>
                 <input type="text" id="answer" name="answer" class="form-input" required>
-                <button type="submit" class="form-button">Submit</button>
+                <button type="submit" id="submitBtn" class="form-button">Submit</button>
             </form>
         </div>
         <footer>
@@ -30,15 +30,12 @@
         </footer>
     </div>
 
-    <!-- Solved Modal -->
-    <div id="solvedModal" class="modal">
+    <!-- Result Modal -->
+    <div id="resultModal" class="modal" data-correct-img="{% static 'images/victory.gif' %}" data-wrong-img="{% static 'images/cry.gif' %}">
         <div class="modal-content">
             <span id="closeModalBtn" class="close-button">&times;</span>
-            <h2>You solved all the problems!</h2>
-            <div class="modal-buttons">
-                <button id="mainPageBtn" class="modal-button">Back to Main</button>
-                <button id="incorrectAnsBtn" class="modal-button">Review Incorrect Answers</button>
-            </div>
+            <img id="resultImage" class="result-image" src="" alt="Result Image">
+            <h2 id="resultMessage"></h2>
         </div>
     </div>
     
