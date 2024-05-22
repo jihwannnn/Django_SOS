@@ -100,7 +100,10 @@ def study(request, chapter_num):
         'total_questions': total_questions,
     }
     return render(request, 'question/study.html', context)
-    
+
+def mistake_log(request):
+    return render(request, 'question/mistake_log.html')  #add by G
+
 def test(request):
     question = Question.objects.get(chapter = 8)
     return render(request, 'question/test.html', {

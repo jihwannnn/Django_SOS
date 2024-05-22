@@ -15,4 +15,5 @@ urlpatterns = [
     path('study/<int:chapter_num>/', views.study, name='study'),
     path('test/', views.test, name='test'),
     path('finishQuiz/', views.finishQuiz, name='finishQuiz'),
+    path('mistake_log/', views.mistake_log, name='mistake_log'), #add by g
 ]
