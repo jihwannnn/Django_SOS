@@ -3,6 +3,7 @@ from django.contrib.auth.models import User
 from django.http import HttpResponse
 from django.contrib.auth import authenticate, login, logout
 from django.core.exceptions import ValidationError
+from networkx import chordal_graph_treewidth
 from .models import Question, SolvedQuestion, ExamLog
 
 def index(request):
@@ -77,5 +78,20 @@ def test(request):
     return render(request, 'question/test.html', {
         'question' : question
     })
+
+
+def finishQuiz(request, examResult):
+    if request.method == 'POST':
+        user = request.POST.get('user')
+        chapter = request.POST.get('chapter')
+        exam_dateTime = request.POST.get('exam_dateTime')
+        exam_result = request.POST.get('exam_result')
+        exam_log = ExamLog(
+            user=user,
+            chapter=chapter,
+            exam_dateTime=exam_dateTime,
+            exam_result=exam_result
+        )
+        exam_log.save()
 
 # Create your views here.
