@@ -11,8 +11,34 @@ class Command(BaseCommand):
         questions = [
             {"chapter": 8,
              "image": os.path.join(settings.BASE_DIR, "media", "quiz_images", "itm_logo.png"),
-             "answer": "wow"}
+             "answer": "a"},
             # 추가 문제 데이터
+            {"chapter": 8,
+             "image": os.path.join(settings.BASE_DIR, "media", "quiz_images", "1.png"),
+             "answer": "b"},
+            {"chapter": 8,
+             "image": os.path.join(settings.BASE_DIR, "media", "quiz_images", "2.png"),
+             "answer": "c"},
+
+            {"chapter": 9,
+             "image": os.path.join(settings.BASE_DIR, "media", "quiz_images", "3.png"),
+             "answer": "a"},
+             {"chapter": 9,
+             "image": os.path.join(settings.BASE_DIR, "media", "quiz_images", "4.png"),
+             "answer": "b"},
+             {"chapter": 9,
+             "image": os.path.join(settings.BASE_DIR, "media", "quiz_images", "5.png"),
+             "answer": "c"},
+
+             {"chapter": 10,
+             "image": os.path.join(settings.BASE_DIR, "media", "quiz_images", "6.png"),
+             "answer": "a"},
+             {"chapter": 10,
+             "image": os.path.join(settings.BASE_DIR, "media", "quiz_images", "7.png"),
+             "answer": "b"},
+             {"chapter": 10,
+             "image": os.path.join(settings.BASE_DIR, "media", "quiz_images", "8.png"),
+             "answer": "c"},
         ]
         for q in questions:
             if not Question.objects.filter(chapter=q["chapter"], answer=q["answer"]).exists():
