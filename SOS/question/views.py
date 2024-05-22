@@ -125,4 +125,5 @@ def finishQuiz(request, examResult):
         )
         exam_log.save()
 
+
 # Create your views here.
