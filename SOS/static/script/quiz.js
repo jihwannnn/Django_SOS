@@ -1,5 +1,21 @@
 console.log('quizscript.js loaded'); // 파일이 로드되었는지 확인
 
+function goToPreviousQuestion() {
+    var currentQuestionIndex = parseInt("{{ current_index }}");
+    if (currentQuestionIndex > 0) {
+        window.location.href = window.location.pathname + "?q=" + (currentQuestionIndex - 1);
+    }
+}
+
+function goToNextQuestion() {
+    var currentQuestionIndex = parseInt("{{ current_index }}");
+    var totalQuestions = parseInt("{{ total_questions }}");
+    if (currentQuestionIndex < totalQuestions - 1) {
+        window.location.href = window.location.pathname + "?q=" + (currentQuestionIndex + 1);
+    }
+}
+
+
 document.addEventListener('DOMContentLoaded', function () {
     console.log('DOMContentLoaded event fired'); // 디버깅용 로그
 
