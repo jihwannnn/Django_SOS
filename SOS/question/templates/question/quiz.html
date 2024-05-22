@@ -6,6 +6,10 @@
     {% load static %}
     <link rel="stylesheet" href="{% static 'styles/quiz.css' %}">
     <title>Chapter Questions</title>
+    <script>
+        var currentQuestionIndex = {{ current_index }};
+        var totalQuestions = {{ total_questions }};
+    </script>
 </head>
 <body>
     <div class="container">
@@ -29,11 +33,12 @@
             <button id="home" class="home-button" onclick="window.location.href='{% url 'question:main' %}'">
                 <img src="{% static 'images/home-icon.png' %}" alt="Home" class="icon">
             </button>
-            <button id="next" class="arrow-button" onclick="goToNextQuestion()" {% if current_index == total_questions - 1 %}disabled{% endif %}>&rarr;</button>
+            <button id="next" class="arrow-button" onclick="goToNextQuestion()" {% if current_index == total_1 %}disabled{% endif %}>&rarr;</button>
         </footer>
     </div>
-    {% else %}
+        {% else %}
         <p>No questions available for this chapter.</p>
+        {% endif %}
     {% endif %}
 
 

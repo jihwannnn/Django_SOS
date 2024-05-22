@@ -1,20 +1,16 @@
 console.log('quizscript.js loaded'); // 파일이 로드되었는지 확인
 
 function goToPreviousQuestion() {
-    var currentQuestionIndex = parseInt("{{ current_index }}");
     if (currentQuestionIndex > 0) {
         window.location.href = window.location.pathname + "?q=" + (currentQuestionIndex - 1);
     }
 }
 
 function goToNextQuestion() {
-    var currentQuestionIndex = parseInt("{{ current_index }}");
-    var totalQuestions = parseInt("{{ total_questions }}");
     if (currentQuestionIndex < totalQuestions - 1) {
         window.location.href = window.location.pathname + "?q=" + (currentQuestionIndex + 1);
     }
 }
-
 
 document.addEventListener('DOMContentLoaded', function () {
     console.log('DOMContentLoaded event fired'); // 디버깅용 로그
@@ -37,16 +33,14 @@ document.addEventListener('DOMContentLoaded', function () {
         console.log('Animation Class Added'); // 디버깅용 로그
     }, 100); // 페이지 로드 후 100ms 대기 후 애니메이션 시작
 
-    // 이전, 다음 버튼 클릭 이벤트 설정
-    document.getElementById('prev').addEventListener('click', function() {
-        // 이전 문제로 이동하는 로직 추가
-        alert('Previous Question');
-    });
+    var totalQuestions = parseInt("{{ total_questions }}");
+    var currentQuestionIndex = parseInt("{{ current_index }}");
+    var total_1 = totalQuestions-1;
+    
 
-    document.getElementById('next').addEventListener('click', function() {
-        // 다음 문제로 이동하는 로직 추가
-        alert('Next Question');
-    });
+    // 이전, 다음 버튼 클릭 이벤트 설정
+    document.getElementById('prev').addEventListener('click', goToPreviousQuestion);
+    document.getElementById('next').addEventListener('click', goToNextQuestion);
 
     // submit 버튼 클릭 이벤트 설정
     var forms = document.querySelectorAll('.answer-form');
