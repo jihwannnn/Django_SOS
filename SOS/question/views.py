@@ -56,20 +56,49 @@ def signup(request):
     
 def quiz(request, chapter_num):
     questions = Question.objects.filter(chapter=chapter_num)
+
+    # deliver index number of one question as a url pattern
+    total_questions = questions.count()
+
+    # start from 0
+    current_index = int(request.GET.get('q', 0))
+
+    # ensuring index range
+    current_index = max(0, min(current_index, total_questions - 1))
+
+    current_question = questions[current_index] if total_questions > 0 else None
+
     context = {
         'chapter_num': chapter_num,
-        'questions': questions
+        'current_question': current_question,
+        'current_index': current_index,
+        'total_questions': total_questions,
     }
     return render(request, 'question/quiz.html', context)
+
 
 def retest(request):
     return render(request, 'question/retest.html')
 
 def study(request, chapter_num):
     questions = Question.objects.filter(chapter=chapter_num)
+
+    # deliver index number of one question as a url pattern
+    total_questions = questions.count()
+
+    # start from 0
+    current_index = int(request.GET.get('q', 0))
+
+    # ensuring index range
+    current_index = max(0, min(current_index, total_questions - 1))
+
+    current_question = questions[current_index] if total_questions > 0 else None
+
     context = {
         'chapter_num': chapter_num,
-        'questions': questions
+        'current_question': current_question,
+        'current_index': current_index,
+        'total_questions': total_questions,
     }
     return render(request, 'question/study.html', context)
     
