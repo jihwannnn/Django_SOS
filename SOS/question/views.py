@@ -3,7 +3,6 @@ from django.contrib.auth.models import User
 from django.http import HttpResponse
 from django.contrib.auth import authenticate, login, logout
 from django.core.exceptions import ValidationError
-from networkx import chordal_graph_treewidth
 from .models import Question, SolvedQuestion, ExamLog
 
 def index(request):
