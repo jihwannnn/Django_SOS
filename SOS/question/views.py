@@ -8,7 +8,6 @@ from django.contrib.auth import authenticate, login, logout
 import json
 from django.core.exceptions import ValidationError
 
-from SOS import question
 from .models import Question, SolvedQuestion, ExamLog
 
 def index(request):
