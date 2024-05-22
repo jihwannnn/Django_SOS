@@ -2,7 +2,8 @@ document.addEventListener('DOMContentLoaded', function() {
     var quizModal = document.getElementById("quizModal");
     var studyModal = document.getElementById("studyModal");
     var questionBtn = document.getElementById("questionBtn");
-    var studyBtn = document.getElementById("studyBtn");
+    var studyBtn = document.getElementById("studyBtn");  
+    var mistake_logBtn = document.getElementById("mistake_logBtn"); //by G
     var closeButtons = document.getElementsByClassName("close-button");
     var quizChapter8Btn = document.getElementById("quizChapter8Btn");
     var quizChapter9Btn = document.getElementById("quizChapter9Btn");
@@ -63,6 +64,11 @@ document.addEventListener('DOMContentLoaded', function() {
 
     studyChapter10Btn.onclick = function() {
         window.location.href = "/question/study/10/";
+    }
+
+    // Mistake log 버튼 클릭시 해당 페이지로 이동 by G
+    mistake_logBtn.onclick = function(){
+        window.location.href = "/question/mistake_log";
     }
 
     // 이미지 컨테이너 마우스 움직임에 따른 효과

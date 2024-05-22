@@ -114,7 +114,7 @@ footer {
     background: #16A085;
 }
 
-/* Chapter 타이틀 스타일링 (quiz 페이지와 동일하게) */
+/* Chapter 타이틀 스타일링 */
 .chapter-title {
     font-size: 3rem; /* 글꼴 크기 */
     font-weight: 700; /* 글꼴 굵기 */
@@ -135,4 +135,71 @@ footer {
 .chapter-title.show {
     opacity: 1; /* 최종 상태: 불투명 */
     transform: translateY(0); /* 최종 상태: 제자리 */
+}
+
+/* 모달 창 스타일 */
+.modal {
+    display: none; /* 기본적으로 숨김 */
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* 검은색 반투명 배경 */
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-content {
+    background-color: #fefefe;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+    max-width: 300px; /* 최대 너비 설정 */
+    text-align: center;
+    border-radius: 10px;
+    font-family: 'Lato', sans-serif;
+}
+
+.result-image {
+    max-width: 50%;
+    height: auto;
+    margin-bottom: 20px; /* 이미지와 텍스트 사이의 여백 */
+}
+
+#resultMessage {
+    font-size: 1.5rem; /* 글자 크기 */
+    font-weight: bold; /* 글자 굵기 */
+    padding: 10px;
+    border-radius: 5px;
+    background-color: rgba(0, 0, 0, 0.1); /* 반투명 배경 */
+    display: inline-block;
+    margin-top: 10px;
+}
+
+#resultMessage.correct {
+    color: #28a745; /* 초록색 */
+    border: 2px solid #28a745; /* 초록색 테두리 */
+    box-shadow: 0 0 10px rgba(40, 167, 69, 0.5); /* 초록색 그림자 */
+}
+
+#resultMessage.wrong {
+    color: #dc3545; /* 빨간색 */
+    border: 2px solid #dc3545; /* 빨간색 테두리 */
+    box-shadow: 0 0 10px rgba(220, 53, 69, 0.5); /* 빨간색 그림자 */
+}
+
+.close-button {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.close-button:hover,
+.close-button:focus {
+    color: black;
+    text-decoration: none;
 }
