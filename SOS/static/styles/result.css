@@ -1,0 +1,88 @@
+body {
+    font-family: 'Lato', sans-serif;
+    background: linear-gradient(to bottom, #007bff, #6c757d); /* main.html과 동일한 배경색 */
+    color: white;
+    height: 100vh;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.container {
+    width: 100%;
+    max-width: 800px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%;
+}
+
+header {
+    margin-top: 20px;
+}
+
+header h1 {
+    font-size: 2.5rem;
+}
+
+main {
+    flex-grow: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+footer {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px;
+}
+
+.home-button {
+    background: #1ABC9C;
+    border: none;
+    color: white;
+    font-size: 2rem;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.3s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.home-button:hover {
+    background: #16A085;
+}
+
+/* 아이콘 스타일 */
+.icon {
+    width: 24px;
+    height: 24px;
+}
+
+/* Chapter 타이틀 스타일링 (quiz 페이지와 동일하게) */
+.chapter-title {
+    font-size: 3rem; /* 글꼴 크기 */
+    font-weight: 700; /* 글꼴 굵기 */
+    color: #2ecc71; /* 글꼴 색상 (초록색) */
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* 텍스트 그림자 */
+    margin: 20px 0; /* 여백 */
+    padding: 10px 20px; /* 패딩 */
+    border-radius: 10px; /* 테두리 반경 */
+    display: inline-block; /* 인라인 블록 요소로 변경 */
+    border: 2px solid #27ae60; /* 테두리 색상 (짙은 초록색) */
+    background: rgba(46, 204, 113, 0.1); /* 배경 색상 (투명 초록색) */
+    opacity: 0; /* 초기 상태: 투명 */
+    transform: translateY(-50px); /* 초기 상태: 위로 이동 */
+    transition: opacity 1s ease, transform 1s ease; /* 애니메이션 전환 효과 */
+}
+
+/* 애니메이션 활성화 클래스 */
+.chapter-title.show {
+    opacity: 1; /* 최종 상태: 불투명 */
+    transform: translateY(0); /* 최종 상태: 제자리 */
+}
