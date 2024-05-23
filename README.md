@@ -10,4 +10,18 @@ static 관련해서 setting.py도 건들고
 
 ### ***Back***
 
-#### 일단 DB schema부터 짜보자
+models.py ->
+- Question
+- SolvedQuestion
+- ExamLog
+
+views.py ->
+- index
+- main
+- logout_view
+- signup
+- quiz
+- retest
+- study
+- mistake_log
+- finishQuiz
