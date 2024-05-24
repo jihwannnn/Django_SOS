@@ -29,5 +29,6 @@ class ExamLog(models.Model):
                               on_delete=models.CASCADE,
                               related_name='user_who_had_solved')
     chapter = models.IntegerField()
-    exam_dateTime = models.DateTimeField()
-    exam_result = models.JSONField()
+    exam_dateTime = models.DateTimeField(auto_now_add=True)
+    total_solved_questions = models.IntegerField()
+    total_correct_questions = models.IntegerField()
