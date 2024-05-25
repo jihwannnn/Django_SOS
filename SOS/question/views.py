@@ -17,10 +17,7 @@ from .models import Question, SolvedQuestion, ExamLog
 
 def root_view(request):
     # 사용자가 인증된 경우 메인 페이지로 리다이렉트
-    if request.user.is_authenticated:
-        return redirect('question:main')
-    else:
-        return redirect('question:index')
+    return redirect('question:index')
 
 
 def index(request):
