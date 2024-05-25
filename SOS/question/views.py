@@ -16,12 +16,15 @@ import logging
 from .models import Question, SolvedQuestion, ExamLog
 
 def root_view(request):
-    # 사용자가 인증되지 않은 상태로 시작하게 하기 위해 로그아웃 처리
+    # 사용자가 인증된 경우 메인 페이지로 리다이렉트
     if request.user.is_authenticated:
-        logout(request)
-    return redirect('question:index')
+        return redirect('question:main')
+    else:
+        return redirect('question:index')
+
 
 def index(request):
+    
     if request.method == 'POST':
         username = request.POST['username']
         password = request.POST['password']
@@ -123,6 +126,11 @@ def quiz(request, chapter_num):
             exam_log.save()
             logger.debug("Saved exam log: %s", exam_log)
 
+            request.session['correct_answers'] = total_correctness
+            request.session['incorrect_answers'] = total_questions - total_correctness
+            request.session['total_questions'] = total_questions
+            request.session['chapter_num'] = chapter_num
+
             return JsonResponse({'success': True})
         except IntegrityError as e:
             logger.error("IntegrityError in quiz view: %s", str(e))
@@ -216,7 +224,8 @@ def study(request, chapter_num):
     return render(request, 'question/study.html', context)
 
 def mistake_log(request):
-    return render(request, 'question/mistake_log.html')  #add by G
+    mistake_logs = ExamLog.objects.filter(user=request.user.id).order_by('-exam_dateTime') # '-exam_dateTime' means that it is sorted by newest first.
+    return render(request, 'question/mistake_log.html', {"exam_logs": mistake_logs})  #add by G
 
 def test(request):
     question = Question.objects.get(chapter = 8)
@@ -237,6 +246,21 @@ def finishQuiz(request, examResult):
             exam_result=exam_result
         )
         exam_log.save()
+
+def result(request):
+    correct_answers = request.session.get('correct_answers', 0)
+    incorrect_answers = request.session.get('incorrect_answers', 0)
+    total_questions = request.session.get('total_questions', 0)
+    chapter_num = request.session.get('chapter_num', 0)
+
+    context = {
+        'correct_answers': correct_answers,
+        'incorrect_answers': incorrect_answers,
+        'total_questions': total_questions,
+        'chapter_num': chapter_num,
+    }
+
+    return render(request, 'question/result.html', context)
 
 
 # Create your views here.

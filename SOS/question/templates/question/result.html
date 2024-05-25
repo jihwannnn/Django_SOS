@@ -8,22 +8,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 <body>
-    <div class= "container">
+    <div class="container">
         <header>
             <h1 id="chapter-title" class="chapter-title">Chapter {{ chapter_num }} Result</h1>
         </header>
-        {% for question in questons %}
-        <div class="container">
-            <h1> Your Score is </h1>
-            <p>  {correct_question} / {total_question} </p>
+        <div class="content">
+            <h1>Your Score</h1>
+            <p class="score">{{ correct_answers }} / {{ total_questions }}</p>
         </div>
+        <footer>
+            <button id="home" class="home-button" onclick="window.location.href='{% url 'question:main' %}'">
+                <img src="{% static 'images/home-icon.png' %}" alt="Home" class="icon">
+            </button>
+        </footer>
     </div>
-    {% endfor %}
-    <footer>
-        <button id="home" class="home-button" onclick="window.location.href='{% url 'question:main' %}'">
-            <img src="{% static 'images/home-icon.png' %}" alt="Home" class="icon">
-        </button>
-    </footer>
     <script src="{% static 'script/result.js' %}"></script>
 </body>
 </html>

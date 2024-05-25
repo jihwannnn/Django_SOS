@@ -3,7 +3,5 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // retest 버튼 클릭시 해당 페이지로 이동 by G
     // 챕터정보 받아올 수 있게 수정되어야함.
-    mistake_logBtn.onclick = function(){
-        window.location.href = "/question/retest";
-    }
+
 });

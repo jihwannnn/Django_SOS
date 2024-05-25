@@ -14,6 +14,7 @@ urlpatterns = [
     path('study/<int:chapter_num>/', views.study, name='study'),
     path('finishQuiz/', views.finishQuiz, name='finishQuiz'),
     path('mistake_log/', views.mistake_log, name='mistake_log'), #add by g
+    path('result/', views.result, name='result'),
 
     # for testing
     path('test/', views.test, name='test')
