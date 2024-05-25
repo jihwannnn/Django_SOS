@@ -223,16 +223,10 @@ def retest(request, chapter_num):
 
 def study(request, chapter_num):
     questions = Question.objects.filter(chapter=chapter_num)
-
-    # deliver index number of one question as a url pattern
     total_questions = questions.count()
-
-    # start from 0
+    total_1 = total_questions - 1
     current_index = int(request.GET.get('q', 0))
-
-    # ensuring index range
     current_index = max(0, min(current_index, total_questions - 1))
-
     current_question = questions[current_index] if total_questions > 0 else None
 
     context = {
@@ -240,6 +234,7 @@ def study(request, chapter_num):
         'current_question': current_question,
         'current_index': current_index,
         'total_questions': total_questions,
+        'total_1': total_1,
     }
     return render(request, 'question/study.html', context)
 
