@@ -12,18 +12,6 @@ function goToNextQuestion() {
     }
 }
 
-function goToPreviousQuestion() {
-    if (currentQuestionIndex > 0) {
-        window.location.href = window.location.pathname + "?q=" + (currentQuestionIndex - 1);
-    }
-}
-
-function goToNextQuestion() {
-    if (currentQuestionIndex < totalQuestions - 1) {
-        window.location.href = window.location.pathname + "?q=" + (currentQuestionIndex + 1);
-    }
-}
-
 document.addEventListener('DOMContentLoaded', function () {
     console.log('DOMContentLoaded event fired'); // 디버깅용 로그
 
@@ -44,14 +32,7 @@ document.addEventListener('DOMContentLoaded', function () {
         console.log('Animation Class Added'); // 디버깅용 로그
     }, 100); // 페이지 로드 후 100ms 대기 후 애니메이션 시작
 
-    // 이전, 다음 버튼 클릭 이벤트 설정
-    document.getElementById('prev').addEventListener('click', function() {
-        // 이전 문제로 이동하는 로직 추가
-        alert('Previous Question');
-    });
+    document.getElementById('prev').addEventListener('click', goToPreviousQuestion);
+    document.getElementById('next').addEventListener('click', goToNextQuestion);
 
-    document.getElementById('next').addEventListener('click', function() {
-        // 다음 문제로 이동하는 로직 추가
-        alert('Next Question');
-    });
 });
