@@ -18,10 +18,12 @@ from django.contrib import admin
 from django.urls import include, path
 from django.conf import settings
 from django.conf.urls.static import static
+from question import views as question_views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('question/', include('question.urls')),
+    path('', question_views.root_view, name='root'),
 ] 
 
 # images url

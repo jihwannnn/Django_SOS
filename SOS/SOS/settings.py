@@ -147,3 +147,6 @@ STATICFILES_DIRS = [
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 DEBUG = True
+
+# 세션이 브라우저가 닫힐 때 만료되도록 설정
+SESSION_EXPIRE_AT_BROWSER_CLOSE = True

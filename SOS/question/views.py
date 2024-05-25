@@ -10,6 +10,12 @@ from django.core.exceptions import ValidationError
 
 from .models import Question, SolvedQuestion, ExamLog
 
+def root_view(request):
+    # 사용자가 인증되지 않은 상태로 시작하게 하기 위해 로그아웃 처리
+    if request.user.is_authenticated:
+        logout(request)
+    return redirect('question:index')
+
 def index(request):
     if request.method == 'POST':
         username = request.POST['username']
