@@ -1,0 +1,211 @@
+body {
+    font-family: 'Lato', sans-serif;
+    background: linear-gradient(to bottom, #007bff, #6c757d);
+    color: white;
+    height: 100vh;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.content {
+    width: 100%;
+    max-width: 1200px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+.image-container {
+    perspective: 1000px;
+    margin-bottom: 80px;
+    width: 384px; 
+    height: 480px; 
+    transition: all 0.1s;
+    position: relative;
+}
+
+.overlay {
+    position: absolute;
+    width: 380px;
+    height: 480px;
+    background: linear-gradient(105deg,
+    transparent 40%,
+    rgba(255, 219, 112, 0.8) 45%,
+    rgba(132, 50, 255, 0.6) 50%,
+    transparent 54%);
+    filter: brightness(1.1) opacity(0.8);
+    mix-blend-mode: color-dodge;
+    background-size: 150% 150%;
+    background-position: 100%;
+    transition: all 0.1s;
+}
+
+.card {
+    width: 380px; 
+    height: 480px;
+    background-size: cover;
+}
+
+.button-container {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: 20px; /* 기본 간격 */
+}
+
+.button-wrapper {
+    background: #28a745;
+    border: none; /* 기본 버튼 스타일 제거 */
+    border-radius: 10px;
+    padding: 20px;
+    text-align: center;
+    width: 200px;
+    height: 200px; /* 고정 높이 설정 */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    transition: transform 0.3s ease; /* 호버 효과를 위한 트랜지션 추가 */
+    cursor: pointer;
+    font-family: 'Lato', sans-serif; /* 버튼에 Lato 글꼴 적용 */
+}
+
+.button-wrapper:hover {
+    transform: scale(1.05); /* 호버 시 약간 확대 */
+}
+
+.button-icon {
+    width: 50px;
+    height: 50px;
+}
+
+.gradient-button {
+    background: none;
+    color: white;
+    font-size: 18px;
+    margin: 10px 0;
+    display: block;
+    width: 100%;
+    text-align: center;
+    font-weight: bold; /* 굵은 글꼴 적용 */
+}
+
+.button-description {
+    color: white;
+    font-size: 14px;
+    margin-top: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.modal {
+    display: none; /* 기본적으로 숨김 */
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* 검은색 반투명 배경 */
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-content {
+    background-color: #fefefe;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+    max-width: 300px; /* 최대 너비 설정 */
+    text-align: center;
+    border-radius: 10px;
+    font-family: 'Lato', sans-serif; /* 모달에도 Lato 글꼴 적용 */
+}
+
+.modal-content h2 {
+    color: #333; /* 글자 색상을 다크 그레이로 변경 */
+}
+
+.close-button {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.close-button:hover,
+.close-button:focus {
+    color: black;
+    text-decoration: none;
+}
+
+.modal-button {
+    background: #007bff;
+    border: none;
+    color: white;
+    padding: 10px 20px;
+    margin: 10px 0;
+    cursor: pointer;
+    border-radius: 5px;
+    width: 100%;
+    font-family: 'Lato', sans-serif; /* 모달 버튼에도 Lato 글꼴 적용 */
+}
+
+.modal-button:hover {
+    background: #0056b3;
+}
+
+@media (max-width: 768px) {
+    .image-container {
+        display: none; /* 작은 화면에서는 이미지 컨테이너를 숨김 */
+    }
+
+    .button-container {
+        flex-direction: column;
+        gap: 40px;
+    }
+
+    .button-wrapper {
+        padding: 10px; /* 작은 화면에서는 패딩을 줄임 */
+        width: 100%; /* 작은 화면에서는 버튼이 화면 너비를 채움 */
+        max-width: 300px; /* 최대 너비를 제한 */
+        height: auto; /* 고정 높이 해제 */
+        margin-bottom: 40px;
+    }
+
+    .button-icon {
+        width: 30px; /* 아이콘 크기를 줄임 */
+        height: 30px;
+    }
+
+    .gradient-button {
+        font-size: 16px; /* 버튼 텍스트 크기를 줄임 */
+    }
+
+    .button-description {
+        font-size: 12px; /* 설명 텍스트 크기를 줄임 */
+    }
+
+    /* 작은 화면에서 모달 창 위치 조정 */
+    .modal-content {
+        width: 90%;
+        margin: 0 auto; /* 화면 중앙에 배치 */
+        top: 50%;
+    }
+}
+
+@media (min-width: 1024px) {
+    .button-container {
+        gap: 100px; /* 큰 화면에서는 버튼 간의 간격을 늘림 */
+    }
+}

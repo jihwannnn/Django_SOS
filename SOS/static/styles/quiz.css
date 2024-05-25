@@ -1,0 +1,225 @@
+body {
+    font-family: 'Lato', sans-serif;
+    background: linear-gradient(to bottom, #007bff, #6c757d); /* main.html과 동일한 배경색 */
+    color: white;
+    height: 100vh;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.container {
+    width: 100%;
+    max-width: 800px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%;
+}
+
+header {
+    margin-top: 20px;
+}
+
+header h1 {
+    font-size: 2.5rem;
+}
+
+main {
+    flex-grow: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.question-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    min-height: 400px; /* 이미지가 없는 경우에도 중앙에 유지되도록 최소 높이 설정 */
+    padding: 20px; /* 부모 요소에 패딩 추가 */
+}
+
+.question-image {
+    max-width: 100%;  /* 부모 요소의 너비에 맞게 최대 크기를 조정 */
+    width: auto;      /* 너비를 자동으로 설정하여 비율 유지 */
+    height: 400px;     /* 높이를 자동으로 설정하여 비율 유지 */
+    display: block;   /* 이미지 블록 요소로 처리 */
+    margin: 0 auto;   /* 이미지를 가운데 정렬 */
+    border-radius: 8px; /* 둥근 모서리 적용 */
+    object-fit: contain; /* 이미지가 잘리지 않도록 설정 */
+}
+
+footer {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px;
+}
+
+.arrow-button, .home-button, .total-submit {
+    background: #1ABC9C;
+    border: none;
+    color: white;
+    font-size: 2rem;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.3s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.arrow-button:hover, .home-button:hover, .total-submit:hover {
+    background: #16A085;
+}
+
+.icon {
+    width: 24px;
+    height: 24px;
+}
+
+/* answer-form 스타일링 */
+.answer-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 20px;
+}
+
+.form-label {
+    font-size: 1.2rem;
+    margin-bottom: 10px;
+    color: #fff;
+}
+
+.form-input {
+    width: 80%;
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 2px solid #1ABC9C;
+    border-radius: 5px;
+    background: #2C3E50;
+    color: white;
+    font-size: 1rem;
+    outline: none;
+    transition: border-color 0.3s;
+}
+
+.form-input:focus {
+    border-color: #16A085;
+}
+
+.form-button {
+    background: #1ABC9C;
+    border: none;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+.form-button:hover {
+    background: #16A085;
+}
+
+.chapter-title {
+    font-size: 3rem;
+    font-weight: 700;
+    color: #2ecc71;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    margin: 20px 0;
+    padding: 10px 20px;
+    border-radius: 10px;
+    display: inline-block;
+    border: 2px solid #27ae60;
+    background: rgba(46, 204, 113, 0.1);
+    opacity: 0;
+    transform: translateY(-50px);
+    transition: opacity 1s ease, transform 1s ease;
+}
+
+.chapter-title.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-content {
+    background-color: #fefefe;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+    max-width: 300px;
+    text-align: center;
+    border-radius: 10px;
+    font-family: 'Lato', sans-serif;
+}
+
+.result-image {
+    max-width: 50%;
+    height: auto;
+    margin-bottom: 20px;
+}
+
+#resultMessage {
+    font-size: 1.5rem;
+    font-weight: bold;
+    padding: 10px;
+    border-radius: 5px;
+    background-color: rgba(0, 0, 0, 0.1);
+    display: inline-block;
+    margin-top: 10px;
+}
+
+#resultMessage.correct {
+    color: #28a745;
+    border: 2px solid #28a745;
+    box-shadow: 0 0 10px rgba(40, 167, 69, 0.5);
+}
+
+#resultMessage.wrong {
+    color: #dc3545;
+    border: 2px solid #dc3545;
+    box-shadow: 0 0 10px rgba(220, 53, 69, 0.5);
+}
+
+.close-button {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.close-button:hover,
+.close-button:focus {
+    color: black;
+    text-decoration: none;
+}
+
+/* 모바일 반응형 스타일 */
+@media (max-width: 600px) {
+    .question-image {
+        max-width: 400px; /* 작은 화면에서는 너비를 100%로 설정 */
+        height: auto; /* 높이를 자동으로 설정 */
+    }
+}

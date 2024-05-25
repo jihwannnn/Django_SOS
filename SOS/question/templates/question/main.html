@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'styles/mainstyle.css' %}">
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap" rel="stylesheet">
+    <title>Main</title>
+</head>
+<body>
+    <div class="content">
+        <div class="image-container">
+            <div class="overlay"></div>
+            <div class="card" style="background-image: url('{% static 'images/OSD.jpg' %}');"></div>
+        </div>
+        <div class="button-container">
+            <button class="button-wrapper" id="questionBtn">
+                <img src="{% static 'images/icon1.png' %}" alt="Icon 1" class="button-icon">
+                <span class="gradient-button">Quiz</span>
+                <p class="button-description">Let's solve it like real test!</p>
+            </button>
+            <button class="button-wrapper" id="studyBtn">
+                <img src="{% static 'images/icon2.png' %}" alt="Icon 2" class="button-icon">
+                <span class="gradient-button">Study</span>
+                <p class="button-description">Let's study the material for the final exam!</p>
+            </button>
+            <button class="button-wrapper" id= "mistake_logBtn">  {% comment %} id added {% endcomment %}
+                <img src="{% static 'images/icon3.jpg' %}" alt="Icon 3" class="button-icon">
+                <span class="gradient-button">Mistake Log</span>
+                <p class="button-description">Let's check our problem-solving record!</p>
+            </button>
+            <button class="button-wrapper" id= "retestBtn">  {% comment %} id added {% endcomment %}
+                <img src="{% static 'images/icon4.png' %}" alt="Icon 4" class="button-icon">
+                <span class="gradient-button">Retest</span>
+                <p class="button-description">Let’s review the questions we got wrong!</p>
+            </button>
+        </div>
+    </div>
+
+    <!-- Quiz Modal -->
+    <div id="quizModal" class="modal">
+        <div class="modal-content">
+            <span class="close-button">&times;</span>
+            <h2>Select Chapter</h2>
+            <button class="modal-button" id="quizChapter8Btn">Chapter 8</button>
+            <button class="modal-button" id="quizChapter9Btn">Chapter 9</button>
+            <button class="modal-button" id="quizChapter10Btn">Chapter 10</button>
+        </div>
+    </div>
+
+    <!-- Study Modal -->
+    <div id="studyModal" class="modal">
+        <div class="modal-content">
+            <span class="close-button">&times;</span>
+            <h2>Select Chapter</h2>
+            <button class="modal-button" id="studyChapter8Btn">Chapter 8</button>
+            <button class="modal-button" id="studyChapter9Btn">Chapter 9</button>
+            <button class="modal-button" id="studyChapter10Btn">Chapter 10</button>
+        </div>
+    </div>
+
+    <!-- retest Modal -->
+    <div id="retestModal" class="modal">
+        <div class="modal-content">
+            <span class="close-button">&times;</span>
+            <h2>Select Chapter</h2>
+            <button class="modal-button" id="studyChapter8Btn">Chapter 8</button>
+            <button class="modal-button" id="studyChapter9Btn">Chapter 9</button>
+            <button class="modal-button" id="studyChapter10Btn">Chapter 10</button>
+        </div>
+    </div>
+
+    <script src="{% static 'script/main.js' %}"></script>
+</body>
+</html>
