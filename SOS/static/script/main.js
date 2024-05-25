@@ -52,6 +52,9 @@ document.addEventListener('DOMContentLoaded', function() {
         if (event.target == retestModal) {  // 수정
             retestModal.style.display = "none";
         }
+        if (event.target == retestModal) {
+            retestModal.style.display = "none";
+        }
     }
 
     // Chapter 버튼 클릭 시 퀴즈 페이지로 이동

@@ -10,8 +10,9 @@
 <body>
     <div class="container">
         {% if user.is_authenticated %}
-            <h1>Welcome, {{ user.username }}!</h1>
-            <p><a href="{% url 'question:logout' %}">Logout</a></p>
+            <h1>Welcome Back, {{ user.username }}!</h1>
+            <p><a href="{% url 'question:logout' %}">Log Out</a></p>
+            <p><a href="{% url 'question:main' %}">Go to Main</a></p>
         {% else %}
             <h1>Login in SOS!</h1>
             {% if error %}
@@ -23,7 +24,7 @@
                 <input type="text" id="username" name="username" required>
                 <label for="password">Password:</label>
                 <input type="password" id="password" name="password" required>
-                <button type="submit">Login</button>
+                <button type="submit">Log In</button>
             </form>
             <p><a href="{% url 'question:signup' %}">Sign Up</a></p>
         {% endif %}

@@ -146,8 +146,8 @@ footer {
 }
 
 .chapter-title.show {
-    opacity: 1;
-    transform: translateY(0);
+    opacity: 1; /* 최종 상태: 불투명 */
+    transform: translateY(0); /* 최종 상태: 제자리 */
 }
 
 .modal {
@@ -220,6 +220,14 @@ footer {
 @media (max-width: 600px) {
     .question-image {
         max-width: 400px; /* 작은 화면에서는 너비를 100%로 설정 */
+        height: auto; /* 높이를 자동으로 설정 */
+    }
+}
+
+/* 모바일 반응형 스타일 */
+@media (max-width: 600px) {
+    .question-image {
+        width: 100%; /* 작은 화면에서는 너비를 100%로 설정 */
         height: auto; /* 높이를 자동으로 설정 */
     }
 }

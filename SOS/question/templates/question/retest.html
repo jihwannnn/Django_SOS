@@ -16,7 +16,7 @@
 <body>
     <div class="container" data-chapter="{{ chapter_num }}">
         <header>
-            <h1 id="chapter-title" class="chapter-title">Chapter {{ chapter_num }} Quiz</h1>
+            <h1 id="chapter-title" class="chapter-title">Chapter {{ chapter_num }} Retest</h1>
         </header>
         {% if current_question %}
         <div class="question-container">
@@ -55,7 +55,6 @@
             </div>
         </div>
     </div>
-    
     <script src="{% static 'script/retest.js' %}"></script>
 </body>
 </html>
