@@ -3,7 +3,9 @@ name: Django Tests
 on:
   push:
     branches:
+      - main
       - test
+      - depy
   pull_request:
     branches:
       - main
