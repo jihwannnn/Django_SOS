@@ -14,12 +14,14 @@ COPY nginx.conf /etc/nginx/sites-available/default
 RUN rm -f /etc/nginx/sites-enabled/default && ln -s /etc/nginx/sites-available/default /etc/nginx/sites-enabled
 RUN python manage.py collectstatic --noinput
 
-CMD gunicorn --bind 0.0.0.0:8000 SOS.wsgi:application
+CMD service nginx start && \ 
+    python manage.py makemigrations question && \
+    python manage.py migrate && \
+    python manage.py load_questions && \ 
+    gunicorn --bind 0.0.0.0:8000 SOS.wsgi:application
 
-# service nginx start && \
-# python manage.py makemigrations question && \
-# python manage.py migrate && \
-# python manage.py load_questions && \
+
+
 
 
 EXPOSE 80
