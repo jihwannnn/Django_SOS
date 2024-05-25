@@ -1,8 +1,10 @@
 document.addEventListener('DOMContentLoaded', function() {
     var quizModal = document.getElementById("quizModal");
     var studyModal = document.getElementById("studyModal");
+    var retestModal = document.getElementById("retestModal");
     var questionBtn = document.getElementById("questionBtn");
     var studyBtn = document.getElementById("studyBtn");  
+    var retestBtn = document.getElementById("retestBtn");  // 추가
     var mistake_logBtn = document.getElementById("mistake_logBtn"); //by G
     var closeButtons = document.getElementsByClassName("close-button");
     var quizChapter8Btn = document.getElementById("quizChapter8Btn");
@@ -11,6 +13,9 @@ document.addEventListener('DOMContentLoaded', function() {
     var studyChapter8Btn = document.getElementById("studyChapter8Btn");
     var studyChapter9Btn = document.getElementById("studyChapter9Btn");
     var studyChapter10Btn = document.getElementById("studyChapter10Btn");
+    var retestChapter8Btn = document.getElementById("retestChapter8Btn");  // 추가
+    var retestChapter9Btn = document.getElementById("retestChapter9Btn");  // 추가
+    var retestChapter10Btn = document.getElementById("retestChapter10Btn");  // 추가
 
     // "Quiz" 버튼을 클릭하면 퀴즈 모달 창이 열립니다.
     questionBtn.onclick = function() {
@@ -22,7 +27,7 @@ document.addEventListener('DOMContentLoaded', function() {
         studyModal.style.display = "flex";
     }
 
-    // "retest" 버튼을 클릭하면 재시험 모달 창이 열립니다.
+    // "Retest" 버튼을 클릭하면 재시험 모달 창이 열립니다.
     retestBtn.onclick = function() {
         retestModal.style.display = "flex";
     }
@@ -32,6 +37,7 @@ document.addEventListener('DOMContentLoaded', function() {
         button.onclick = function() {
             quizModal.style.display = "none";
             studyModal.style.display = "none";
+            retestModal.style.display = "none";
         }
     });
 
@@ -42,6 +48,9 @@ document.addEventListener('DOMContentLoaded', function() {
         }
         if (event.target == studyModal) {
             studyModal.style.display = "none";
+        }
+        if (event.target == retestModal) {  // 수정
+            retestModal.style.display = "none";
         }
     }
 
@@ -109,5 +118,4 @@ document.addEventListener('DOMContentLoaded', function() {
         overlay.style.filter = 'opacity(0)';
         container.style.transform = 'perspective(350px) rotateY(0deg) rotateX(0deg)';
     });
-
 });

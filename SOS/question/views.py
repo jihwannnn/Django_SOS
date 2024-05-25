@@ -174,12 +174,12 @@ def retest(request, chapter_num):
             total_correctness = 0
             for i, question in enumerate(questions):
                 correctness = False
-                if question.answer.lower() == submitted_answers[i].lower():
+                if question.solved_questions.answer.lower() == submitted_answers[i].lower():
                     correctness = True
                     total_correctness += 1
                 solved_question, created = SolvedQuestion.objects.get_or_create(
                     user=current_user,
-                    solved_questions=question,
+                    solved_questions=question.solved_questions,
                     defaults={'was_right': correctness, 'submitted_answer': submitted_answers[i]}
                 )
                 if not created:

@@ -9,7 +9,7 @@
     <script>
         var currentQuestionIndex = {{ current_index }};
         var totalQuestions = {{ total_questions }};
-        var correctAnswers = "{{current_question.answer}}";
+        var correctAnswers = "{{current_question.solved_questions.answer}}";
         var chapter_num = {{chapter_num}};
     </script>
 </head>
@@ -20,8 +20,8 @@
         </header>
         {% if current_question %}
         <div class="question-container">
-            {% if current_question.image %}
-            <img src="{{ current_question.image.url }}" alt="Question Image" class="question-image" id="question-img">
+            {% if current_question.solved_questions.image %}
+            <img src="{{ current_question.solved_questions.image.url }}" alt="Question Image" class="question-image" id="question-img">
             {% endif %}
             <form method="post" class="answer-form" id="quizForm">
                 {% csrf_token %}
