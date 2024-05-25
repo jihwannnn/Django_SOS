@@ -24,6 +24,7 @@ def root_view(request):
 
 
 def index(request):
+    
     if request.method == 'POST':
         username = request.POST['username']
         password = request.POST['password']
