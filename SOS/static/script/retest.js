@@ -95,7 +95,7 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     document.getElementById('tsubmitBtn').addEventListener('click', function() {
-        fetch(`/question/quiz/${chapter_num}/`, {
+        fetch(`/question/retest/${chapter_num}/`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
