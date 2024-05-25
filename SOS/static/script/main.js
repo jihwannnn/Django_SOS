@@ -76,9 +76,17 @@ document.addEventListener('DOMContentLoaded', function() {
         window.location.href = "/question/mistake_log";
     }
 
-    // Retest 버튼 클릭시 해당 페이지로 이동 by G
-    retestBtn.onclick = function(){
-        window.location.href = "/question/retest";
+    // retest 버튼 클릭 시 재시험 페이지로 이동
+    retestChapter8Btn.onclick = function() {
+        window.location.href = "/question/retest/8/";
+    }
+
+    retestChapter9Btn.onclick = function() {
+        window.location.href = "/question/retest/9/";
+    }
+
+    retestChapter10Btn.onclick = function() {
+        window.location.href = "/question/retest/10/";
     }
 
     // 이미지 컨테이너 마우스 움직임에 따른 효과
