@@ -9,7 +9,8 @@
     <script>
         var currentQuestionIndex = {{ current_index }};
         var totalQuestions = {{ total_questions }};
-        var correctAnswers = {{current_question.answer}};
+        var correctAnswers = "{{current_question.answer}}";
+        var chapter_num = {{chapter_num}};
     </script>
 </head>
 <body>
@@ -35,6 +36,7 @@
             <button id="home" class="home-button" onclick="window.location.href='{% url 'question:main' %}'">
                 <img src="{% static 'images/home-icon.png' %}" alt="Home" class="icon">
             </button>
+            {% csrf_token %}
             <button id="tsubmitBtn" class="total-submit">Total Submit</button>
             <button id="next" class="arrow-button" onclick="goToNextQuestion()" {% if current_index == total_1 %}disabled{% endif %}>&rarr;</button>
         </footer>
@@ -53,6 +55,5 @@
     </div>
     
     <script src="{% static 'script/quiz.js' %}"></script>
-    <h1>{{current_question.answer}}<h1>
 </body>
 </html>

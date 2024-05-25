@@ -32,10 +32,6 @@ document.addEventListener('DOMContentLoaded', function () {
         console.log('Animation Class Added'); // 디버깅용 로그
     }, 100); // 페이지 로드 후 100ms 대기 후 애니메이션 시작
 
-    var total_1 = totalQuestions - 1;
-
-    var correctAns = correctAnswers;
-
     // 답변을 저장할 배열 초기화 또는 로드
     var answers = JSON.parse(localStorage.getItem('quizAnswers')) || new Array(totalQuestions).fill(null);
 
@@ -69,15 +65,11 @@ document.addEventListener('DOMContentLoaded', function () {
 
             // 사용자가 입력한 답변과 정답을 비교
             if (correctAnswers == answer.toLowerCase()) {
-                console.log('correctAnswers', correctAnswers); // 디버깅용 로그
-                console.log('answer.toLowerCase()', answer.toLowerCase()); // 디버깅용 로그
                 resultMessage.textContent = 'You are correct!';
                 resultMessage.classList.add('correct');
                 resultMessage.classList.remove('wrong');
                 resultImage.src = correctImg;
             } else {
-                console.log('correctAnswers', correctAnswers); // 디버깅용 로그
-                console.log('answer.toLowerCase()', answer.toLowerCase()); // 디버깅용 로그
                 resultMessage.textContent = 'You are wrong!';
                 resultMessage.classList.add('wrong');
                 resultMessage.classList.remove('correct');
@@ -101,20 +93,24 @@ document.addEventListener('DOMContentLoaded', function () {
             document.body.style.backgroundColor = ''; // 배경색 초기화
         }
     }
-    
+
     document.getElementById('tsubmitBtn').addEventListener('click', function() {
-        fetch('/submit-answers/', {
+        fetch(`/question/quiz/${chapter_num}/`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
-                'X-CSRFToken': '{{ csrf_token }}' // Django CSRF 토큰
+                'X-CSRFToken': document.querySelector('[name=csrfmiddlewaretoken]').value
             },
             body: JSON.stringify({
-                chapter: chapter,
                 answers: answers
             })
         })
-        .then(response => response.json())
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+            return response.json();
+        })
         .then(data => {
             console.log('Submission Response:', data); // 디버깅용 로그
             if (data.success) {
@@ -123,7 +119,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 localStorage.removeItem('quizAnswers');
                 window.location.href = '/question/result/'; // 제출 후 이동할 페이지 설정
             } else {
-                alert('There was an error submitting your answers.');
+                alert('There was an error submitting your answers: ' + data.message);
             }
         })
         .catch(error => {

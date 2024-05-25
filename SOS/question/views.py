@@ -1,12 +1,17 @@
 import enum
 from re import sub
-from time import timezone
+from django.db import IntegrityError
+from django.utils import timezone
+from django.http import JsonResponse
 from django.shortcuts import render, redirect
 from django.contrib.auth.models import User
 from django.http import HttpResponse
 from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth.decorators import login_required
 import json
 from django.core.exceptions import ValidationError
+from django.views.decorators.csrf import csrf_exempt
+import logging
 
 from .models import Question, SolvedQuestion, ExamLog
 
@@ -57,56 +62,77 @@ def signup(request):
             return render(request, 'question/signup.html', {'error': 'An unexpected error occurred'})
     else:
         return render(request, 'question/signup.html')
-    
+
+logger = logging.getLogger(__name__)
+
+@csrf_exempt
+@login_required
 def quiz(request, chapter_num):
-    current_user=request.user.id
+    logger.debug("Entered quiz view with chapter_num: %s", chapter_num)
+    current_user = request.user
     questions = Question.objects.filter(chapter=chapter_num)
-
-    # deliver index number of one question as a url pattern
     total_questions = questions.count()
-    
-    # start from 0
+    total_1 = total_questions - 1
     current_index = int(request.GET.get('q', 0))
-
-    # ensuring index range
     current_index = max(0, min(current_index, total_questions - 1))
-
     current_question = questions[current_index] if total_questions > 0 else None
 
-    if request.method == 'POST':
-        # Get the submitted answers JSON and parse it
-        submitted_answers_json = request.POST.get('submitted_answers')
-        submitted_answers = json.loads(submitted_answers_json)['answers']
-        total_correctness = 0
-        for i, question in enumerate(questions):
-            correctness = False
-            if question.answer in submitted_answers[i]:
-                correctness = True
-                total_correctness += 1
-            solved_question = SolvedQuestion(
-                user = current_user,
-                solved_questions = question,
-                was_right = correctness,
-                submitted_answer = submitted_answers[i]
-            )
-            solved_question.save()
+    logger.debug("Total questions: %d, Current index: %d", total_questions, current_index)
 
-        # Save the exam log
-        exam_log = ExamLog(
-            user = current_user,
-            chapter = chapter_num,
-            exam_dateTime = timezone.now(),
-            total_solved_questions = total_questions,
-            total_correct_questions = total_correctness
-        )
-        exam_log.save()
+    if request.method == 'POST':
+        try:
+            logger.debug("Processing POST request")
+            data = json.loads(request.body)
+            submitted_answers = data.get('answers')
+            logger.debug("Submitted answers: %s", submitted_answers)
+
+            if not current_user.is_authenticated:
+                logger.warning("User not authenticated")
+                return JsonResponse({'success': False, 'message': 'User not authenticated'}, status=401)
+
+            total_correctness = 0
+            for i, question in enumerate(questions):
+                correctness = False
+                if question.answer.lower() == submitted_answers[i].lower():
+                    correctness = True
+                    total_correctness += 1
+                solved_question, created = SolvedQuestion.objects.get_or_create(
+                    user=current_user,
+                    solved_questions=question,
+                    defaults={'was_right': correctness, 'submitted_answer': submitted_answers[i]}
+                )
+                if not created:
+                    # If the solved question already exists, update it
+                    solved_question.was_right = correctness
+                    solved_question.submitted_answer = submitted_answers[i]
+                    solved_question.save()
+                logger.debug("Saved solved question: %s", solved_question)
+            exam_log = ExamLog(
+                user=current_user,
+                chapter=chapter_num,
+                exam_dateTime=timezone.now(),
+                total_solved_questions=total_questions,
+                total_correct_questions=total_correctness
+            )
+            exam_log.save()
+            logger.debug("Saved exam log: %s", exam_log)
+
+            return JsonResponse({'success': True})
+        except IntegrityError as e:
+            logger.error("IntegrityError in quiz view: %s", str(e))
+            return JsonResponse({'success': False, 'message': 'Integrity error occurred: ' + str(e)}, status=500)
+        except Exception as e:
+            logger.error("Error in quiz view: %s", str(e), exc_info=True)
+            return JsonResponse({'success': False, 'message': str(e)}, status=500)
 
     context = {
         'chapter_num': chapter_num,
         'current_question': current_question,
         'current_index': current_index,
         'total_questions': total_questions,
+        'total_1': total_1
     }
+    logger.debug("Rendering quiz template with context: %s", context)
     return render(request, 'question/quiz.html', context)
 
 
