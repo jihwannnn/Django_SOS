@@ -2,7 +2,8 @@ document.addEventListener('DOMContentLoaded', function() {
     var quizModal = document.getElementById("quizModal");
     var studyModal = document.getElementById("studyModal");
     var questionBtn = document.getElementById("questionBtn");
-    var studyBtn = document.getElementById("studyBtn");
+    var studyBtn = document.getElementById("studyBtn");  
+    var mistake_logBtn = document.getElementById("mistake_logBtn"); //by G
     var closeButtons = document.getElementsByClassName("close-button");
     var quizChapter8Btn = document.getElementById("quizChapter8Btn");
     var quizChapter9Btn = document.getElementById("quizChapter9Btn");
@@ -19,6 +20,11 @@ document.addEventListener('DOMContentLoaded', function() {
     // "Study" 버튼을 클릭하면 학습 모달 창이 열립니다.
     studyBtn.onclick = function() {
         studyModal.style.display = "flex";
+    }
+
+    // "retest" 버튼을 클릭하면 재시험 모달 창이 열립니다.
+    retestBtn.onclick = function() {
+        retestModal.style.display = "flex";
     }
 
     // 모달 창의 닫기 버튼(X)을 클릭하면 모달 창이 닫힙니다.
@@ -63,6 +69,16 @@ document.addEventListener('DOMContentLoaded', function() {
 
     studyChapter10Btn.onclick = function() {
         window.location.href = "/question/study/10/";
+    }
+
+    // Mistake log 버튼 클릭시 해당 페이지로 이동 by G
+    mistake_logBtn.onclick = function(){
+        window.location.href = "/question/mistake_log";
+    }
+
+    // Retest 버튼 클릭시 해당 페이지로 이동 by G
+    retestBtn.onclick = function(){
+        window.location.href = "/question/retest";
     }
 
     // 이미지 컨테이너 마우스 움직임에 따른 효과

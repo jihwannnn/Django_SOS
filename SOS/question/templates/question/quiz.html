@@ -6,29 +6,53 @@
     {% load static %}
     <link rel="stylesheet" href="{% static 'styles/quiz.css' %}">
     <title>Chapter Questions</title>
+    <script>
+        var currentQuestionIndex = {{ current_index }};
+        var totalQuestions = {{ total_questions }};
+        var correctAnswers = {{current_question.answer}};
+    </script>
 </head>
 <body>
-    <div class="container">
+    <div class="container" data-chapter="{{ chapter_num }}">
         <header>
             <h1 id="chapter-title" class="chapter-title">Chapter {{ chapter_num }} Quiz</h1>
         </header>
+        {% if current_question %}
         <div class="question-container">
-            <img src="{{question.image.url}}" alt="Question Image" class="question-image">
-            <form method="post" class="answer-form">
+            {% if current_question.image %}
+            <img src="{{ current_question.image.url }}" alt="Question Image" class="question-image" id="question-img">
+            {% endif %}
+            <form method="post" class="answer-form" id="quizForm">
                 {% csrf_token %}
                 <label for="answer" class="form-label">Your Answer:</label>
                 <input type="text" id="answer" name="answer" class="form-input" required>
-                <button type="submit" class="form-button">Submit</button>
+                <button type="submit" id="submitBtn" class="form-button">Submit</button>
             </form>
+            
         </div>
         <footer>
-            <button id="prev" class="arrow-button">&larr;</button>
+            <button id="prev" class="arrow-button" onclick="goToPreviousQuestion()" {% if current_index == 0 %}disabled{% endif %}>&larr;</button>
             <button id="home" class="home-button" onclick="window.location.href='{% url 'question:main' %}'">
                 <img src="{% static 'images/home-icon.png' %}" alt="Home" class="icon">
             </button>
-            <button id="next" class="arrow-button">&rarr;</button>
+            <button id="tsubmitBtn" class="total-submit">Total Submit</button>
+            <button id="next" class="arrow-button" onclick="goToNextQuestion()" {% if current_index == total_1 %}disabled{% endif %}>&rarr;</button>
         </footer>
+        {% else %}
+        <p>No questions available for this chapter.</p>
+        {% endif %}
+
+        <!-- Result Modal -->
+        <div id="resultModal" class="modal" data-correct-img="{% static 'images/victory.gif' %}" data-wrong-img="{% static 'images/cry.gif' %}">
+            <div class="modal-content">
+                <span id="closeModalBtn" class="close-button">&times;</span>
+                <img id="resultImage" class="result-image" src="" alt="Result Image">
+                <h2 id="resultMessage"></h2>
+            </div>
+        </div>
     </div>
+    
     <script src="{% static 'script/quiz.js' %}"></script>
+    <h1>{{current_question.answer}}<h1>
 </body>
 </html>

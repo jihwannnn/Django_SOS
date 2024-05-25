@@ -4,5 +4,5 @@ from django.contrib import admin
 from .models import Question, ExamLog, SolvedQuestion
 
 admin.site.register(Question)
-admin.site.register(ExamLog)
 admin.site.register(SolvedQuestion)
+admin.site.register(ExamLog)
