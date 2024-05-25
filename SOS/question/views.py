@@ -76,11 +76,11 @@ def quiz(request, chapter_num):
     if request.method == 'POST':
         # Get the submitted answers JSON and parse it
         submitted_answers_json = request.POST.get('submitted_answers')
-        submitted_answers = json.loads(submitted_answers_json)['list']
+        submitted_answers = json.loads(submitted_answers_json)['answers']
         total_correctness = 0
         for i, question in enumerate(questions):
             correctness = False
-            if submitted_answers[i] in question.answer:
+            if question.answer in submitted_answers[i]:
                 correctness = True
                 total_correctness += 1
             solved_question = SolvedQuestion(
@@ -110,8 +110,56 @@ def quiz(request, chapter_num):
     return render(request, 'question/quiz.html', context)
 
 
-def retest(request):
-    return render(request, 'question/retest.html')
+def retest(request, chapter_num):
+    current_user=request.user.id
+    questions = SolvedQuestion.objects.filter(chapter=chapter_num, was_right=False)
+
+    # deliver index number of one question as a url pattern
+    total_questions = questions.count()
+    
+    # start from 0
+    current_index = int(request.GET.get('q', 0))
+
+    # ensuring index range
+    current_index = max(0, min(current_index, total_questions - 1))
+
+    current_question = questions[current_index] if total_questions > 0 else None
+
+    if request.method == 'POST':
+        # Get the submitted answers JSON and parse it
+        submitted_answers_json = request.POST.get('submitted_answers')
+        submitted_answers = json.loads(submitted_answers_json)['answers']
+        total_correctness = 0
+        for i, question in enumerate(questions):
+            correctness = False
+            if question.answer in submitted_answers[i]:
+                correctness = True
+                total_correctness += 1
+            solved_question = SolvedQuestion(
+                user = current_user,
+                solved_questions = question,
+                was_right = correctness,
+                submitted_answer = submitted_answers[i]
+            )
+            solved_question.save()
+
+        # Save the exam log
+        exam_log = ExamLog(
+            user = current_user,
+            chapter = chapter_num,
+            exam_dateTime = timezone.now(),
+            total_solved_questions = total_questions,
+            total_correct_questions = total_correctness
+        )
+        exam_log.save()
+
+    context = {
+        'chapter_num': chapter_num,
+        'current_question': current_question,
+        'current_index': current_index,
+        'total_questions': total_questions,
+    }
+    return render(request, 'question/retest.html', context)
 
 def study(request, chapter_num):
     questions = Question.objects.filter(chapter=chapter_num)
