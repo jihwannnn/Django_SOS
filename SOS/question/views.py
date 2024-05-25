@@ -1,6 +1,6 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.models import User
-from django.http import HttpResponse
+from django.http import HttpResponse, JsonResponse
 from django.contrib.auth import authenticate, login, logout
 from django.core.exceptions import ValidationError
 from .models import Question, SolvedQuestion, ExamLog
@@ -66,6 +66,17 @@ def quiz(request, chapter_num):
     current_index = max(0, min(current_index, total_questions - 1))
 
     current_question = questions[current_index] if total_questions > 0 else None
+
+    if request.method == 'POST':
+        answer = request.POST.get('answer')
+        correct_answer = current_question.answer
+
+        if answer == correct_answer:
+            result = 'correct'
+        else:
+            result = 'wrong'
+
+        return JsonResponse({'result': result})
 
     context = {
         'chapter_num': chapter_num,

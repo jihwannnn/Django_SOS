@@ -22,6 +22,11 @@ document.addEventListener('DOMContentLoaded', function() {
         studyModal.style.display = "flex";
     }
 
+    // "retest" 버튼을 클릭하면 재시험 모달 창이 열립니다.
+    retestBtn.onclick = function() {
+        retestModal.style.display = "flex";
+    }
+
     // 모달 창의 닫기 버튼(X)을 클릭하면 모달 창이 닫힙니다.
     Array.from(closeButtons).forEach(function(button) {
         button.onclick = function() {
@@ -69,6 +74,11 @@ document.addEventListener('DOMContentLoaded', function() {
     // Mistake log 버튼 클릭시 해당 페이지로 이동 by G
     mistake_logBtn.onclick = function(){
         window.location.href = "/question/mistake_log";
+    }
+
+    // Retest 버튼 클릭시 해당 페이지로 이동 by G
+    retestBtn.onclick = function(){
+        window.location.href = "/question/retest";
     }
 
     // 이미지 컨테이너 마우스 움직임에 따른 효과
