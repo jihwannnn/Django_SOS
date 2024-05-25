@@ -123,6 +123,11 @@ def quiz(request, chapter_num):
             exam_log.save()
             logger.debug("Saved exam log: %s", exam_log)
 
+            request.session['correct_answers'] = total_correctness
+            request.session['incorrect_answers'] = total_questions - total_correctness
+            request.session['total_questions'] = total_questions
+            request.session['chapter_num'] = chapter_num
+
             return JsonResponse({'success': True})
         except IntegrityError as e:
             logger.error("IntegrityError in quiz view: %s", str(e))
@@ -237,6 +242,21 @@ def finishQuiz(request, examResult):
             exam_result=exam_result
         )
         exam_log.save()
+
+def result(request):
+    correct_answers = request.session.get('correct_answers', 0)
+    incorrect_answers = request.session.get('incorrect_answers', 0)
+    total_questions = request.session.get('total_questions', 0)
+    chapter_num = request.session.get('chapter_num', 0)
+
+    context = {
+        'correct_answers': correct_answers,
+        'incorrect_answers': incorrect_answers,
+        'total_questions': total_questions,
+        'chapter_num': chapter_num,
+    }
+
+    return render(request, 'question/result.html', context)
 
 
 # Create your views here.
