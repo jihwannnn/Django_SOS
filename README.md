@@ -15,4 +15,18 @@ Retest : copy quiz's html also the link for css and js
 
 ### ***Back***
 
-#### 일단 DB schema부터 짜보자
+models.py ->
+- Question
+- SolvedQuestion
+- ExamLog
+
+views.py ->
+- index
+- main
+- logout_view
+- signup
+- quiz
+- retest
+- study
+- mistake_log
+- finishQuiz
