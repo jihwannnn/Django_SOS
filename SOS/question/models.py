@@ -30,5 +30,5 @@ class ExamLog(models.Model):
                               related_name='user_who_had_solved')
     chapter = models.IntegerField()
     exam_dateTime = models.DateTimeField(auto_now_add=True)
-    total_solved_questions = models.IntegerField()
-    total_correct_questions = models.IntegerField()
+    total_solved_questions = models.IntegerField(default=1)
+    total_correct_questions = models.IntegerField(default=0)

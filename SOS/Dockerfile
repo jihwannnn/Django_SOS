@@ -1,13 +1,25 @@
 FROM python:3.11.9
 WORKDIR /SOS
-COPY requirements.txt /SOS/requirements.txt
-COPY manage.py /SOS/manage.py
+
 COPY . /SOS/.
+
+#Dependencies setting
 RUN pip install --no-cache-dir -r requirements.txt
+RUN apt-get update && apt-get install -y nginx
+
 ENV DJANGO_SETTINGS_MODULE=SOS.settings
 ENV PYTHONUNBUFFERED 1
-RUN python manage.py makemigrations question
-RUN python manage.py migrate
-RUN python manage.py load_questions
-CMD ["gunicorn", "--bind", "0.0.0.0:8000", "SOS.wsgi:application"]
-EXPOSE 8000
+
+COPY nginx.conf /etc/nginx/sites-available/default
+RUN rm -f /etc/nginx/sites-enabled/default && ln -s /etc/nginx/sites-available/default /etc/nginx/sites-enabled
+RUN python manage.py collectstatic --noinput
+
+CMD gunicorn --bind 0.0.0.0:8000 SOS.wsgi:application
+
+# service nginx start && \
+# python manage.py makemigrations question && \
+# python manage.py migrate && \
+# python manage.py load_questions && \
+
+
+EXPOSE 80
