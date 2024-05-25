@@ -117,7 +117,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 alert('Your answers have been submitted successfully!');
                 // 제출 후 로컬 저장소 초기화
                 localStorage.removeItem('quizAnswers');
-                window.location.href = '/some-other-page/'; // 제출 후 이동할 페이지 설정
+                window.location.href = '/question/result/'; // 제출 후 이동할 페이지 설정
             } else {
                 alert('There was an error submitting your answers.');
             }
