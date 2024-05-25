@@ -35,6 +35,29 @@ main {
     align-items: center;
 }
 
+.question-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    min-height: 300px; /* 이미지가 없는 경우에도 중앙에 유지되도록 최소 높이 설정 */
+}
+
+.image-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+/* 강제 크기 제한을 위해 추가 */
+img.question-image {
+    width: 100%;  /* 너비를 부모 요소에 맞춤 */
+    max-width: 300px;  /* 최대 너비 제한 */
+    height: auto; /* 높이를 자동으로 설정하여 비율 유지 */
+}
+
 footer {
     display: flex;
     justify-content: space-between;
@@ -65,7 +88,7 @@ footer {
     height: 24px;
 }
 
-/* Chapter 타이틀 스타일링 (quiz 페이지와 동일하게) */
+/* Chapter 타이틀 스타일링 */
 .chapter-title {
     font-size: 3rem; /* 글꼴 크기 */
     font-weight: 700; /* 글꼴 굵기 */
@@ -86,4 +109,12 @@ footer {
 .chapter-title.show {
     opacity: 1; /* 최종 상태: 불투명 */
     transform: translateY(0); /* 최종 상태: 제자리 */
+}
+
+/* 모바일 반응형 스타일 */
+@media (max-width: 600px) {
+    .question-image {
+        width: 100%; /* 작은 화면에서는 너비를 100%로 설정 */
+        height: auto; /* 높이를 자동으로 설정 */
+    }
 }
