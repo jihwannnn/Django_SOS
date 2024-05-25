@@ -12,6 +12,18 @@ function goToNextQuestion() {
     }
 }
 
+function goToPreviousQuestion() {
+    if (currentQuestionIndex > 0) {
+        window.location.href = window.location.pathname + "?q=" + (currentQuestionIndex - 1);
+    }
+}
+
+function goToNextQuestion() {
+    if (currentQuestionIndex < totalQuestions - 1) {
+        window.location.href = window.location.pathname + "?q=" + (currentQuestionIndex + 1);
+    }
+}
+
 document.addEventListener('DOMContentLoaded', function () {
     console.log('DOMContentLoaded event fired'); // 디버깅용 로그
 
@@ -22,11 +34,16 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // 챕터 타이틀 설정
     const chapterTitle = document.getElementById('chapter-title');
+<<<<<<< HEAD
     if (chapterTitle) {
         chapterTitle.textContent = `Chapter ${chapter} Study`;
+=======
+    chapterTitle.textContent = `Chapter ${chapter} Quiz`;
+>>>>>>> test
 
         console.log('Chapter Title Text:', chapterTitle.textContent); // 디버깅용 로그
 
+<<<<<<< HEAD
         // 애니메이션 활성화 클래스 추가
         setTimeout(() => {
             chapterTitle.classList.add('show');
@@ -41,3 +58,16 @@ document.addEventListener('DOMContentLoaded', function () {
     document.getElementById('next').addEventListener('click', goToNextQuestion);
 });
 
+=======
+    // 애니메이션 활성화 클래스 추가
+    setTimeout(() => {
+        chapterTitle.classList.add('show');
+        console.log('Animation Class Added'); // 디버깅용 로그
+    }, 100); // 페이지 로드 후 100ms 대기 후 애니메이션 시작
+
+     // 이전, 다음 버튼 클릭 이벤트 설정
+    document.getElementById('prev').addEventListener('click', goToPreviousQuestion);
+    document.getElementById('next').addEventListener('click', goToNextQuestion);
+ 
+});
+>>>>>>> test
