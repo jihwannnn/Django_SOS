@@ -5,42 +5,24 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     {% load static %}
     <link rel="stylesheet" href="{% static 'styles/study.css' %}">
-<<<<<<< HEAD
-    <title>Chapter Study</title>
-    <script>
-        var currentQuestionIndex = {{ current_index }};
-=======
     <title>Chapter Questions</title>
     <script>
         var currentQuestionIndex = {{ current_index }};
         var chapter_num = {{chapter_num}};
->>>>>>> test
         var totalQuestions = {{ total_questions }};
     </script>
 </head>
 <body>
     <div class="container" data-chapter="{{ chapter_num }}">
         <header>
-<<<<<<< HEAD
             <h1 id="chapter-title" class="chapter-title">Chapter {{ chapter_num }} Study</h1>
-=======
-            <h1 id="chapter-title" class="chapter-title">Chapter {{ chapter_num }} Quiz</h1>
->>>>>>> test
         </header>
         {% if current_question %}
         <div class="question-container">
             {% if current_question.image %}
-<<<<<<< HEAD
-            <div class="image-wrapper">
-                <img src="{{ current_question.image.url }}" alt="Question Image" class="question-image">
-            </div>
-            {% endif %}
-            <p>{{ current_question.answer }}</p> <!-- 정답 표시 -->
-=======
             <img src="{{ current_question.image.url }}" alt="Question Image" class="question-image" id="question-img">
             {% endif %}
             <h1> {{current_question.answer}}
->>>>>>> test
         </div>
         <footer>
             <button id="prev" class="arrow-button" onclick="goToPreviousQuestion()" {% if current_index == 0 %}disabled{% endif %}>&larr;</button>
@@ -52,12 +34,8 @@
         {% else %}
         <p>No questions available for this chapter.</p>
         {% endif %}
-<<<<<<< HEAD
-    </div>
-=======
         </div>
     
->>>>>>> test
     <script src="{% static 'script/study.js' %}"></script>
 </body>
 </html>

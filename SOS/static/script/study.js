@@ -34,40 +34,24 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // 챕터 타이틀 설정
     const chapterTitle = document.getElementById('chapter-title');
-<<<<<<< HEAD
-    if (chapterTitle) {
-        chapterTitle.textContent = `Chapter ${chapter} Study`;
-=======
     chapterTitle.textContent = `Chapter ${chapter} Quiz`;
->>>>>>> test
 
         console.log('Chapter Title Text:', chapterTitle.textContent); // 디버깅용 로그
 
-<<<<<<< HEAD
-        // 애니메이션 활성화 클래스 추가
-        setTimeout(() => {
-            chapterTitle.classList.add('show');
-            console.log('Animation Class Added'); // 디버깅용 로그
-        }, 100); // 페이지 로드 후 100ms 대기 후 애니메이션 시작
-    } else {
-        console.error('Chapter title element not found');
-    }
-
-    // 이전, 다음 버튼 클릭 이벤트 설정
-    document.getElementById('prev').addEventListener('click', goToPreviousQuestion);
-    document.getElementById('next').addEventListener('click', goToNextQuestion);
-});
-
-=======
     // 애니메이션 활성화 클래스 추가
     setTimeout(() => {
         chapterTitle.classList.add('show');
         console.log('Animation Class Added'); // 디버깅용 로그
     }, 100); // 페이지 로드 후 100ms 대기 후 애니메이션 시작
 
-     // 이전, 다음 버튼 클릭 이벤트 설정
-    document.getElementById('prev').addEventListener('click', goToPreviousQuestion);
-    document.getElementById('next').addEventListener('click', goToNextQuestion);
- 
+    // 이전, 다음 버튼 클릭 이벤트 설정
+    document.getElementById('prev').addEventListener('click', function() {
+        // 이전 문제로 이동하는 로직 추가
+        alert('Previous Question');
+    });
+
+    document.getElementById('next').addEventListener('click', function() {
+        // 다음 문제로 이동하는 로직 추가
+        alert('Next Question');
+    });
 });
->>>>>>> test
