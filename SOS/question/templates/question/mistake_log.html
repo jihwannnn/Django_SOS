@@ -23,7 +23,7 @@
                 {% for log in exam_logs %}
                 <tr>
                     <td>{{ log.chapter }}</td>
-                    <td>{{ log.exam_result.score }}</td>
+                    <td>{{ log.total_correct_questions }} / {{ log.total_solved_questions }}</td>
                     <td>{{ log.exam_dateTime }}</td>
                 </tr>
                 {% endfor %}
