@@ -216,7 +216,8 @@ def study(request, chapter_num):
     return render(request, 'question/study.html', context)
 
 def mistake_log(request):
-    return render(request, 'question/mistake_log.html')  #add by G
+    mistake_logs = ExamLog.objects.filter(user=request.user.id).order_by('-exam_dateTime') # '-exam_dateTime' means that it is sorted by newest first.
+    return render(request, 'question/mistake_log.html', {"exam_logs": mistake_logs})  #add by G
 
 def test(request):
     question = Question.objects.get(chapter = 8)
