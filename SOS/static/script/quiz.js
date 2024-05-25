@@ -62,23 +62,30 @@ document.addEventListener('DOMContentLoaded', function () {
             console.log('Saved Answer:', answer); // 디버깅용 로그
             console.log('All Answers:', answers); // 디버깅용 로그
 
-            var messages = ['You are correct!', 'You are wrong!'];
-            var randomMessage = messages[Math.floor(Math.random() * messages.length)];
-            resultMessage.textContent = randomMessage;
-
-            console.log('Random Message:', randomMessage); // 디버깅용 로그
-            console.log('Setting color for resultMessage'); // 디버깅용 로그
-
-            // 메시지에 따라 글자 색상 및 이미지 변경
-            if (randomMessage === 'You are correct!') {
-                resultMessage.classList.add('correct');
-                resultMessage.classList.remove('wrong');
-                resultImage.src = correctImg;
-            } else {
-                resultMessage.classList.add('wrong');
-                resultMessage.classList.remove('correct');
-                resultImage.src = wrongImg;
-            }
+            //현수형
+            var formData = new FormData(form);
+            fetch(window.location.href, {
+                method: 'POST',
+                body: formData,
+                headers: {
+                    'X-CSRFToken': formData.get('csrfmiddlewaretoken')
+                }
+            })
+            .then(response => response.json())
+            .then(data => {
+                var result = data.result;
+                if (result === 'correct') {
+                    resultMessage.textContent = 'You are correct!';
+                    resultMessage.classList.add('correct');
+                    resultMessage.classList.remove('wrong');
+                    resultImage.src = correctImg;
+                } else {
+                    resultMessage.textContent = 'You are wrong!';
+                    resultMessage.classList.add('wrong');
+                    resultMessage.classList.remove('correct');
+                    resultImage.src = wrongImg;
+                }
+    
 
             resultModal.style.display = 'flex';
             document.body.style.backgroundColor = 'rgba(0, 0, 0, 0.5)';
@@ -126,5 +133,6 @@ document.addEventListener('DOMContentLoaded', function () {
             console.error('Error:', error);
             alert('There was an error submitting your answers.');
         });
+    });
     });
 });

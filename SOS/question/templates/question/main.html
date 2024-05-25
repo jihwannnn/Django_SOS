@@ -28,6 +28,11 @@
             <button class="button-wrapper" id= "mistake_logBtn">  {% comment %} id added {% endcomment %}
                 <img src="{% static 'images/icon3.jpg' %}" alt="Icon 3" class="button-icon">
                 <span class="gradient-button">Mistake Log</span>
+                <p class="button-description">Let's check our problem-solving record!</p>
+            </button>
+            <button class="button-wrapper" id= "retestBtn">  {% comment %} id added {% endcomment %}
+                <img src="{% static 'images/icon4.jpg' %}" alt="Icon 4" class="button-icon">
+                <span class="gradient-button">Retest</span>
                 <p class="button-description">Let’s review the questions we got wrong!</p>
             </button>
         </div>
@@ -46,6 +51,17 @@
 
     <!-- Study Modal -->
     <div id="studyModal" class="modal">
+        <div class="modal-content">
+            <span class="close-button">&times;</span>
+            <h2>Select Chapter</h2>
+            <button class="modal-button" id="studyChapter8Btn">Chapter 8</button>
+            <button class="modal-button" id="studyChapter9Btn">Chapter 9</button>
+            <button class="modal-button" id="studyChapter10Btn">Chapter 10</button>
+        </div>
+    </div>
+
+    <!-- retest Modal -->
+    <div id="retestModal" class="modal">
         <div class="modal-content">
             <span class="close-button">&times;</span>
             <h2>Select Chapter</h2>
