@@ -11,6 +11,9 @@ document.addEventListener('DOMContentLoaded', function() {
     var studyChapter8Btn = document.getElementById("studyChapter8Btn");
     var studyChapter9Btn = document.getElementById("studyChapter9Btn");
     var studyChapter10Btn = document.getElementById("studyChapter10Btn");
+    var retestChapter8Btn = document.getElementById("retestChapter8Btn"); 
+    var retestChapter9Btn = document.getElementById("retestChapter9Btn");
+    var retestChapter10Btn = document.getElementById("retestChapter10Btn");
 
     // "Quiz" 버튼을 클릭하면 퀴즈 모달 창이 열립니다.
     questionBtn.onclick = function() {
@@ -32,6 +35,7 @@ document.addEventListener('DOMContentLoaded', function() {
         button.onclick = function() {
             quizModal.style.display = "none";
             studyModal.style.display = "none";
+            retestModal.style.display = "none";
         }
     });
 
@@ -42,6 +46,9 @@ document.addEventListener('DOMContentLoaded', function() {
         }
         if (event.target == studyModal) {
             studyModal.style.display = "none";
+        }
+        if (event.target == retestModal) {
+            retestModal.style.display = "none";
         }
     }
 
