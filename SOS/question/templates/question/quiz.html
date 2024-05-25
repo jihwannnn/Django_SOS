@@ -9,6 +9,7 @@
     <script>
         var currentQuestionIndex = {{ current_index }};
         var totalQuestions = {{ total_questions }};
+        var correctAnswers = {{current_question.answer}};
     </script>
 </head>
 <body>
@@ -52,5 +53,6 @@
     </div>
     
     <script src="{% static 'script/quiz.js' %}"></script>
+    <h1>{{current_question.answer}}<h1>
 </body>
 </html>

@@ -16,8 +16,7 @@ document.addEventListener('DOMContentLoaded', function () {
     console.log('DOMContentLoaded event fired'); // 디버깅용 로그
 
     // URL 파라미터에서 챕터 정보 가져오기
-    const urlSegments = window.location.pathname.split('/');
-    const chapter = urlSegments[urlSegments.length - 2];
+    const chapter = document.querySelector('.container').getAttribute('data-chapter');
     
     console.log('Chapter:', chapter); // 디버깅용 로그
 
@@ -33,12 +32,17 @@ document.addEventListener('DOMContentLoaded', function () {
         console.log('Animation Class Added'); // 디버깅용 로그
     }, 100); // 페이지 로드 후 100ms 대기 후 애니메이션 시작
 
-    var totalQuestions = parseInt("{{ total_questions }}");
-    var currentQuestionIndex = parseInt("{{ current_index }}");
-    var total_1 = totalQuestions-1;
+    var total_1 = totalQuestions - 1;
 
+    var correctAns = correctAnswers;
+
+    // 답변을 저장할 배열 초기화 또는 로드
     var answers = JSON.parse(localStorage.getItem('quizAnswers')) || new Array(totalQuestions).fill(null);
-    
+
+    // 현재 질문에 이미 저장된 답변이 있다면 표시
+    if (answers[currentQuestionIndex] !== null) {
+        document.getElementById('answer').value = answers[currentQuestionIndex];
+    }
 
     // 이전, 다음 버튼 클릭 이벤트 설정
     document.getElementById('prev').addEventListener('click', goToPreviousQuestion);
@@ -49,6 +53,7 @@ document.addEventListener('DOMContentLoaded', function () {
     var resultModal = document.getElementById("resultModal");
     var closeModalBtn = document.getElementById("closeModalBtn");
     var resultMessage = document.getElementById("resultMessage");
+    var resultImage = document.getElementById("resultImage"); // resultImage 변수 추가
     var correctImg = resultModal.getAttribute('data-correct-img');
     var wrongImg = resultModal.getAttribute('data-wrong-img');
 
@@ -62,30 +67,22 @@ document.addEventListener('DOMContentLoaded', function () {
             console.log('Saved Answer:', answer); // 디버깅용 로그
             console.log('All Answers:', answers); // 디버깅용 로그
 
-            //현수형
-            var formData = new FormData(form);
-            fetch(window.location.href, {
-                method: 'POST',
-                body: formData,
-                headers: {
-                    'X-CSRFToken': formData.get('csrfmiddlewaretoken')
-                }
-            })
-            .then(response => response.json())
-            .then(data => {
-                var result = data.result;
-                if (result === 'correct') {
-                    resultMessage.textContent = 'You are correct!';
-                    resultMessage.classList.add('correct');
-                    resultMessage.classList.remove('wrong');
-                    resultImage.src = correctImg;
-                } else {
-                    resultMessage.textContent = 'You are wrong!';
-                    resultMessage.classList.add('wrong');
-                    resultMessage.classList.remove('correct');
-                    resultImage.src = wrongImg;
-                }
-    
+            // 사용자가 입력한 답변과 정답을 비교
+            if (correctAnswers == answer.toLowerCase()) {
+                console.log('correctAnswers', correctAnswers); // 디버깅용 로그
+                console.log('answer.toLowerCase()', answer.toLowerCase()); // 디버깅용 로그
+                resultMessage.textContent = 'You are correct!';
+                resultMessage.classList.add('correct');
+                resultMessage.classList.remove('wrong');
+                resultImage.src = correctImg;
+            } else {
+                console.log('correctAnswers', correctAnswers); // 디버깅용 로그
+                console.log('answer.toLowerCase()', answer.toLowerCase()); // 디버깅용 로그
+                resultMessage.textContent = 'You are wrong!';
+                resultMessage.classList.add('wrong');
+                resultMessage.classList.remove('correct');
+                resultImage.src = wrongImg;
+            }
 
             resultModal.style.display = 'flex';
             document.body.style.backgroundColor = 'rgba(0, 0, 0, 0.5)';
@@ -133,6 +130,5 @@ document.addEventListener('DOMContentLoaded', function () {
             console.error('Error:', error);
             alert('There was an error submitting your answers.');
         });
-    });
     });
 });
