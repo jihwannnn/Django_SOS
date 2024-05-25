@@ -10,10 +10,12 @@ urlpatterns = [
     path('logout/', views.logout_view, name='logout'),
     path('signup/', views.signup, name='signup'),
     path('quiz/', views.quiz, name='quiz'),
-    path('retest/', views.retest, name='retest'),
+    path('retest/<int:chapter_num>/', views.retest, name='retest'),
     path('quiz/<int:chapter_num>/', views.quiz, name='quiz'),
     path('study/<int:chapter_num>/', views.study, name='study'),
-    path('test/', views.test, name='test'),
     path('finishQuiz/', views.finishQuiz, name='finishQuiz'),
     path('mistake_log/', views.mistake_log, name='mistake_log'), #add by g
+
+    # for testing
+    path('test/', views.test, name='test')
 ]
