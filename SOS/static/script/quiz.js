@@ -36,6 +36,8 @@ document.addEventListener('DOMContentLoaded', function () {
     var totalQuestions = parseInt("{{ total_questions }}");
     var currentQuestionIndex = parseInt("{{ current_index }}");
     var total_1 = totalQuestions-1;
+
+    var answers = JSON.parse(localStorage.getItem('quizAnswers')) || new Array(totalQuestions).fill(null);
     
 
     // 이전, 다음 버튼 클릭 이벤트 설정
@@ -53,6 +55,13 @@ document.addEventListener('DOMContentLoaded', function () {
     forms.forEach(function(form) {
         form.addEventListener('submit', function(event) {
             event.preventDefault(); // 폼 제출 기본 동작을 막음
+
+            var answer = form.querySelector('#answer').value;
+            answers[currentQuestionIndex] = answer;
+            localStorage.setItem('quizAnswers', JSON.stringify(answers));
+            console.log('Saved Answer:', answer); // 디버깅용 로그
+            console.log('All Answers:', answers); // 디버깅용 로그
+
             var messages = ['You are correct!', 'You are wrong!'];
             var randomMessage = messages[Math.floor(Math.random() * messages.length)];
             resultMessage.textContent = randomMessage;
@@ -89,4 +98,33 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     }
     
+    document.getElementById('tsubmitBtn').addEventListener('click', function() {
+        fetch('/submit-answers/', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'X-CSRFToken': '{{ csrf_token }}' // Django CSRF 토큰
+            },
+            body: JSON.stringify({
+                chapter: chapter,
+                answers: answers
+            })
+        })
+        .then(response => response.json())
+        .then(data => {
+            console.log('Submission Response:', data); // 디버깅용 로그
+            if (data.success) {
+                alert('Your answers have been submitted successfully!');
+                // 제출 후 로컬 저장소 초기화
+                localStorage.removeItem('quizAnswers');
+                window.location.href = '/some-other-page/'; // 제출 후 이동할 페이지 설정
+            } else {
+                alert('There was an error submitting your answers.');
+            }
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            alert('There was an error submitting your answers.');
+        });
+    });
 });

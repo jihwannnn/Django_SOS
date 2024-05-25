@@ -27,12 +27,14 @@
                 <input type="text" id="answer" name="answer" class="form-input" required>
                 <button type="submit" id="submitBtn" class="form-button">Submit</button>
             </form>
+            
         </div>
         <footer>
             <button id="prev" class="arrow-button" onclick="goToPreviousQuestion()" {% if current_index == 0 %}disabled{% endif %}>&larr;</button>
             <button id="home" class="home-button" onclick="window.location.href='{% url 'question:main' %}'">
                 <img src="{% static 'images/home-icon.png' %}" alt="Home" class="icon">
             </button>
+            <button id="tsubmitBtn" class="total-submit">Total Submit</button>
             <button id="next" class="arrow-button" onclick="goToNextQuestion()" {% if current_index == total_1 %}disabled{% endif %}>&rarr;</button>
         </footer>
     </div>

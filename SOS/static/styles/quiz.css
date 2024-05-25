@@ -41,7 +41,7 @@ footer {
     padding: 20px;
 }
 
-.arrow-button, .home-button {
+.arrow-button, .home-button, .total-submit {
     background: #1ABC9C;
     border: none;
     color: white;
@@ -55,7 +55,7 @@ footer {
     justify-content: center;
 }
 
-.arrow-button:hover, .home-button:hover {
+.arrow-button:hover, .home-button:hover, .total-submit:hover {
     background: #16A085;
 }
 
