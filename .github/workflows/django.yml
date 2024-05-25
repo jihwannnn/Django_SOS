@@ -57,6 +57,7 @@ jobs:
   
       - name: Build and push Docker image
         run: |
+          cd SOS
           docker build -t sos_init .
           docker tag sos_init ${{ secrets.DOCKER_USERNAME }}/sos:latest
           docker push ${{ secrets.DOCKER_USERNAME }}/sos:latest
