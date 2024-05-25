@@ -9,7 +9,8 @@
     <script>
         var currentQuestionIndex = {{ current_index }};
         var totalQuestions = {{ total_questions }};
-        var correctAnswers = {{current_question.answer}};
+        var correctAnswers = "{{current_question.answer}}";
+        var chapter_num = {{chapter_num}};
     </script>
 </head>
 <body>
@@ -35,6 +36,7 @@
             <button id="home" class="home-button" onclick="window.location.href='{% url 'question:main' %}'">
                 <img src="{% static 'images/home-icon.png' %}" alt="Home" class="icon">
             </button>
+            {% csrf_token %}
             <button id="tsubmitBtn" class="total-submit">
                 <img src="{% static 'images/tsubmit-icon.png' %}" alt="Total" class="icon">
             </button>
