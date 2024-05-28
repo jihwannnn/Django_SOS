@@ -70,7 +70,7 @@ jobs:
       - name: Deploy to EC2
         run: |
           ssh -o StrictHostKeyChecking=no ec2-user@ec2-54-180-231-104.ap-northeast-2.compute.amazonaws.com << 'EOF'
-            docker pull kimjh1130/sos:latest
+            docker pull ${{ secrets.DOCKER_USERNAME }}/sos:latest
             docker stop django_sos || true
             docker rm django_sos || true
             docker run -d --name django_sos -p 80:80 -e DJANGO_SETTINGS_MODULE=SOS.settings kimjh1130/sos:latest
