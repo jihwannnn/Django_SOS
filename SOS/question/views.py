@@ -79,7 +79,7 @@ logger = logging.getLogger(__name__)
 def quiz(request, chapter_num):
     logger.debug("Entered quiz view with chapter_num: %s", chapter_num)
     current_user = request.user
-    questions = Question.objects.filter(chapter=chapter_num).annotate(random=Random()).order_by('random')[:10]
+    questions = Question.objects.filter(chapter=chapter_num).annotate(random=Random()).order_by('random')
     total_questions = questions.count()
     total_1 = total_questions - 1
     current_index = int(request.GET.get('q', 0))
