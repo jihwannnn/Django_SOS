@@ -48,10 +48,6 @@ th {
     color: white; /* 헤더 글꼴 색상 (화이트) */
 }
 
-tbody tr:nth-child(even) {
-    background-color: #f2f2f2; /* 짝수 행 배경 색상 */
-}
-
 tbody tr:hover {
     background-color: #ddd; /* 호버시 배경 색상 */
 }

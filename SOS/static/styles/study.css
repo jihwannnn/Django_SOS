@@ -40,14 +40,14 @@ main {
     justify-content: center;
     align-items: center;
     text-align: center;
-    min-height: 300px; /* 이미지가 없는 경우에도 중앙에 유지되도록 최소 높이 설정 */
+    min-height: 400px; /* 이미지가 없는 경우에도 중앙에 유지되도록 최소 높이 설정 */
     padding: 20px; /* 부모 요소에 패딩 추가 */
 }
 
 .question-image {
     max-width: 100%;  /* 부모 요소의 너비에 맞게 최대 크기를 조정 */
     width: auto;      /* 너비를 자동으로 설정하여 비율 유지 */
-    height: 300px;     /* 높이를 자동으로 설정하여 비율 유지 */
+    height: 400px;     /* 높이를 자동으로 설정하여 비율 유지 */
     display: block;   /* 이미지 블록 요소로 처리 */
     margin: 0 auto;   /* 이미지를 가운데 정렬 */
     border-radius: 8px; /* 둥근 모서리 적용 */
@@ -214,14 +214,6 @@ footer {
 .close-button:focus {
     color: black;
     text-decoration: none;
-}
-
-/* 모바일 반응형 스타일 */
-@media (max-width: 600px) {
-    .question-image {
-        max-width: 400px; /* 작은 화면에서는 너비를 100%로 설정 */
-        height: auto; /* 높이를 자동으로 설정 */
-    }
 }
 
 /* 모바일 반응형 스타일 */
