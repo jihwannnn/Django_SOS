@@ -248,20 +248,6 @@ def test(request):
         'question' : question
     })
 
-def finishQuiz(request, examResult):
-    if request.method == 'POST':
-        user = request.POST.get('user')
-        chapter = request.POST.get('chapter')
-        exam_dateTime = request.POST.get('exam_dateTime')
-        exam_result = request.POST.get('exam_result')
-        exam_log = ExamLog(
-            user=user,
-            chapter=chapter,
-            exam_dateTime=exam_dateTime,
-            exam_result=exam_result
-        )
-        exam_log.save()
-
 def result(request):
     correct_answers = request.session.get('correct_answers', 0)
     incorrect_answers = request.session.get('incorrect_answers', 0)
