@@ -24,13 +24,29 @@ document.addEventListener('DOMContentLoaded', function () {
     const chapterTitle = document.getElementById('chapter-title');
     chapterTitle.textContent = `Chapter ${chapter} Quiz`;
 
-        console.log('Chapter Title Text:', chapterTitle.textContent); // 디버깅용 로그
+    console.log('Chapter Title Text:', chapterTitle.textContent); // 디버깅용 로그
 
     // 애니메이션 활성화 클래스 추가
     setTimeout(() => {
         chapterTitle.classList.add('show');
         console.log('Animation Class Added'); // 디버깅용 로그
     }, 100); // 페이지 로드 후 100ms 대기 후 애니메이션 시작
+
+    const prevButton = document.getElementById('prev');
+    const nextButton = document.getElementById('next');
+
+    // 첫 번째 문제일 때 이전 버튼 숨기기, 첫 번째가 아닐 때 다시 보이게 설정
+    if (currentQuestionIndex === 0) {
+        prevButton.classList.add('invisible');
+    } else {
+        prevButton.classList.remove('invisible');
+    }
+
+    if (currentQuestionIndex === totalQuestions-1) {
+        nextButton.classList.add('invisible');
+    } else {
+        nextButton.classList.remove('invisible');
+    }
 
     document.getElementById('prev').addEventListener('click', goToPreviousQuestion);
     document.getElementById('next').addEventListener('click', goToNextQuestion);

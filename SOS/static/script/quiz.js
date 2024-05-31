@@ -52,7 +52,6 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     
-
     // 이전, 다음 버튼 클릭 이벤트 설정
     document.getElementById('prev').addEventListener('click', goToPreviousQuestion);
     document.getElementById('next').addEventListener('click', goToNextQuestion);
