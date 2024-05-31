@@ -14,7 +14,7 @@
             <p><a href="{% url 'question:logout' %}">Log Out</a></p>
             <p><a href="{% url 'question:main' %}">Go to Main</a></p>
         {% else %}
-            <h1>Login in SOS!</h1>
+            <h1>Log in SOS!</h1>
             {% if error %}
                 <p class="error">{{ error }}</p>
             {% endif %}

@@ -36,12 +36,16 @@
                 <img src="{% static 'images/home-icon.png' %}" alt="Home" class="icon">
             </button>
             {% csrf_token %}
-            <button id="tsubmitBtn" class="total-submit">Finish</button>
+            <button id="tsubmitBtn" class="total-submit">
+                <img src="{% static 'images/finish.png' %}" alt="Home" class="finishicon">
+            </button>
             <button id="next" class="arrow-button" onclick="goToNextQuestion()" {% if current_index == total_1 %}disabled{% endif %}>&rarr;</button>
         </footer>
         {% else %}
         <p>No questions available for this chapter.</p>
         {% endif %}
+
+        <img src="{% static 'images/sos.png' %}" alt="SOS Logo" class="logo">
 
         <!-- Result Modal -->
         <div id="resultModal" class="modal" data-correct-img="{% static 'images/victory.gif' %}" data-wrong-img="{% static 'images/cry.gif' %}">

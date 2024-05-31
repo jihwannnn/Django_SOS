@@ -203,6 +203,15 @@ body {
     margin-right: 5px; /* 아이콘과 텍스트 사이 간격 */
 }
 
+.logo {
+    position: fixed;
+    top: 1px;
+    right: 1px;
+    width: 150px; /* 로고 너비 조정 */
+    height: auto; /* 비율 유지 */
+    z-index: 1000; /* 다른 요소들 위에 표시 */
+}
+
 @media (max-width: 768px) {
     .image-container {
         display: none; /* 작은 화면에서는 이미지 컨테이너를 숨김 */
@@ -267,5 +276,15 @@ body {
 @media (min-width: 1138px) {
     .button-container {
         gap: 100px; /* 큰 화면에서는 버튼 간의 간격을 늘림 */
+    }
+}
+
+/* 반응형 로고 스타일 */
+@media (max-width: 932px) {
+    .logo {
+        top: 60px; /* 위치를 좀 더 아래로 */
+        right: 50%;
+        transform: translateX(50%);
+        width: 200px; /* 크기를 살짝 키움 */
     }
 }
