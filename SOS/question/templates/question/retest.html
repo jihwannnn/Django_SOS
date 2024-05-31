@@ -29,7 +29,11 @@
                 <input type="text" id="answer" name="answer" class="form-input" required>
                 <button type="submit" id="submitBtn" class="form-button">Submit</button>
             </form>
-            <h1> This is wrong answer that you write: {{current_question.submitted_answer}}</h1>
+            {% if current_question.submitted_answer == "" %}
+            <h1>You did not solve this question before.</h1>
+            {% else %}
+            <h1>This is the wrong answer that you wrote: {{ current_question.submitted_answer }}</h1>
+            {% endif %}
         </div>
         <footer>
             <button id="prev" class="arrow-button" onclick="goToPreviousQuestion()" {% if current_index == 0 %}disabled{% endif %}>&larr;</button>
