@@ -1,3 +1,4 @@
+/* Google Fonts에서 로드한 Lato 글꼴 적용 */
 body {
     font-family: 'Lato', sans-serif;
     background: linear-gradient(to bottom, #007bff, #6c757d);
@@ -53,7 +54,6 @@ body {
 
 .button-container {
     display: flex;
-    flex-direction: row;
     flex-wrap: wrap;
     align-items: center;
     justify-content: center;
@@ -171,16 +171,17 @@ body {
     }
 
     .button-container {
-        flex-direction: column;
-        gap: 40px;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 10px; /* 간격을 좁힘 */
     }
 
     .button-wrapper {
+        width: 45%; /* 버튼 너비를 45%로 설정하여 2개씩 배치 */
+        height: 150px; /* 버튼 높이 줄임 */
+        max-width: none; /* 최대 너비 제한 해제 */
         padding: 10px; /* 작은 화면에서는 패딩을 줄임 */
-        width: 100%; /* 작은 화면에서는 버튼이 화면 너비를 채움 */
-        max-width: 300px; /* 최대 너비를 제한 */
-        height: auto; /* 고정 높이 해제 */
-        margin-bottom: 40px;
     }
 
     .button-icon {
