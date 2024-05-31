@@ -35,14 +35,28 @@ document.addEventListener('DOMContentLoaded', function () {
     // 답변을 저장할 배열 초기화 또는 로드
     var answers = JSON.parse(localStorage.getItem('quizAnswers')) || new Array(totalQuestions).fill("");
 
-    // 현재 질문에 이미 저장된 답변이 있다면 표시
-    if (answers[currentQuestionIndex] !== null) {
-        document.getElementById('answer').value = answers[currentQuestionIndex];
+    const prevButton = document.getElementById('prev');
+    const nextButton = document.getElementById('next');
+
+    // 첫 번째 문제일 때 이전 버튼 숨기기, 첫 번째가 아닐 때 다시 보이게 설정
+    if (currentQuestionIndex === 0) {
+        prevButton.classList.add('invisible');
+    } else {
+        prevButton.classList.remove('invisible');
     }
+
+    if (currentQuestionIndex === totalQuestions-1) {
+        nextButton.classList.add('invisible');
+    } else {
+        nextButton.classList.remove('invisible');
+    }
+
+    
 
     // 이전, 다음 버튼 클릭 이벤트 설정
     document.getElementById('prev').addEventListener('click', goToPreviousQuestion);
     document.getElementById('next').addEventListener('click', goToNextQuestion);
+
 
     // submit 버튼 클릭 이벤트 설정
     var forms = document.querySelectorAll('.answer-form');
