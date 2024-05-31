@@ -217,6 +217,7 @@ body {
         height: 150px; /* 버튼 높이 줄임 */
         max-width: none; /* 최대 너비 제한 해제 */
         padding: 10px; /* 작은 화면에서는 패딩을 줄임 */
+        width: 200px;
     }
 }
 
