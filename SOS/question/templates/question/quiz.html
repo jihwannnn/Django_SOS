@@ -29,7 +29,6 @@
                 <input type="text" id="answer" name="answer" class="form-input" autocomplete="off" required>
                 <button type="submit" id="submitBtn" class="form-button">Submit</button>
             </form>
-            
         </div>
         <footer>
             <button id="prev" class="arrow-button" onclick="goToPreviousQuestion()" {% if current_index == 0 %}disabled{% endif %}>&larr;</button>
@@ -37,8 +36,7 @@
                 <img src="{% static 'images/home-icon.png' %}" alt="Home" class="icon">
             </button>
             {% csrf_token %}
-            <button id="tsubmitBtn" class="total-submit">TotalSubmit
-            </button>
+            <button id="tsubmitBtn" class="total-submit">Finish</button>
             <button id="next" class="arrow-button" onclick="goToNextQuestion()" {% if current_index == total_1 %}disabled{% endif %}>&rarr;</button>
         </footer>
         {% else %}
@@ -53,8 +51,16 @@
                 <h2 id="resultMessage"></h2>
             </div>
         </div>
-    </div>
-    
+        <!-- total result modal-->
+        <div id="totalModal" class="modal">
+            <div class="modal-content">
+                <h2 id="resultMessage2">Are you sure you want to submit?</h2>
+                <div class="button-container">
+                    <button id="yesButton" class="modal-button">Yes</button>
+                    <button id="noButton" class="modal-button">No</button>
+                </div>
+            </div>
+        </div>
     <script src="{% static 'script/quiz.js' %}"></script>
 </body>
 </html>

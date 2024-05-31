@@ -78,6 +78,10 @@ footer {
     background: #16A085;
 }
 
+.arrow-button.invisible {
+    visibility: hidden;
+}
+
 .icon {
     width: 24px;
     height: 24px;

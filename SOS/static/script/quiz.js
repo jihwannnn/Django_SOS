@@ -52,7 +52,6 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     
-
     // 이전, 다음 버튼 클릭 이벤트 설정
     document.getElementById('prev').addEventListener('click', goToPreviousQuestion);
     document.getElementById('next').addEventListener('click', goToNextQuestion);
@@ -108,7 +107,15 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     }
 
+    document.getElementById('totalModal').style.display = 'none';
+    
     document.getElementById('tsubmitBtn').addEventListener('click', function() {
+        // totalsubmit 버튼 클릭 시 모달을 열기
+        document.getElementById('totalModal').style.display = 'flex'; // 'block'에서 'flex'로 변경
+    });
+
+    document.getElementById('yesButton').addEventListener('click', function() {
+        // Yes 버튼 클릭 시 결과 제출 및 페이지 이동
         fetch(`/question/quiz/${chapter_num}/`, {
             method: 'POST',
             headers: {
@@ -139,6 +146,10 @@ document.addEventListener('DOMContentLoaded', function () {
             console.error('Error:', error);
             alert('There was an error submitting your answers.');
         });
+    });
 
+    document.getElementById('noButton').addEventListener('click', function() {
+        // No 버튼 클릭 시 모달을 닫기
+        document.getElementById('totalModal').style.display = 'none';
     });
 });
