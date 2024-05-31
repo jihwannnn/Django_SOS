@@ -82,7 +82,7 @@ logger = logging.getLogger(__name__)
 def quiz(request, chapter_num):
     logger.debug("Entered quiz view with chapter_num: %s", chapter_num)
     current_user = request.user
-    questions = Question.objects.filter(chapter=chapter_num).annotate(random=Random()).order_by('random')
+    questions = Question.objects.filter(chapter=chapter_num)
     total_questions = questions.count()
     total_1 = total_questions - 1
     current_index = int(request.GET.get('q', 0))
@@ -158,7 +158,7 @@ def quiz(request, chapter_num):
 def retest(request, chapter_num):
     logger.debug("Entered quiz view with chapter_num: %s", chapter_num)
     current_user=request.user
-    questions = SolvedQuestion.objects.filter(user = current_user, solved_questions__chapter=chapter_num, was_right=False).annotate(random=Random()).order_by('random')
+    questions = SolvedQuestion.objects.filter(user = current_user, solved_questions__chapter=chapter_num, was_right=False)
     total_questions = questions.count()
     total_1 = total_questions - 1
     current_index = int(request.GET.get('q', 0))
