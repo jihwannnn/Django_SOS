@@ -121,4 +121,24 @@ document.addEventListener('DOMContentLoaded', function() {
         overlay.style.filter = 'opacity(0)';
         container.style.transform = 'perspective(350px) rotateY(0deg) rotateX(0deg)';
     });
+
+    logoutBtn.addEventListener('click', function() {
+        fetch('/question/logout/', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'X-CSRFToken': document.querySelector('[name=csrfmiddlewaretoken]').value
+            }
+        })
+        .then(response => {
+            if (response.ok) {
+                window.location.href = '/question/';
+            } else {
+                console.error('Logout failed');
+            }
+        })
+        .catch(error => {
+            console.error('Error during logout:', error);
+        });
+    });
 });

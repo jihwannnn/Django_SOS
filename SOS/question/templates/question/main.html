@@ -38,6 +38,20 @@
         </div>
     </div>
 
+    <!-- CSRF 토큰을 포함 -->
+    <form method="post" style="display:none;">
+        {% csrf_token %}
+    </form>
+
+    <!-- 로그아웃 버튼 추가 -->
+    <div class="logout-container">
+        <button id="logoutBtn" class="logout-button">
+            <img src="{% static 'images/logout.png' %}" alt="Logout" class="logout-icon">
+            Log Out
+        </button>
+        <span class="username">Welcome, {{ username }}</span>
+    </div>
+
     <!-- Quiz Modal -->
     <div id="quizModal" class="modal">
         <div class="modal-content">
