@@ -65,7 +65,7 @@ def signup(request):
         except ValidationError as e:
             return render(request, 'question/signup.html', {'error': e.messages})
         except Exception as e:
-            return render(request, 'question/signup.html', {'error': 'An unexpected error occurred'})
+            return render(request, 'question/signup.html', {'error': 'The user is already registered'})
     else:
         return render(request, 'question/signup.html')
 
