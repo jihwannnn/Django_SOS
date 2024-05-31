@@ -6,11 +6,16 @@ from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 import json
+from django.db.models import Func, FloatField
 from django.core.exceptions import ValidationError
 from django.views.decorators.csrf import csrf_exempt
 import logging
 
 from .models import Question, SolvedQuestion, ExamLog
+
+class Random(Func):
+    function = 'RANDOM'
+    output_field = FloatField()
 
 def root_view(request):
     # 사용자가 인증된 경우 메인 페이지로 리다이렉트
@@ -74,7 +79,7 @@ logger = logging.getLogger(__name__)
 def quiz(request, chapter_num):
     logger.debug("Entered quiz view with chapter_num: %s", chapter_num)
     current_user = request.user
-    questions = Question.objects.filter(chapter=chapter_num)
+    questions = Question.objects.filter(chapter=chapter_num).annotate(random=Random()).order_by('random')[:10]
     total_questions = questions.count()
     total_1 = total_questions - 1
     current_index = int(request.GET.get('q', 0))
@@ -150,7 +155,7 @@ def quiz(request, chapter_num):
 def retest(request, chapter_num):
     logger.debug("Entered quiz view with chapter_num: %s", chapter_num)
     current_user=request.user
-    questions = SolvedQuestion.objects.filter(user = current_user, solved_questions__chapter=chapter_num, was_right=False)
+    questions = SolvedQuestion.objects.filter(user = current_user, solved_questions__chapter=chapter_num, was_right=False).annotate(random=Random()).order_by('random')
     total_questions = questions.count()
     total_1 = total_questions - 1
     current_index = int(request.GET.get('q', 0))
