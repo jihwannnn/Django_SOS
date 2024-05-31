@@ -33,7 +33,7 @@ document.addEventListener('DOMContentLoaded', function () {
     }, 100); // 페이지 로드 후 100ms 대기 후 애니메이션 시작
 
     // 답변을 저장할 배열 초기화 또는 로드
-    var answers = JSON.parse(localStorage.getItem('quizAnswers')) || new Array(totalQuestions).fill(null);
+    var answers = JSON.parse(localStorage.getItem('quizAnswers')) || new Array(totalQuestions).fill("");
 
     // 현재 질문에 이미 저장된 답변이 있다면 표시
     if (answers[currentQuestionIndex] !== null) {
@@ -114,7 +114,6 @@ document.addEventListener('DOMContentLoaded', function () {
         .then(data => {
             console.log('Submission Response:', data); // 디버깅용 로그
             if (data.success) {
-                alert('Your answers have been submitted successfully!');
                 // 제출 후 로컬 저장소 초기화
                 localStorage.removeItem('quizAnswers');
                 window.location.href = '/question/result/'; // 제출 후 이동할 페이지 설정
