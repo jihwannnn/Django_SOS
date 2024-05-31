@@ -114,7 +114,6 @@ document.addEventListener('DOMContentLoaded', function () {
         .then(data => {
             console.log('Submission Response:', data); // 디버깅용 로그
             if (data.success) {
-                alert('Your answers have been submitted successfully!');
                 // 제출 후 로컬 저장소 초기화
                 localStorage.removeItem('quizAnswers');
                 window.location.href = '/question/result/'; // 제출 후 이동할 페이지 설정
