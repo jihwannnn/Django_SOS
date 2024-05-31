@@ -1,46 +1,15 @@
-name: Django Tests
+name: Django Deploy
 
 on:
   push:
     branches:
       - main
-      - test
-      - depy
   pull_request:
     branches:
       - main
-
 jobs:
-  test:
-    runs-on: ubuntu-latest
-
-    steps:
-    - name: Checkout code
-      uses: actions/checkout@v4
-
-    - name: Set up Python
-      uses: actions/setup-python@v4
-      with:
-        python-version: '3.11'
-
-    - name: Install dependencies
-      run: |
-        python -m venv venv
-        source venv/bin/activate
-        pip install django
-
-    - name: Change directory
-      run: |
-        source venv/bin/activate
-        python -m pip install Pillow
-        cd SOS
-        python manage.py makemigrations question
-        python manage.py migrate
-        python manage.py test
-
   deploy:
       runs-on: ubuntu-latest
-      needs: test
   
       steps:
       - name: Checkout code
@@ -70,7 +39,7 @@ jobs:
       - name: Deploy to EC2
         run: |
           ssh -o StrictHostKeyChecking=no ec2-user@ec2-54-180-231-104.ap-northeast-2.compute.amazonaws.com << 'EOF'
-            docker pull kimjh1130/sos
+            docker pull ${{ secrets.DOCKER_USERNAME }}/sos:latest
             docker stop django_sos || true
             docker rm django_sos || true
             docker run -d --name django_sos -p 80:80 -e DJANGO_SETTINGS_MODULE=SOS.settings kimjh1130/sos:latest
