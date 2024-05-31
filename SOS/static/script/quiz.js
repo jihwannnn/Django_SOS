@@ -35,11 +35,6 @@ document.addEventListener('DOMContentLoaded', function () {
     // 답변을 저장할 배열 초기화 또는 로드
     var answers = JSON.parse(localStorage.getItem('quizAnswers')) || new Array(totalQuestions).fill("");
 
-    // 현재 질문에 이미 저장된 답변이 있다면 표시
-    if (answers[currentQuestionIndex] !== null) {
-        document.getElementById('answer').value = answers[currentQuestionIndex];
-    }
-
     // 이전, 다음 버튼 클릭 이벤트 설정
     document.getElementById('prev').addEventListener('click', goToPreviousQuestion);
     document.getElementById('next').addEventListener('click', goToNextQuestion);
