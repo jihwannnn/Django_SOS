@@ -31,14 +31,12 @@
             </form>
         </div>
         <footer>
-            <button id="prev" class="arrow-button" onclick="goToPreviousQuestion()" {% if current_index == 0 %}style="display: none;"{% endif %}>&larr;</button>
+            <button id="prev" class="arrow-button" onclick="goToPreviousQuestion()" {% if current_index == 0 %}disabled{% endif %}>&larr;</button>
             <button id="home" class="home-button" onclick="window.location.href='{% url 'question:main' %}'">
                 <img src="{% static 'images/home-icon.png' %}" alt="Home" class="icon">
             </button>
-            {% csrf_token %}
-            <button id="tsubmitBtn" class="total-submit">
-                <img src="{% static 'images/finish.png' %}" alt="Home" class="finishicon">
-            </button>
+            {% csrf_token %} 
+            <button id="tsubmitBtn" class="total-submit">Finish</button>
             <button id="next" class="arrow-button" onclick="goToNextQuestion()" {% if current_index == total_1 %}disabled{% endif %}>&rarr;</button>
         </footer>
         {% else %}
