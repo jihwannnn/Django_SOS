@@ -274,7 +274,7 @@ footer {
 /* 모바일 반응형 스타일 */
 @media (max-width: 600px) {
     .question-image {
-        max-width: 400px; /* 작은 화면에서는 너비를 100%로 설정 */
+        width: 100%; /* 작은 화면에서는 너비를 100%로 설정 */
         height: auto; /* 높이를 자동으로 설정 */
     }
 }

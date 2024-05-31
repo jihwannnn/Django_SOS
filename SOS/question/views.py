@@ -38,7 +38,10 @@ def index(request):
 
 @login_required
 def main(request):
-    return render(request, 'question/main.html')
+    context = {
+        'username': request.user.username
+    }
+    return render(request, 'question/main.html', context)
 
 def logout_view(request):
     logout(request)
