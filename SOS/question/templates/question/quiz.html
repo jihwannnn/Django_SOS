@@ -37,8 +37,7 @@
                 <img src="{% static 'images/home-icon.png' %}" alt="Home" class="icon">
             </button>
             {% csrf_token %}
-            <button id="tsubmitBtn" class="total-submit">
-                <img src="{% static 'images/tsubmit-icon.png' %}" alt="Total" class="icon">
+            <button id="tsubmitBtn" class="total-submit">TotalSubmit
             </button>
             <button id="next" class="arrow-button" onclick="goToNextQuestion()" {% if current_index == total_1 %}disabled{% endif %}>&rarr;</button>
         </footer>
