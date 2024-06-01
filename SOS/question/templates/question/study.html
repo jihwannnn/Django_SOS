@@ -6,6 +6,8 @@
     {% load static %}
     <link rel="stylesheet" href="{% static 'styles/study.css' %}">
     <title>Chapter Questions</title>
+
+    <!-- index current question, total number of questions, chapter number-->
     <script>
         var currentQuestionIndex = {{ current_index }};
         var chapter_num = {{chapter_num}};
@@ -17,29 +19,34 @@
         <header>
             <h1 id="chapter-title" class="chapter-title">Chapter {{ chapter_num }} Study</h1>
         </header>
+
         {% if current_question %}
+        <!-- Question container -->
         <div class="question-container">
+            <!-- Question image -->
             {% if current_question.image %}
             <img src="{{ current_question.image.url }}" alt="Question Image" class="question-image" id="question-img">
             {% endif %}
-            <h1> {{current_question.answer}}
+            <!-- Display the correct answer -->
+            <h1>{{ current_question.answer }}</h1>
         </div>
+
         <footer>
+            <!-- Navigate button. Get the next or prev question by interacting with views -->
             <button id="prev" class="arrow-button" onclick="goToPreviousQuestion()" {% if current_index == 0 %}disabled{% endif %}>&larr;</button>
+            <!-- Back to main page -->
             <button id="home" class="home-button" onclick="window.location.href='{% url 'question:main' %}'">
                 <img src="{% static 'images/home-icon.png' %}" alt="Home" class="icon">
             </button>
             <button id="next" class="arrow-button" onclick="goToNextQuestion()" {% if current_index == total_1 %}disabled{% endif %}>&rarr;</button>
         </footer>
+        
         {% else %}
+        <!-- Message when no questions are available -->
         <p>No questions available for this chapter.</p>
         {% endif %}
-        </div>
+    </div>
 
-        <img src="{% static 'images/sos.png' %}" alt="SOS Logo" class="logo">
-    
     <script src="{% static 'script/study.js' %}"></script>
 </body>
 </html>
-
-

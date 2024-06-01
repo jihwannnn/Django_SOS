@@ -10,9 +10,11 @@
 <body>
     <div class="container">
         <h1>Sign Up</h1>
+        <!-- Error message -->
         {% if error %}
             <p class="error">{{ error }}</p>
         {% endif %}
+        <!-- Sign up form -->
         <form method="post" id="signupForm">
             {% csrf_token %}
             <label for="username">Username:</label>
@@ -23,8 +25,11 @@
             <input type="password" id="password_confirm" name="password_confirm" required>
             <button type="submit">Sign Up</button>
         </form>
+
+        <!-- Go to login page -->
         <p><a href="{% url 'question:index' %}">Back to login</a></p>
     </div>
+    
     <script src="{% static 'script/signup_script.js' %}"></script>
 </body>
 </html>

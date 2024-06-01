@@ -6,11 +6,12 @@
     {% load static %}
     <link rel="stylesheet" href="{% static 'styles/mistake_log.css' %}">
     <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap" rel="stylesheet">
-    <title>Chapter 8, 9, 10 lastest exam logs</title>
+    <title>Chapter 8, 9, 10 latest exam logs</title>
 </head>
 <body>
     <div class="container">
         <h1>Exam logs</h1>
+        <!-- Table to display exam logs -->
         <table>
             <thead>
                 <tr>
@@ -20,6 +21,7 @@
                 </tr>
             </thead>
             <tbody>
+                <!-- Loop through exam logs and display each log in a table row -->
                 {% for log in exam_logs %}
                 <tr>
                     <td>{{ log.chapter }}</td>
@@ -30,12 +32,13 @@
             </tbody>
         </table>
     </div>
+    
     <footer>
+        <!-- Back to the main page -->
         <button id="home" class="home-button" onclick="window.location.href='{% url 'question:main' %}'">
             <img src="{% static 'images/home-icon.png' %}" alt="Home" class="icon">
         </button>
     </footer>
+
     <script src="{% static 'script/mistake_log.js' %}"></script>
 </body>
-</html>
-

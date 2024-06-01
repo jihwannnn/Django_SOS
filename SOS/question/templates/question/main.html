@@ -10,27 +10,38 @@
 </head>
 <body>
     <div class="content">
+        <!-- Background image container -->
         <div class="image-container">
             <div class="overlay"></div>
             <div class="card" style="background-image: url('{% static 'images/OSD.jpg' %}');"></div>
         </div>
+
+        <!-- Button container -->
         <div class="button-container">
+
+            <!-- Quiz Button -->
             <button class="button-wrapper" id="questionBtn">
                 <img src="{% static 'images/icon1.png' %}" alt="Icon 1" class="button-icon">
                 <span class="gradient-button">Quiz</span>
                 <p class="button-description">Let's solve it like real test!</p>
             </button>
+
+            <!-- Study Button -->
             <button class="button-wrapper" id="studyBtn">
                 <img src="{% static 'images/icon2.png' %}" alt="Icon 2" class="button-icon">
                 <span class="gradient-button">Study</span>
                 <p class="button-description">Let's study the material for the final exam!</p>
             </button>
-            <button class="button-wrapper" id= "mistake_logBtn">  {% comment %} id added {% endcomment %}
+
+            <!-- ExamLog Button -->
+            <button class="button-wrapper" id="mistake_logBtn">  <!-- id added -->
                 <img src="{% static 'images/icon3.jpg' %}" alt="Icon 3" class="button-icon">
                 <span class="gradient-button">Mistake Log</span>
                 <p class="button-description">Let's check our problem-solving record!</p>
             </button>
-            <button class="button-wrapper" id= "retestBtn">  {% comment %} id added {% endcomment %}
+
+            <!-- Retest Button -->
+            <button class="button-wrapper" id= "retestBtn">  <!-- id added -->
                 <img src="{% static 'images/icon4.png' %}" alt="Icon 4" class="button-icon">
                 <span class="gradient-button">Retest</span>
                 <p class="button-description">Let’s review the questions we got wrong!</p>
@@ -38,12 +49,12 @@
         </div>
     </div>
 
-    <!-- CSRF 토큰을 포함 -->
+    <!-- Including CSRF token in a hidden form -->
     <form method="post" style="display:none;">
         {% csrf_token %}
     </form>
 
-    <!-- 로그아웃 버튼 추가 -->
+    <!-- logout button & welcome 'user'-->
     <div class="logout-container">
         <button id="logoutBtn" class="logout-button">
             <img src="{% static 'images/logout.png' %}" alt="Logout" class="logout-icon">
@@ -54,7 +65,8 @@
 
     <img src="{% static 'images/sos.png' %}" alt="SOS Logo" class="logo">
 
-    <!-- Quiz Modal -->
+    <!-- Each modal contains button for each chapter-->
+    <!-- Quiz Modals -->
     <div id="quizModal" class="modal">
         <div class="modal-content">
             <span class="close-button">&times;</span>
@@ -76,7 +88,7 @@
         </div>
     </div>
 
-    <!-- retest Modal -->
+    <!-- Retest Modal -->
     <div id="retestModal" class="modal">
         <div class="modal-content">
             <span class="close-button">&times;</span>

@@ -9,23 +9,34 @@
 </head>
 <body>
     <div class="container">
+        <!-- Check if user is authenticated -->
         {% if user.is_authenticated %}
+            <!-- Display welcome message if user is already logged in -->
             <h1>Welcome Back, {{ user.username }}!</h1>
+            <!-- Log out -->
             <p><a href="{% url 'question:logout' %}">Log Out</a></p>
+            <!-- main page -->
             <p><a href="{% url 'question:main' %}">Go to Main</a></p>
         {% else %}
+            <!-- Display login form if user is not logged in -->
             <h1>Log in SOS!</h1>
+            <!-- error message -->
             {% if error %}
                 <p class="error">{{ error }}</p>
             {% endif %}
+            <!-- Login form -->
             <form method="post" id="loginForm">
                 {% csrf_token %}
+                <!-- Username -->
                 <label for="username">Username:</label>
                 <input type="text" id="username" name="username" required>
+                <!-- Password -->
                 <label for="password">Password:</label>
                 <input type="password" id="password" name="password" required>
+                <!-- Submit button -->
                 <button type="submit">Log In</button>
             </form>
+            <!-- Sign up page -->
             <p><a href="{% url 'question:signup' %}">Sign Up</a></p>
         {% endif %}
     </div>
