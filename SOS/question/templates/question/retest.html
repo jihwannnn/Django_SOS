@@ -24,6 +24,10 @@
         {% if current_question %}
         <!-- Question container -->
         <div class="question-container">
+            {% if current_index is not None %}
+            <!-- Question number -->
+            <p>&lt;Question {{current_index|add:"1"}}&gt;</p>
+            {% endif %}
             <!-- Question image -->
             {% if current_question.solved_questions.image %}
             <img src="{{ current_question.solved_questions.image.url }}" alt="Question Image" class="question-image" id="question-img">
