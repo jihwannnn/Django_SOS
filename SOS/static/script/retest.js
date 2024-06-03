@@ -13,23 +13,16 @@ function goToNextQuestion() {
 }
 
 document.addEventListener('DOMContentLoaded', function () {
-    console.log('DOMContentLoaded event fired'); 
-
     //getting chapter from url parameter
     const chapter = document.querySelector('.container').getAttribute('data-chapter');
-    
-    console.log('Chapter:', chapter);
 
     // setting chapter title
     const chapterTitle = document.getElementById('chapter-title');
-    chapterTitle.textContent = `Chapter ${chapter} Quiz`;
-
-    console.log('Chapter Title Text:', chapterTitle.textContent); 
+    chapterTitle.textContent = `Chapter ${chapter} Retest`;
 
     // animation activation class
     setTimeout(() => {
         chapterTitle.classList.add('show');
-        console.log('Animation Class Added'); 
     }, 100); // start animation after 100ms
 
     // variable for storing submitted answers
@@ -74,8 +67,6 @@ document.addEventListener('DOMContentLoaded', function () {
             var answer = form.querySelector('#answer').value;
             answers[currentQuestionIndex] = answer;
             localStorage.setItem('quizAnswers', JSON.stringify(answers));
-            console.log('Saved Answer:', answer); 
-            console.log('All Answers:', answers); 
 
             // checking submiitted answer is correct
             if (correctAnswers == answer.toLowerCase()) {

@@ -6,24 +6,17 @@ from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 import json
-from django.db.models import Func, FloatField
 from django.core.exceptions import ValidationError
 from django.views.decorators.csrf import csrf_exempt
 import logging
 
 from .models import Question, SolvedQuestion, ExamLog
 
-class Random(Func):
-    function = 'RANDOM'
-    output_field = FloatField()
-
 def root_view(request):
     # 사용자가 인증된 경우 메인 페이지로 리다이렉트
     return redirect('question:index')
 
-
 def index(request):
-    
     if request.method == 'POST':
         username = request.POST['username']
         password = request.POST['password']
@@ -69,7 +62,7 @@ def signup(request):
             return redirect('question:index')
         except ValidationError as e:
             return render(request, 'question/signup.html', {'error': e.messages})
-        except Exception as e:
+        except Exception:
             return render(request, 'question/signup.html', {'error': 'The user is already registered'})
     else:
         return render(request, 'question/signup.html')
@@ -250,12 +243,6 @@ def study(request, chapter_num):
 def mistake_log(request):
     mistake_logs = ExamLog.objects.filter(user=request.user.id).order_by('-exam_dateTime') # '-exam_dateTime' means that it is sorted by newest first.
     return render(request, 'question/mistake_log.html', {"exam_logs": mistake_logs})  #add by G
-
-def test(request):
-    question = Question.objects.get(chapter = 8)
-    return render(request, 'question/test.html', {
-        'question' : question
-    })
 
 @login_required
 def result(request):
