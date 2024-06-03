@@ -1,4 +1,3 @@
-from cgi import test
 from django.urls import path
 from . import views
 

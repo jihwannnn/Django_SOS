@@ -6,11 +6,16 @@ from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 import json
+import re
 from django.core.exceptions import ValidationError
 from django.views.decorators.csrf import csrf_exempt
 import logging
 
 from .models import Question, SolvedQuestion, ExamLog
+
+# this function is used when comparing user's answer and the question's answer. it normalizes the strings.
+def normalize_answer(answer):
+                return re.sub(r'[^a-zA-Z]', '', answer).lower()
 
 def root_view(request):
     # 사용자가 인증된 경우 메인 페이지로 리다이렉트
@@ -98,7 +103,7 @@ def quiz(request, chapter_num):
             total_correctness = 0
             for i, question in enumerate(questions):
                 correctness = False
-                if question.answer.lower() == submitted_answers[i].lower():
+                if normalize_answer(question.answer) == normalize_answer(submitted_answers[i]):
                     correctness = True
                     total_correctness += 1
                 solved_question, created = SolvedQuestion.objects.get_or_create(
@@ -174,7 +179,7 @@ def retest(request, chapter_num):
             total_correctness = 0
             for i, question in enumerate(questions):
                 correctness = False
-                if question.solved_questions.answer.lower() == submitted_answers[i].lower():
+                if normalize_answer(question.answer) == normalize_answer(submitted_answers[i]):
                     correctness = True
                     total_correctness += 1
                 solved_question, created = SolvedQuestion.objects.get_or_create(
