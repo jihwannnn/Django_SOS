@@ -1,6 +1,6 @@
 body {
     font-family: 'Lato', sans-serif;
-    background: linear-gradient(to bottom, #007bff, #6c757d); /* main.html과 동일한 배경색 */
+    background: linear-gradient(to bottom, #007bff, #6c757d); /* Same background color as main.html */
     color: white;
     height: 100vh;
     margin: 0;
@@ -24,7 +24,7 @@ header {
 }
 
 header h1 {
-    font-size: 2.5rem;
+    font-size: 2.5rem; /* Font size of the header */
 }
 
 main {
@@ -40,18 +40,18 @@ main {
     justify-content: center;
     align-items: center;
     text-align: center;
-    min-height: 400px; /* 이미지가 없는 경우에도 중앙에 유지되도록 최소 높이 설정 */
-    padding: 20px; /* 부모 요소에 패딩 추가 */
+    min-height: 400px; /* Ensure it remains centered even without an image */
+    padding: 20px; /* Add padding to the parent element */
 }
 
 .question-image {
-    max-width: 100%;  /* 부모 요소의 너비에 맞게 최대 크기를 조정 */
-    width: auto;      /* 너비를 자동으로 설정하여 비율 유지 */
-    height: 400px;     /* 높이를 자동으로 설정하여 비율 유지 */
-    display: block;   /* 이미지 블록 요소로 처리 */
-    margin: 0 auto;   /* 이미지를 가운데 정렬 */
-    border-radius: 8px; /* 둥근 모서리 적용 */
-    object-fit: contain; /* 이미지가 잘리지 않도록 설정 */
+    max-width: 100%;  /* Adjust to the maximum width of the parent element */
+    width: auto;      /* Set width to auto to maintain aspect ratio */
+    height: 400px;    /* Set height to auto to maintain aspect ratio */
+    display: block;   /* Treat image as a block element */
+    margin: 0 auto;   /* Center the image */
+    border-radius: 8px; /* Apply rounded corners */
+    object-fit: contain; /* Ensure the image is not cropped */
 }
 
 footer {
@@ -83,7 +83,7 @@ footer {
     height: 24px;
 }
 
-/* answer-form 스타일링 */
+/* Styling for answer-form */
 .answer-form {
     display: flex;
     flex-direction: column;
@@ -158,7 +158,7 @@ footer {
     top: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.5);
+    background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent black background */
     justify-content: center;
     align-items: center;
 }
@@ -192,26 +192,26 @@ footer {
 #totalModal {
     display: flex;
     position: fixed;
-    z-index: 2; /* 다른 모달보다 앞에 오도록 설정 */
+    z-index: 2; /* Ensure it appears above other modals */
     left: 0;
     top: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.5); /* 배경색 */
+    background-color: rgba(0, 0, 0, 0.5); /* Background color */
     justify-content: center;
     align-items: center;
 }
 
 #totalModal .modal-content {
     width: 80%;
-    max-width: 400px; /* 기본 최대 너비 설정 */
+    max-width: 400px; /* Default maximum width */
     background-color: #fefefe;
     padding: 20px;
     border: 1px solid #888;
     border-radius: 10px;
     text-align: center;
     font-family: 'Lato', sans-serif;
-    position: relative; /* 모달 내 위치 고정 */
+    position: relative; /* Fixed position within modal */
 }
 
 #resultMessage2 {
@@ -222,9 +222,8 @@ footer {
     background-color: rgba(0, 0, 0, 0.1);
     display: inline-block;
     margin-top: 10px;
-    color: #000000; /* 기본 텍스트 색상을 검은색으로 변경 */
+    color: #000000; /* Change default text color to black */
 }
-
 
 .result-image {
     max-width: 50%;
@@ -272,21 +271,21 @@ footer {
     position: fixed;
     top: 1px;
     right: 1px;
-    width: 150px; /* 로고 너비 조정 */
-    height: auto; /* 비율 유지 */
-    z-index: 1000; /* 다른 요소들 위에 표시 */
+    width: 150px; /* Adjust logo width */
+    height: auto; /* Maintain aspect ratio */
+    z-index: 1000; /* Display above other elements */
 }
 
-/* 모바일 반응형 스타일 */
+/* Mobile responsive styles */
 @media (max-width: 600px) {
     .question-image {
-        max-width: 400px; /* 작은 화면에서는 너비를 100%로 설정 */
-        height: auto; /* 높이를 자동으로 설정 */
+        width: 100%; /* Set width to 100% on small screens */
+        height: auto; /* Set height to auto */
     }
 }
 
 @media (max-width: 932px) {
     .logo {
-        display: none; /* 작은 화면에서는 로그를 숨김 */
+        display: none; /* Hide logo on small screens */
     }
 }

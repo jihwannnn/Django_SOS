@@ -1,6 +1,6 @@
 body {
     font-family: 'Lato', sans-serif;
-    background: linear-gradient(to bottom, #007bff, #6c757d);
+    background: linear-gradient(to bottom, #007bff, #6c757d); /* Background gradient from blue to gray */
     color: white;
     height: 100vh;
     margin: 0;
@@ -57,28 +57,28 @@ body {
     flex-wrap: wrap;
     align-items: center;
     justify-content: center;
-    gap: 20px; /* 기본 간격 */
+    gap: 20px; /* Default gap between buttons */
 }
 
 .button-wrapper {
     background: #28a745;
-    border: none; /* 기본 버튼 스타일 제거 */
+    border: none; /* Remove default button styles */
     border-radius: 10px;
     padding: 20px;
     text-align: center;
     width: 200px;
-    height: 200px; /* 고정 높이 설정 */
+    height: 200px; /* Fixed height */
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    transition: transform 0.3s ease; /* 호버 효과를 위한 트랜지션 추가 */
+    transition: transform 0.3s ease; /* Add transition for hover effect */
     cursor: pointer;
-    font-family: 'Lato', sans-serif; /* 버튼에 Lato 글꼴 적용 */
+    font-family: 'Lato', sans-serif; /* Apply Lato font to button */
 }
 
 .button-wrapper:hover {
-    transform: scale(1.05); /* 호버 시 약간 확대 */
+    transform: scale(1.05); /* Slightly enlarge on hover */
 }
 
 .button-icon {
@@ -94,7 +94,7 @@ body {
     display: block;
     width: 100%;
     text-align: center;
-    font-weight: bold; /* 굵은 글꼴 적용 */
+    font-weight: bold; /* Bold font */
 }
 
 .button-description {
@@ -108,14 +108,14 @@ body {
 }
 
 .modal {
-    display: none; /* 기본적으로 숨김 */
+    display: none; /* Hidden by default */
     position: fixed;
     z-index: 1;
     left: 0;
     top: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.5); /* 검은색 반투명 배경 */
+    background-color: rgba(0, 0, 0, 0.5); /* Black semi-transparent background */
     justify-content: center;
     align-items: center;
 }
@@ -125,14 +125,14 @@ body {
     padding: 20px;
     border: 1px solid #888;
     width: 80%;
-    max-width: 300px; /* 최대 너비 설정 */
+    max-width: 300px; /* Maximum width */
     text-align: center;
     border-radius: 10px;
-    font-family: 'Lato', sans-serif; /* 모달에도 Lato 글꼴 적용 */
+    font-family: 'Lato', sans-serif; /* Apply Lato font to modal */
 }
 
 .modal-content h2 {
-    color: #333; /* 글자 색상을 다크 그레이로 변경 */
+    color: #333; /* Dark gray text color */
 }
 
 .close-button {
@@ -158,7 +158,7 @@ body {
     cursor: pointer;
     border-radius: 5px;
     width: 100%;
-    font-family: 'Lato', sans-serif; /* 모달 버튼에도 Lato 글꼴 적용 */
+    font-family: 'Lato', sans-serif; /* Apply Lato font to modal button */
 }
 
 .modal-button:hover {
@@ -171,7 +171,7 @@ body {
     left: 10px;
     display: flex;
     align-items: center;
-    gap: 10px; /* 버튼과 사용자 이름 사이의 간격 */
+    gap: 10px; /* Gap between button and username */
 }
 
 .username {
@@ -184,13 +184,13 @@ body {
     background: #1ABC9C;
     border: none;
     color: white;
-    padding: 5px 10px; /* 크기를 줄이기 위해 패딩을 줄임 */
+    padding: 5px 10px; /* Reduce padding for smaller size */
     border-radius: 5px;
     cursor: pointer;
     transition: background 0.3s ease;
     display: flex;
     align-items: center;
-    justify-content: center; /* 중앙 정렬 */
+    justify-content: center; /* Center align */
 }
 
 .logout-button:hover {
@@ -198,23 +198,23 @@ body {
 }
 
 .logout-icon {
-    width: 16px; /* 아이콘 크기를 줄임 */
+    width: 16px; /* Reduce icon size */
     height: 16px;
-    margin-right: 5px; /* 아이콘과 텍스트 사이 간격 */
+    margin-right: 5px; /* Gap between icon and text */
 }
 
 .logo {
     position: fixed;
     top: 1px;
     right: 1px;
-    width: 150px; /* 로고 너비 조정 */
-    height: auto; /* 비율 유지 */
-    z-index: 1000; /* 다른 요소들 위에 표시 */
+    width: 150px; /* Adjust logo width */
+    height: auto; /* Maintain aspect ratio */
+    z-index: 1000; /* Display above other elements */
 }
 
 @media (max-width: 768px) {
     .image-container {
-        display: none; /* 작은 화면에서는 이미지 컨테이너를 숨김 */
+        display: none; /* Hide image container on small screens */
     }
 
     .button-container {
@@ -243,10 +243,10 @@ body {
         font-size: 14px;
     }
 
-    /* 작은 화면에서 모달 창 위치 조정 */
+    /* Adjust modal position on small screens */
     .modal-content {
         width: 90%;
-        margin: 0 auto; /* 화면 중앙에 배치 */
+        margin: 0 auto; /* Center on screen */
         top: 50%;
     }
 }
@@ -256,7 +256,7 @@ body {
         flex-direction: row;
         flex-wrap: wrap;
         justify-content: center;
-        gap: 10px; /* 간격을 좁힘 */
+        gap: 10px; /* Reduce gap */
     }
 
     .button-icon {
@@ -265,26 +265,26 @@ body {
     }
 
     .button-wrapper {
-        width: calc(50% - 10px); /* 버튼 너비를 45%로 설정하여 2개씩 배치 */
-        height: 150px; /* 버튼 높이 줄임 */
-        max-width: none; /* 최대 너비 제한 해제 */
-        padding: 10px; /* 작은 화면에서는 패딩을 줄임 */
+        width: calc(50% - 10px); /* Set button width to 50% - 10px */
+        height: 150px; /* Reduce height */
+        max-width: none; /* Remove max-width */
+        padding: 10px; /* Reduce padding on small screens */
         width: 150px;
     }
 }
 
 @media (min-width: 1138px) {
     .button-container {
-        gap: 100px; /* 큰 화면에서는 버튼 간의 간격을 늘림 */
+        gap: 100px; /* Increase gap on large screens */
     }
 }
 
-/* 반응형 로고 스타일 */
+/* Responsive logo style */
 @media (max-width: 932px) {
     .logo {
-        top: 60px; /* 위치를 좀 더 아래로 */
+        top: 60px; /* Lower position */
         right: 50%;
         transform: translateX(50%);
-        width: 200px; /* 크기를 살짝 키움 */
+        width: 200px; /* Slightly increase size */
     }
 }
