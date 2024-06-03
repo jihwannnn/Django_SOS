@@ -2,14 +2,14 @@
 
 body {
     font-family: 'Lato', sans-serif;
-    background: linear-gradient(to bottom, #007bff, #6c757d);
+    background: linear-gradient(to bottom, #007bff, #6c757d); /* Background gradient from blue to gray */
     color: white;
     height: 100vh;
     margin: 0;
     padding: 0;
     display: flex;
     flex-direction: column;
-    justify-content: space-between; /* 상단과 하단에 공간을 균등하게 배치 */
+    justify-content: space-between; /* Space between top and bottom */
 }
 
 .container {
@@ -17,19 +17,19 @@ body {
     max-width: 800px;
     text-align: center;
     margin: 20px auto;
-    overflow-y: auto; /* 세로 스크롤 활성화 */
+    overflow-y: auto; /* Enable vertical scrolling */
 }
 
 h1 {
-    font-size: 2.5rem; /* 제목의 글꼴 크기 */
-    font-weight: 700; /* 제목의 글꼴 굵기 */
-    color: #2ecc71; /* 제목의 글꼴 색상 (진한 초록색) */
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* 제목의 텍스트 그림자 */
-    margin: 20px 0; /* 제목의 여백 */
-    padding: 10px 20px; /* 제목의 패딩 */
-    border-radius: 10px; /* 제목의 테두리 반경 */
-    border: 2px solid #27ae60; /* 제목의 테두리 색상 (짙은 초록색) */
-    background: rgba(46, 204, 113, 0.1); /* 제목의 배경 색상 (투명 초록색) */
+    font-size: 2.5rem; /* Font size of the heading */
+    font-weight: 700; /* Font weight of the heading */
+    color: #2ecc71; /* Font color of the heading (dark green) */
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* Text shadow for the heading */
+    margin: 20px 0; /* Margin for the heading */
+    padding: 10px 20px; /* Padding for the heading */
+    border-radius: 10px; /* Border radius for the heading */
+    border: 2px solid #27ae60; /* Border color for the heading (dark green) */
+    background: rgba(46, 204, 113, 0.1); /* Background color for the heading (transparent green) */
 }
 
 table {
@@ -39,17 +39,17 @@ table {
 
 th, td {
     border: 1px solid #ddd;
-    padding: 10px; /* 셀의 패딩 */
+    padding: 10px; /* Padding for table cells */
     text-align: left;
 }
 
 th {
-    background: #28a745; /* 헤더 배경 색상 (짙은 초록색) */
-    color: white; /* 헤더 글꼴 색상 (화이트) */
+    background: #28a745; /* Background color for table headers (dark green) */
+    color: white; /* Font color for table headers (white) */
 }
 
 tbody tr:hover {
-    background-color: #ddd; /* 호버시 배경 색상 */
+    background-color: #ddd; /* Background color on row hover */
 }
 
 #retest {
@@ -59,7 +59,7 @@ tbody tr:hover {
 footer {
     margin-top: 20px;
     text-align: center;
-    background: rgba(0, 0, 0, 0.2);
+    background: rgba(0, 0, 0, 0.2); /* Semi-transparent black background for footer */
     padding: 10px 0;
     width: 100%;
     position: absolute;
@@ -67,21 +67,21 @@ footer {
 }
 
 .home-button {
-    background: #1ABC9C; /* 홈 버튼 배경 색상 (초록색) */
+    background: #1ABC9C; /* Background color for home button (green) */
     border: none;
-    color: white; /* 홈 버튼 글꼴 색상 (화이트) */
-    font-size: 1.5rem; /* 홈 버튼 글꼴 크기 */
-    padding: 10px 20px; /* 홈 버튼 패딩 */
+    color: white; /* Font color for home button (white) */
+    font-size: 1.5rem; /* Font size for home button */
+    padding: 10px 20px; /* Padding for home button */
     border-radius: 5px;
     cursor: pointer;
     transition: background 0.3s;
 }
 
 .home-button:hover {
-    background: #16A085; /* 호버시 홈 버튼 배경 색상 (짙은 초록색) */
+    background: #16A085; /* Background color for home button on hover (dark green) */
 }
 
-/* 아이콘 스타일 */
+/* Icon styles */
 .icon {
     width: 24px;
     height: 24px;

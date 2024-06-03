@@ -1,6 +1,6 @@
 body {
     font-family: 'Lato', sans-serif;
-    background: linear-gradient(to bottom, #007bff, #6c757d); /* main.html과 동일한 배경색 */
+    background: linear-gradient(to bottom, #007bff, #6c757d); /* Same background color as main.html */
     color: white;
     height: 100vh;
     margin: 0;
@@ -25,7 +25,7 @@ header {
 }
 
 header h1 {
-    font-size: 3rem;
+    font-size: 3rem; /* Font size of the header */
 }
 
 div {
@@ -40,7 +40,7 @@ footer {
     display: flex;
     justify-content: center;
     padding: 20px;
-    margin-top: auto; /* 푸터를 페이지 맨 아래로 이동 */
+    margin-top: auto; /* Move footer to the bottom of the page */
 }
 
 .home-button {
@@ -62,20 +62,19 @@ footer {
     align-content: center;
 }
 
-/* 아이콘 스타일 */
+/* Icon styles */
 .icon {
     width: 24px;
     height: 24px;
 }
 
-
-/* 점수 스타일 */
+/* Score styles */
 p {
     font-size: 2.5rem;
     margin: 20px 0;
 }
 
-/* 내용 컨테이너 */
+/* Content container */
 .content {
     flex-grow: 1;
     display: flex;
@@ -88,13 +87,13 @@ p {
     position: fixed;
     top: 1px;
     right: 1px;
-    width: 150px; /* 로고 너비 조정 */
-    height: auto; /* 비율 유지 */
-    z-index: 1000; /* 다른 요소들 위에 표시 */
+    width: 150px; /* Adjust logo width */
+    height: auto; /* Maintain aspect ratio */
+    z-index: 1000; /* Display above other elements */
 }
 
 @media (max-width: 932px) {
     .logo {
-        display: none; /* 작은 화면에서는 로그를 숨김 */
+        display: none; /* Hide logo on small screens */
     }
 }
