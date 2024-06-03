@@ -77,7 +77,6 @@ logger = logging.getLogger(__name__)
 @login_required
 @csrf_exempt
 def quiz(request, chapter_num):
-    logger.debug("Entered quiz view with chapter_num: %s", chapter_num)
     current_user = request.user
     questions = Question.objects.filter(chapter=chapter_num)
     total_questions = questions.count()
@@ -86,14 +85,10 @@ def quiz(request, chapter_num):
     current_index = max(0, min(current_index, total_questions - 1))
     current_question = questions[current_index] if total_questions > 0 else None
 
-    logger.debug("Total questions: %d, Current index: %d", total_questions, current_index)
-
     if request.method == 'POST':
         try:
-            logger.debug("Processing POST request")
             data = json.loads(request.body)
             submitted_answers = data.get('answers')
-            logger.debug("Submitted answers: %s", submitted_answers)
 
             if not current_user.is_authenticated:
                 logger.warning("User not authenticated")
@@ -115,7 +110,6 @@ def quiz(request, chapter_num):
                     solved_question.was_right = correctness
                     solved_question.submitted_answer = submitted_answers[i]
                     solved_question.save()
-                logger.debug("Saved solved question: %s", solved_question)
             exam_log = ExamLog(
                 user=current_user,
                 chapter=chapter_num,
@@ -124,7 +118,6 @@ def quiz(request, chapter_num):
                 total_correct_questions=total_correctness
             )
             exam_log.save()
-            logger.debug("Saved exam log: %s", exam_log)
 
             request.session['correct_answers'] = total_correctness
             request.session['incorrect_answers'] = total_questions - total_correctness
@@ -147,13 +140,11 @@ def quiz(request, chapter_num):
         'total_questions': total_questions,
         'total_1': total_1
     }
-    logger.debug("Rendering quiz template with context: %s", context)
     return render(request, 'question/quiz.html', context)
 
 @login_required
 @csrf_exempt
 def retest(request, chapter_num):
-    logger.debug("Entered quiz view with chapter_num: %s", chapter_num)
     current_user = request.user
     questions = SolvedQuestion.objects.filter(user=current_user, solved_questions__chapter=chapter_num, was_right=False)
     total_questions = questions.count()
@@ -162,14 +153,11 @@ def retest(request, chapter_num):
     current_index = max(0, min(current_index, total_questions - 1))
     current_question = questions[current_index] if total_questions > 0 else None
 
-    logger.debug("Total questions: %d, Current index: %d", total_questions, current_index)
 
     if request.method == 'POST':
         try:
-            logger.debug("Processing POST request")
             data = json.loads(request.body)
             submitted_answers = data.get('answers')
-            logger.debug("Submitted answers: %s", submitted_answers)
 
             if not current_user.is_authenticated:
                 logger.warning("User not authenticated")
@@ -191,7 +179,6 @@ def retest(request, chapter_num):
                     solved_question.was_right = correctness
                     solved_question.submitted_answer = submitted_answers[i]
                     solved_question.save()
-                logger.debug("Saved solved question: %s", solved_question)
             exam_log = ExamLog(
                 user=current_user,
                 chapter=chapter_num,
@@ -200,7 +187,6 @@ def retest(request, chapter_num):
                 total_correct_questions=total_correctness
             )
             exam_log.save()
-            logger.debug("Saved exam log: %s", exam_log)
 
             request.session['correct_answers'] = total_correctness
             request.session['incorrect_answers'] = total_questions - total_correctness
@@ -223,7 +209,6 @@ def retest(request, chapter_num):
         'total_questions': total_questions,
         'total_1': total_1
     }
-    logger.debug("Rendering retest template with context: %s", context)
     return render(request, 'question/retest.html', context)
 
 @login_required

@@ -24,7 +24,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-ma-fs!a6n^e2(jm*#%gnno!3ufdi#=12=-jvay_3061e5v8=kk'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = [
     'ec2-54-180-231-104.ap-northeast-2.compute.amazonaws.com',
@@ -153,19 +153,23 @@ DEBUG = True
 SESSION_EXPIRE_AT_BROWSER_CLOSE = True
 LOGGING = {
     'version': 1,
-    'disable_existing_loggers': False,
+    'disable_existing_loggers': True,
     'handlers': {
-        'file': {
-            'level': 'DEBUG',
-            'class': 'logging.FileHandler',
-            'filename': 'debug.log',
+         'console': {
+            'level': 'INFO',  # INFO로 설정
+            'class': 'logging.StreamHandler',
         },
+        # 'file': {
+        #     'level': 'INFO',
+        #     'class': 'logging.FileHandler',
+        #     'filename': 'debug.log',
+        # },
     },
     'loggers': {
         'django': {
-            'handlers': ['file'],
-            'level': 'DEBUG',
-            'propagate': True,
+            'handlers': ['console'],
+            'level': 'INFO',
+            'propagate': False,
         },
     },
 }
