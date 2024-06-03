@@ -62,7 +62,7 @@ document.addEventListener('DOMContentLoaded', function () {
             localStorage.setItem('quizAnswers', JSON.stringify(answers));
 
             // checking submiitted answer is correct
-            if (correctAnswers == answer.toLowerCase()) {
+            if (correctAnswers.toLowerCase().replace(/[^a-zA-Z]/g, '') === answer.toLowerCase().replace(/[^a-zA-Z]/g, '')) {
                 resultMessage.textContent = 'You are correct!';
                 resultMessage.classList.add('correct');
                 resultMessage.classList.remove('wrong');
@@ -136,4 +136,6 @@ document.addEventListener('DOMContentLoaded', function () {
     document.getElementById('noButton').addEventListener('click', function() {
         document.getElementById('totalModal').style.display = 'none';
     });
+
+    
 });

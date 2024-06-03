@@ -11,7 +11,15 @@
     <script>
         var currentQuestionIndex = {{ current_index }};
         var totalQuestions = {{ total_questions }};
-        var correctAnswers = "{{current_question.answer}}";
+        function decodeHTMLEntities(text) {
+            var parser = new DOMParser();
+            var dom = parser.parseFromString(
+                '<!doctype html><body>' + text,
+                'text/html');
+            return dom.body.textContent;
+        }
+        var correctAnswers = decodeHTMLEntities("{{ current_question.answer|escapejs }}");
+    
         var chapter_num = {{chapter_num}};
     </script>
 </head>
