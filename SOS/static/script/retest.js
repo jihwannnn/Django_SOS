@@ -1,11 +1,11 @@
-console.log('quizscript.js loaded'); // 파일이 로드되었는지 확인
+console.log('retest.js loaded');
 
+// functions for moving to previous and next question pages
 function goToPreviousQuestion() {
     if (currentQuestionIndex > 0) {
         window.location.href = window.location.pathname + "?q=" + (currentQuestionIndex - 1);
     }
 }
-
 function goToNextQuestion() {
     if (currentQuestionIndex < totalQuestions - 1) {
         window.location.href = window.location.pathname + "?q=" + (currentQuestionIndex + 1);
@@ -13,74 +13,71 @@ function goToNextQuestion() {
 }
 
 document.addEventListener('DOMContentLoaded', function () {
-    console.log('DOMContentLoaded event fired'); // 디버깅용 로그
+    console.log('DOMContentLoaded event fired'); 
 
-    // URL 파라미터에서 챕터 정보 가져오기
+    //getting chapter from url parameter
     const chapter = document.querySelector('.container').getAttribute('data-chapter');
     
-    console.log('Chapter:', chapter); // 디버깅용 로그
+    console.log('Chapter:', chapter);
 
-    // 챕터 타이틀 설정
+    // setting chapter title
     const chapterTitle = document.getElementById('chapter-title');
-    chapterTitle.textContent = `Chapter ${chapter} Retest`;
+    chapterTitle.textContent = `Chapter ${chapter} Quiz`;
 
-    console.log('Chapter Title Text:', chapterTitle.textContent); // 디버깅용 로그
+    console.log('Chapter Title Text:', chapterTitle.textContent); 
 
-    // 애니메이션 활성화 클래스 추가
+    // animation activation class
     setTimeout(() => {
         chapterTitle.classList.add('show');
-        console.log('Animation Class Added'); // 디버깅용 로그
-    }, 100); // 페이지 로드 후 100ms 대기 후 애니메이션 시작
+        console.log('Animation Class Added'); 
+    }, 100); // start animation after 100ms
 
-    // 답변을 저장할 배열 초기화 또는 로드
+    // variable for storing submitted answers
     var answers = JSON.parse(localStorage.getItem('quizAnswers')) || new Array(totalQuestions).fill("");
 
-    // 현재 질문에 이미 저장된 답변이 있다면 표시
+    // if submitted answer exist, return
     if (answers[currentQuestionIndex] !== null) {
         document.getElementById('answer').value = answers[currentQuestionIndex];
     }
 
+     // logic for make next button and prev button invisivle in specific case
     const prevButton = document.getElementById('prev');
     const nextButton = document.getElementById('next');
-
-
-     // 첫 번째 문제일 때 이전 버튼 숨기기, 첫 번째가 아닐 때 다시 보이게 설정
     if (currentQuestionIndex === 0) {
         prevButton.classList.add('invisible');
     } else {
         prevButton.classList.remove('invisible');
     }
-
     if (currentQuestionIndex === totalQuestions-1) {
         nextButton.classList.add('invisible');
     } else {
         nextButton.classList.remove('invisible');
     }
 
-    // 이전, 다음 버튼 클릭 이벤트 설정
+    // loading logic for moving to prev and next question pages on click
     document.getElementById('prev').addEventListener('click', goToPreviousQuestion);
     document.getElementById('next').addEventListener('click', goToNextQuestion);
 
-    // submit 버튼 클릭 이벤트 설정
+    // getting element used for submit
     var forms = document.querySelectorAll('.answer-form');
     var resultModal = document.getElementById("resultModal");
     var closeModalBtn = document.getElementById("closeModalBtn");
     var resultMessage = document.getElementById("resultMessage");
-    var resultImage = document.getElementById("resultImage"); // resultImage 변수 추가
+    var resultImage = document.getElementById("resultImage"); 
     var correctImg = resultModal.getAttribute('data-correct-img');
     var wrongImg = resultModal.getAttribute('data-wrong-img');
 
+    //form for submitting user's answer
     forms.forEach(function(form) {
         form.addEventListener('submit', function(event) {
-            event.preventDefault(); // 폼 제출 기본 동작을 막음
-
+            event.preventDefault(); // prevent general form's post function
             var answer = form.querySelector('#answer').value;
             answers[currentQuestionIndex] = answer;
             localStorage.setItem('quizAnswers', JSON.stringify(answers));
-            console.log('Saved Answer:', answer); // 디버깅용 로그
-            console.log('All Answers:', answers); // 디버깅용 로그
+            console.log('Saved Answer:', answer); 
+            console.log('All Answers:', answers); 
 
-            // 사용자가 입력한 답변과 정답을 비교
+            // checking submiitted answer is correct
             if (correctAnswers == answer.toLowerCase()) {
                 resultMessage.textContent = 'You are correct!';
                 resultMessage.classList.add('correct');
@@ -92,29 +89,33 @@ document.addEventListener('DOMContentLoaded', function () {
                 resultMessage.classList.remove('correct');
                 resultImage.src = wrongImg;
             }
-
             resultModal.style.display = 'flex';
             document.body.style.backgroundColor = 'rgba(0, 0, 0, 0.5)';
         });
     });
 
+    //handling for modal closing
     closeModalBtn.addEventListener('click', function() {
         resultModal.style.display = 'none';
-        document.body.style.backgroundColor = ''; // 배경색 초기화
+        document.body.style.backgroundColor = ''; 
     });
-
-    // 모달 외부를 클릭하면 모달 창이 닫힘
     window.onclick = function(event) {
         if (event.target == resultModal) {
             resultModal.style.display = 'none';
-            document.body.style.backgroundColor = ''; // 배경색 초기화
+            document.body.style.backgroundColor = ''; 
         }
     }
 
+    //default setting totalModal for none
     document.getElementById('totalModal').style.display = 'none';
-    
+    // if tsubmit is clicked, open totalModal
     document.getElementById('tsubmitBtn').addEventListener('click', function() {
-        fetch(`/question/retest/${chapter_num}/`, {
+        document.getElementById('totalModal').style.display = 'flex'; 
+    });
+
+    //if click yes in totalModal, post result to server 
+    document.getElementById('yesButton').addEventListener('click', function() {
+        fetch(`/question/quiz/${chapter_num}/`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -131,12 +132,12 @@ document.addEventListener('DOMContentLoaded', function () {
             return response.json();
         })
         .then(data => {
-            console.log('Submission Response:', data); // 디버깅용 로그
+            console.log('Submission Response:', data); 
+            //if success post, move to result page
             if (data.success) {
-                alert('Your answers have been submitted successfully!');
-                // 제출 후 로컬 저장소 초기화
                 localStorage.removeItem('quizAnswers');
-                window.location.href = '/question/result/'; // 제출 후 이동할 페이지 설정
+                window.location.href = '/question/result/';
+            //if not, error alert
             } else {
                 alert('There was an error submitting your answers: ' + data.message);
             }
@@ -145,5 +146,10 @@ document.addEventListener('DOMContentLoaded', function () {
             console.error('Error:', error);
             alert('There was an error submitting your answers.');
         });
+    });
+
+    //if click no in totalModal, close modal
+    document.getElementById('noButton').addEventListener('click', function() {
+        document.getElementById('totalModal').style.display = 'none';
     });
 });
