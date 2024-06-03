@@ -23,7 +23,7 @@ class Command(BaseCommand):
              "answer": "banker's algorithm"},
              {"chapter": 8,
              "image": os.path.join(settings.BASE_DIR, "media", "quiz_images", "chapter8", "circular wait.png"),
-             "answer": "circular"},
+             "answer": "circular wait"},
              {"chapter": 8,
              "image": os.path.join(settings.BASE_DIR, "media", "quiz_images", "chapter8", "claim edge.png"),
              "answer": "claim edge"},
@@ -250,7 +250,6 @@ class Command(BaseCommand):
                         chapter=q["chapter"],
                         answer=q["answer"]
                     )
-                    # 기존 파일을 참조
                     question.image.name = os.path.relpath(image_path, settings.MEDIA_ROOT)
                     question.save()
                     self.stdout.write(self.style.SUCCESS(f'Successfully loaded question: {q["answer"]}'))

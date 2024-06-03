@@ -1,5 +1,3 @@
-console.log('quizs.js loaded');
-
 // functions for moving to previous and next question pages
 function goToPreviousQuestion() {
     if (currentQuestionIndex > 0) {
@@ -13,23 +11,16 @@ function goToNextQuestion() {
 }
 
 document.addEventListener('DOMContentLoaded', function () {
-    console.log('DOMContentLoaded event fired'); 
-
     //getting chapter from url parameter
     const chapter = document.querySelector('.container').getAttribute('data-chapter');
-    
-    console.log('Chapter:', chapter);
 
     // setting chapter title
     const chapterTitle = document.getElementById('chapter-title');
     chapterTitle.textContent = `Chapter ${chapter} Quiz`;
 
-    console.log('Chapter Title Text:', chapterTitle.textContent); 
-
     // animation activation class
     setTimeout(() => {
-        chapterTitle.classList.add('show');
-        console.log('Animation Class Added'); 
+        chapterTitle.classList.add('show'); 
     }, 100); // start animation after 100ms
 
     // variable for storing submitted answers
@@ -69,8 +60,6 @@ document.addEventListener('DOMContentLoaded', function () {
             var answer = form.querySelector('#answer').value;
             answers[currentQuestionIndex] = answer;
             localStorage.setItem('quizAnswers', JSON.stringify(answers));
-            console.log('Saved Answer:', answer); 
-            console.log('All Answers:', answers); 
 
             // checking submiitted answer is correct
             if (correctAnswers == answer.toLowerCase()) {

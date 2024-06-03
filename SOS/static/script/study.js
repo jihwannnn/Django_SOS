@@ -1,5 +1,3 @@
-console.log('study.js loaded'); 
-
 // functions for moving to previous and next question pages
 function goToPreviousQuestion() {
     if (currentQuestionIndex > 0) {
@@ -13,23 +11,16 @@ function goToNextQuestion() {
 }
 
 document.addEventListener('DOMContentLoaded', function () {
-    console.log('DOMContentLoaded event fired'); 
-
     //getting chapter from url parameter
     const chapter = document.querySelector('.container').getAttribute('data-chapter');
-    
-    console.log('Chapter:', chapter);
 
     // setting chapter title
     const chapterTitle = document.getElementById('chapter-title');
     chapterTitle.textContent = `Chapter ${chapter} Study`;
 
-    console.log('Chapter Title Text:', chapterTitle.textContent); 
-
     // animation activation class
     setTimeout(() => {
         chapterTitle.classList.add('show');
-        console.log('Animation Class Added'); 
     }, 100); // start animation after 100ms
 
      // logic for make next button and prev button invisivle in specific case
