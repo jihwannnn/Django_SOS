@@ -22,7 +22,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // setting chapter title
     const chapterTitle = document.getElementById('chapter-title');
-    chapterTitle.textContent = `Chapter ${chapter} Quiz`;
+    chapterTitle.textContent = `Chapter ${chapter} Retest`;
 
     console.log('Chapter Title Text:', chapterTitle.textContent); 
 
