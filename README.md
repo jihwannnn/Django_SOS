@@ -1,4 +1,4 @@
-# Django project: SOS, OS quiz website
+# Django project: SOS, OS quiz website. you can try this on your local with 'python manage.py runserver'
 
 ### ***Front***
 
